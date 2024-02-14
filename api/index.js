@@ -4,23 +4,10 @@ import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 import userRoute from './routes/userRoute.js'
 import errorHandler from './errorHandler.js'
-
-
+import path from 'path'
 
 
 dotenv.config();
-
-const server = express();
-
-
-// middle wares
-server.use(express.json())
-server.use('/api/users',userRoute)
-server.use(bodyParser.json())
-
-// error handler middle ware
-
-server.use(errorHandler)
 
 const PORT = 5000 ||process.env.PORT 
 
@@ -43,17 +30,36 @@ const connect = async()=>{
 }
 connect()
 
+const __dirname = path.resolve();
+
+const server = express();
+
+
+// middle wares
+server.use(express.json())
+server.use('/api/users',userRoute)
+server.use(bodyParser.json())
+
+
+
+server.use(express.static(path.join(__dirname,'/client/dist' )))
+
+server.get('*',(resq, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'dist' ,'index.html'))
+})
+
+
+// error handler middle ware
+
+server.use(errorHandler)
+
 const startServer= ()=>{
-
-
     server.listen(PORT,()=>{
         console.log(`sever is running on port ${PORT}`)
     })
-
-
 }
 
-// startServer()
+
 
 
 
