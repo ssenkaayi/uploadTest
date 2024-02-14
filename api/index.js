@@ -9,7 +9,7 @@ import path from 'path'
 
 dotenv.config();
 
-const PORT = 5000 ||process.env.PORT 
+const PORT = 4000 ||process.env.PORT 
 
 // connect to db and start server
 
