@@ -2,7 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
-import userRoute from './routes/userRoute.js'
+import employeRoute from './routes/employeRoute.js'
 import errorHandler from './errorHandler.js'
 import path from 'path'
 
@@ -37,7 +37,7 @@ const server = express();
 
 // middle wares
 server.use(express.json())
-server.use('/api/users',userRoute)
+server.use('/api/employe',employeRoute)
 server.use(bodyParser.json())
 
 

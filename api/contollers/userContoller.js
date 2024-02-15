@@ -5,7 +5,7 @@ import Jwt  from "jsonwebtoken";
 import asyncHandler from 'express-async-handler'
 
 
-export const registerEmployer = asyncHandler(async(req,res)=>{
+export const registerEmploye = asyncHandler(async(req,res)=>{
 
     const {error} = registerValidation(req.body)
   

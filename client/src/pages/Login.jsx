@@ -28,7 +28,7 @@ export default function Login() {
     try{
       dispatch(signInStart())
       //making a request to the server
-      const res = await fetch('/api/users/loginUser',{
+      const res = await fetch('/api/employe/loginEmploye',{
 
         method:'POSt',
         headers:{'content-type':'application/json',},
