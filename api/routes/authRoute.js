@@ -4,11 +4,11 @@ import { registerEmploye, loginEmploye, logoutEmploye } from '../contollers/auth
 
 
 
-const router = express.Router()
+const route = express.Router()
 
-router.post('/registerEmploye' , registerEmploye)
-router.post('/loginEmploye', loginEmploye)
-router.get('/logoutEmploye',logoutEmploye)
+route.post('/registerEmploye' , registerEmploye)
+route.post('/loginEmploye', loginEmploye)
+route.get('/logoutEmploye',logoutEmploye)
 
 
-export default router
+export default route

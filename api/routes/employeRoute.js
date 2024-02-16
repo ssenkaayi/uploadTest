@@ -2,13 +2,13 @@
 import express from 'express'
 import { getEmploye, deleteEmploye, updateEmploye, getEmployes } from '../contollers/employeContoller.js'
 
-const router = express.Router()
+const route = express.Router()
 
-router.get('/getEmploye/:id',getEmploye)
-router.delete('/deleteEmploye/:id',deleteEmploye)
-router.put('/updateEmploye/:id',updateEmploye)
-router.get('/getEmployes',getEmployes)
+route.get('/getEmploye/:id',getEmploye)
+route.delete('/deleteEmploye/:id',deleteEmploye)
+route.put('/updateEmploye/:id',updateEmploye)
+route.get('/getEmployes',getEmployes)
 
 
 
-export default router
+export default route
