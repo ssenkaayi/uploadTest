@@ -3,10 +3,11 @@ import { registerEmploye, loginEmploye, logoutEmploye } from '../contollers/auth
 
 
 
+
 const router = express.Router()
 
 router.post('/registerEmploye' , registerEmploye)
-router.post('/loginEmploye',loginEmploye)
+router.post('/loginEmploye', loginEmploye)
 router.get('/logoutEmploye',logoutEmploye)
 
 

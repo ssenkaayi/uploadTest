@@ -8,18 +8,35 @@ const paymentSchema = mongoose.Schema(
         type:String,
         required:true
     },
+    amount:{
+
+        type:Number,
+        required:true
+        },
+    total:{
+
+        type:Number,
+        required:true
+        }, 
+    status:{
+
+        type:String,
+        required:true
+        },
     supplierName:{
 
         type:String,
         required:true
         },
-    order_id:{
+    clientName:{
 
         type:String,
+        required:true
+        },    
+    weight:{
+
+        type:Number,
         required:true,
-        unique : true,
-        
-        
     },
     issuedName:{
 

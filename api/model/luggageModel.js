@@ -3,22 +3,20 @@ import mongoose from "mongoose";
 
 const luggageSchema = mongoose.Schema(
     
- {  tripName:{
+ {  skyTeamName:{
 
         type:String,
         required:true
     },
-    totalKgs:{
+    weight:{
 
-        type:String,
+        type:Number,
         required:true
         },
     supplierName:{
 
         type:String,
         required:true,
-        unique : true,
-       
         
     },
     clientName:{
@@ -27,6 +25,11 @@ const luggageSchema = mongoose.Schema(
         required:true
     },
     numberPackage:{
+        type:Number,
+        required:true
+    },
+    issuedBy:{
+
         type:String,
         required:true
     },

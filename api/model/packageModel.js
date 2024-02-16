@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const paymentSchema = mongoose.Schema(
     
- {  luggage_id:{
+ {  skyTeamName:{
 
         type:String,
         required:true
@@ -20,6 +20,11 @@ const paymentSchema = mongoose.Schema(
 
     },
     clientName:{
+
+        type:String,
+        required:true
+    },
+    supplierName:{
 
         type:String,
         required:true

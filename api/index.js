@@ -2,8 +2,8 @@ import express from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
-import employeRoute from './routes/Route.js'
-import errorHandler from './errorHandler.js'
+import employeRoute from './routes/authRoute.js'
+import { errorHandler } from './errorHandler.js'
 import path from 'path'
 
 
