@@ -6,7 +6,8 @@ const paymentSchema = mongoose.Schema(
  {  recieptNo:{
 
         type:String,
-        required:true
+        required:true,
+        unique : true,
     },
     amount:{
 

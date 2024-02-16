@@ -72,7 +72,7 @@ export const loginEmploye = asyncHandler(async(req,res,next)=>{
 export const logoutEmploye = asyncHandler(async(req,res,next)=>{
 
 
-    res.cookie('access_token',"",{path:"/",httpOnly:true,expiresIn: new Date(0),}).status(200).send("logged out succesfully")
+    res.clearCookie('access_token',).status(200).send("logged out succesfully")
 
     
 })

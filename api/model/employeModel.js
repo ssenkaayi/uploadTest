@@ -5,8 +5,8 @@ const employeSchema = mongoose.Schema(
     
  {  firstName:{
 
-    type:String,
-    required:true
+        type:String,
+        required:true
     },
     lastName:{
 
@@ -18,7 +18,6 @@ const employeSchema = mongoose.Schema(
         type:String,
         required:true,
         unique : true,
-        trim:true,
         
     },
     password:{

@@ -28,3 +28,12 @@ export const loginValidation = (data)=>{
     return schema.validate(data)
 }
 
+// export const getValidation = (data)=>{
+
+//     const schema = Joi.object({
+
+//         // _id:Joi.string().required()
+//     })
+
+//     return schema.validate(data)
+// }
