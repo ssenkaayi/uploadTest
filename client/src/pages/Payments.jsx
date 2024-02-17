@@ -5,6 +5,7 @@ function Payments() {
   return (
 
     <Body/>
+    
     )
 }
 

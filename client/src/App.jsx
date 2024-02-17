@@ -14,6 +14,7 @@ import Settings from './pages/Settings'
 
 
 
+
 export default function App() {
 
  
@@ -35,6 +36,7 @@ export default function App() {
             <Route path='/dashbord/payments' element = {<Payments/>}/>
             <Route path='/dashbord/orders'   element = {<Orders/>}/>
             <Route path='/dashbord/settings' element = {<Settings/>}/>
+            
 
           </Route>
 

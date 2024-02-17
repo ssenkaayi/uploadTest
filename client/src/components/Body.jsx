@@ -1,34 +1,28 @@
 import React from 'react'
 import Card from './Card'
 import Records from './Records'
+import AddEmploye from '../Model/AddEmploye'
+import { useState } from 'react'
 
 function Body() {
+
+  const [showAddEmploye,setShowAddEmploye] = useState(false)
+
+  const handleOnClose = ()=>setShowAddEmploye(false)
 
   return (
 
     <div className=''>
 
-      
-
-      <div className='bg-white rounded-xl p-8'>
-
-        <h3 className='text-dashbord pb-2.5 font-dase'>Card heading</h3>
-
-        <div className='flex items-center flex-wrap gap-card'>
-
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-
-        </div>
-
-        
-      </div>
-
+  
       <div>
 
+
         <Records/>
+        <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>   
+
+        
+       
 
       </div>
 

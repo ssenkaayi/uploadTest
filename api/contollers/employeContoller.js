@@ -1,6 +1,7 @@
 
 import Employe from '../model/employeModel.js';
 import asyncHandler from 'express-async-handler';
+import errorHandler from '../errorHandler.js';
 
 export const getEmploye = asyncHandler(async(req,res)=>{
 
@@ -20,7 +21,7 @@ export const  deleteEmploye = async(req,res,next)=>{
 
     if(!listing) return next(errorHandler(401,'employe with id is not found'))
 
-    if(req.user.id!==listing.userRef) return next(errorHandler(401,'you can not authorized delete profile'))
+    // if(req.user.id!==listing.userRef) return next(errorHandler(401,'you can not authorized delete profile'))
 
     try{
 
@@ -41,13 +42,13 @@ export const updateEmploye = async(req,res,next)=>{
 
     if(!exist) return next(errorHandler(401,'employe with id is not found'))
 
-    if(req.user.id!==exist.userRef) return next(errorHandler(401,'you can only update your own profile'))
+    // if(req.user.id!==exist.userRef) return next(errorHandler(401,'you can only update your own profile'))
 
     try{
 
-        const updatedListing = await Listing.findByIdAndUpdate(req.params.id,req.body,{new:true}) 
+        const updatedEmploye = await Employe.findByIdAndUpdate(req.params.id,req.body,{new:true}) 
         
-        res.status(200).json(updatedListing)
+        res.status(200).json(updatedEmploye)
 
     }catch(error){
         next(error)

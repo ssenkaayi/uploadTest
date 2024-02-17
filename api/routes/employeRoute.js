@@ -2,6 +2,7 @@
 import express from 'express'
 import { getEmploye, deleteEmploye, updateEmploye, getEmployes } from '../contollers/employeContoller.js'
 
+
 const route = express.Router()
 
 route.get('/getEmploye/:id',getEmploye)
