@@ -1,6 +1,7 @@
 
 import express from 'express'
 import { getEmploye, deleteEmploye, updateEmploye, getEmployes } from '../contollers/employeContoller.js'
+import { verifyToken } from '../verifyEmploye.js'
 
 
 const route = express.Router()

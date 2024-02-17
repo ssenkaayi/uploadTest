@@ -99,11 +99,6 @@ function Records() {
 
                 </thead>
 
-                
-
-                
-
-
                 <tbody>
                 
                     { employes !== null ?employes.map((employe,index)=>{ 

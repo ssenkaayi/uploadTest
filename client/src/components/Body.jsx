@@ -1,14 +1,7 @@
 import React from 'react'
-import Card from './Card'
 import Records from './Records'
-import AddEmploye from '../Model/AddEmploye'
-import { useState } from 'react'
 
 function Body() {
-
-  const [showAddEmploye,setShowAddEmploye] = useState(false)
-
-  const handleOnClose = ()=>setShowAddEmploye(false)
 
   return (
 
@@ -16,13 +9,7 @@ function Body() {
 
   
       <div>
-
-
         <Records/>
-        {/* <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>    */}
-
-        
-       
 
       </div>
 

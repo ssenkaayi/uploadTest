@@ -59,8 +59,11 @@ export const updateEmploye = async(req,res,next)=>{
 export const getEmployes = async(req,res,next)=>{
     try{
 
-        const employes = await Employe.find()
+        const employes = await Employe.find().select("-password")
+        if(employes==undefined) return res.status(400).send('no employes found')
+
         res.status(200).json(employes)
+       
 
     }catch(error){
 

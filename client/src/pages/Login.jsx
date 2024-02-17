@@ -65,10 +65,11 @@ export default function Login() {
 
   return (
 
-    <div className='bg-base items-center'>
+    <div className='bg-base bg-opacity-30
+    backdrop-blur-sm flex justify-center items-center'>
 
     
-      <form className='font-primay p-3 flex max-w-lg mx-auto  bg-white text-regal-violet flex-col gap-4' >
+      <form className='font-primay p-3 flex max-w-lg mx-auto w-80 bg-white text-regal-violet flex-col gap-4' >
 
         < img className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2 my-7' 
           src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" 

@@ -1,5 +1,6 @@
 import express from 'express'
 import { registerEmploye, loginEmploye, logoutEmploye } from '../contollers/authController.js'
+import { verifyToken } from '../verifyEmploye.js'
 
 
 
