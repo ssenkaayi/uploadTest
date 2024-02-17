@@ -1,0 +1,1 @@
+export const employeTable = ['Date','Fisrt name','Last name','Email','Phone','Address','Role']

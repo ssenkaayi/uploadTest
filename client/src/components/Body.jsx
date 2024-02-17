@@ -19,7 +19,7 @@ function Body() {
 
 
         <Records/>
-        <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>   
+        {/* <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>    */}
 
         
        

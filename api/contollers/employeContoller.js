@@ -57,23 +57,15 @@ export const updateEmploye = async(req,res,next)=>{
 
 
 export const getEmployes = async(req,res,next)=>{
+    try{
+
+        const employes = await Employe.find()
+        res.status(200).json(employes)
+
+    }catch(error){
 
 
-    if(req.params.id===req.user.id) {
-
-        try{
-
-            const userListings = await Listing.find({userRef:req.params.id})
-            res.status(200).json(userListings)
-
-        }catch(error){
-
-
-            next(error)
-        }
-
-        
-    }else{
-        return next(errorHandler(401,'you can only view your own listing'))
+        next(error)
     }
+
 }

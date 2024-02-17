@@ -49,7 +49,8 @@ function AddEmploye({visible , onClose}) {
         //if response is True, register and navigate to the sign in page
         setLoading(false);
         setError(null)
-        navigate('/dashbord/')
+        // navigate('/dashbord/')
+        handleOnClose()
   
       }catch(error){
         setLoading(false);

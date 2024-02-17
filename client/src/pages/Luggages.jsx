@@ -1,12 +1,12 @@
 import React from 'react'
-import Login from '../components/Login'
+
 
 function Luggages() {
   return (
 
     <div>
 
-      <Login/>
+     luggages
 
     </div>
   )

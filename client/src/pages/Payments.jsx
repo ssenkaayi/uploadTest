@@ -5,6 +5,10 @@ function Payments() {
   return (
 
     <Body/>
+
+    // <div>
+    //   payments
+    // </div>
     
     )
 }

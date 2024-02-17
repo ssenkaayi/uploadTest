@@ -1,12 +1,61 @@
 import React from 'react'
 import AddEmploye from '../Model/AddEmploye'
 import { useState } from 'react'
+import { employeTable } from './TableHeading'
+import { useEffect } from 'react'
 
 function Records() {
 
-    // const [showAddEmploye,setShowAddEmploye] = useState(false)
+    const [showAddEmploye,setShowAddEmploye] = useState(false)
+    const [employes , setEmployes] = useState(null)
+    const [loading , setLoading] = useState(false)
+    const [error , setError] = useState(false)
 
-    // const handleOnClose = ()=>setShowAddEmploye(false)
+    const handleOnClose = ()=>setShowAddEmploye(false)
+
+
+    useEffect(()=>{
+
+        const fetchEmployes = async()=>{
+    
+          try{
+      
+            setLoading(true);
+            const res = await fetch('/api/employe/getEmployes',{
+              
+                method:'GET',
+            
+            })
+
+            const data = await res.json();
+            // console.log(data)
+          
+            if(data.succuss===false){
+              setError(true)
+              setLoading(false)
+              return
+            }
+            
+            setError(false)
+            setLoading(false)
+           
+            setEmployes(data)
+        
+          }
+      
+          catch(error){
+            setError(error.message)
+            setLoading(false)
+      
+        }
+      }
+    
+        fetchEmployes()
+    
+        
+    },[])
+
+    console.log(employes)
 
 
 
@@ -14,7 +63,7 @@ function Records() {
 
     <div className='bg-white mt-card p-record mt-record rounded-2xl'>
 
-        {/* <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>    */}
+        <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>   
 
         <div className='flex justify-between'>
 
@@ -35,49 +84,53 @@ function Records() {
 
                     <tr>
 
-                        <th className='p-4 text-left '>Date</th>
-                        <th className='p-4 text-left '>Transaction Type</th>
-                        <th className='p-4 text-left '>Description</th>
-                        <th className='p-4 text-left '>Amount</th>
-                        <th className='p-4 text-left '>Category</th>
-                        <th className='p-4 text-left '>Status</th>
+                        {employeTable.map((item,index)=>{
+
+                            return(
+
+                                
+                            <th className='p-4 text-left ' key={index}>{item}</th>
+
+                            )
+                        })}
+
                         <th className='p-4 text-left '>Action</th>
                     </tr>
 
                 </thead>
 
+                
+
+                
+
+
                 <tbody>
-                        <tr>
-                            <td className='p-4 text-left'>2023-05-01</td>
-                            <td className='p-4 text-left'>kgs</td>
-                            <td className='p-4 text-left'>phones</td>
-                            <td className='p-4 text-left'>2000000</td>
-                            <td className='p-4 text-left'>Maris</td>
-                            <td className='p-4 text-left'>paid</td>
-                            <td className='text-green  items-center p-4'>Edit</td>
-                        </tr>
+                
+                    { employes !== null ?employes.map((employe,index)=>{ 
 
-                        <tr>
-                            <td className='p-4 text-left'>2023-05-01</td>
-                            <td className='p-4 text-left'>kgs</td>
-                            <td className='p-4 text-left'>phones</td>
-                            <td className='p-4 text-left'>2000000</td>
-                            <td className='p-4 text-left'>Maris</td>
-                            <td className='p-4 text-left'>paid</td>
-                            <td className='text-green  items-center p-4'>Edit</td>
-                        </tr>
+                        return(
+                            <tr>
+                            
+                            <td className='p-4 text-left'key={employe.id}>{employe.createdAt.split("T", 1)}</td>
 
-                        <tr>
-                            <td className='p-4 text-left'>2023-05-01</td>
-                            <td className='p-4 text-left'>kgs</td>
-                            <td className='p-4 text-left'>phones</td>
-                            <td className='p-4 text-left'>2000000</td>
-                            <td className='p-4 text-left'>Maris</td>
-                            <td className='p-4 text-left'>paid</td>
-                            <td className=' items-center p-4'>Edit</td>
-                        </tr>
+                            <td className='p-4 text-left'key={employe.id}>{employe.firstName}</td>
+                            <td className='p-4 text-left'key={employe.id}>{employe.lastName}</td>
+                            <td className='p-4 text-left'key={employe.id}>{employe.email}</td>
+                            <td className='p-4 text-left'key={employe.id}>{employe.phone}</td>
+                            <td className='p-4 text-left'key={employe.id}>{employe.address}</td>
+                            <td className='p-4 text-left'key={employe.id}>{employe.role}</td>
 
-    
+                            <td className='text-green flex gap-4 items-center p-4'>
+                                <span className='p-2 '>Edit</span>
+                                <span className='p-2'>View</span>
+                                <span className='p-2'>Delete</span>
+                            </td>
+
+                            </tr>
+
+                        )
+                    }):""}
+
                 </tbody>
 
             </table>
