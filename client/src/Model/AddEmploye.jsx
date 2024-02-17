@@ -25,6 +25,7 @@ function AddEmploye({visible , onClose}) {
   
     //linking our api to send req to the server
     const handleSubmit = async(e)=>{
+      
       setLoading(true);
       e.preventDefault();
       try{

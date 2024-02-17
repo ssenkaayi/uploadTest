@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { employeTable } from './TableHeading'
 import { useEffect } from 'react'
 
+
 function Records() {
 
     const [showAddEmploye,setShowAddEmploye] = useState(false)
@@ -55,8 +56,33 @@ function Records() {
         
     },[])
 
-    console.log(employes)
+    const handleDeteleEmploye = async(e)=>{
 
+      const button_id = e.target.id
+      console.log(button_id)
+    
+      try{
+    
+        const res = await fetch(`/api/employe/deleteEmploye/${button_id}`,{
+          method:"DELETE",
+        })
+    
+        const data = await res.json();
+    
+        console.log(data)
+    
+        if(data.success===false){
+          console.log(data.message)
+        }
+    
+        setEmployes((prev)=>prev.filter((employes)=>employes._id!==button_id))
+    
+      }catch(error){
+        console.log(error)
+      }
+
+
+    }
 
 
   return (
@@ -106,20 +132,20 @@ function Records() {
                         return(
                             <tr>
                             
-                            <td className='p-4 text-left'key={employe.id}>{employe.createdAt.split("T", 1)}</td>
+                            <td className='p-4 text-left'key={employe._id}>{employe.createdAt.split("T", 1)}</td>
 
-                            <td className='p-4 text-left'key={employe.id}>{employe.firstName}</td>
-                            <td className='p-4 text-left'key={employe.id}>{employe.lastName}</td>
-                            <td className='p-4 text-left'key={employe.id}>{employe.email}</td>
-                            <td className='p-4 text-left'key={employe.id}>{employe.phone}</td>
-                            <td className='p-4 text-left'key={employe.id}>{employe.address}</td>
-                            <td className='p-4 text-left'key={employe.id}>{employe.role}</td>
+                            <td className='p-4 text-left'key={employe._id}>{employe.firstName}</td>
+                            <td className='p-4 text-left'key={employe._id}>{employe.lastName}</td>
+                            <td className='p-4 text-left'key={employe._id}>{employe.email}</td>
+                            <td className='p-4 text-left'key={employe._id}>{employe.phone}</td>
+                            <td className='p-4 text-left'key={employe._id}>{employe.address}</td>
+                            <td className='p-4 text-left'key={employe._id}>{employe.role}</td>
 
-                            <td className='text-green flex gap-4 items-center p-4'>
-                                <span className='p-2 '>Edit</span>
-                                <span className='p-2'>View</span>
-                                <span className='p-2'>Delete</span>
-                            </td>
+                            <div className='text-green flex gap-4 items-center p-4'>
+                                <span className='p-2 cursor-pointer '>Edit</span>
+                                <span className='p-2 cursor-pointer '>View</span>
+                                <button className='p-2 cursor-pointer 'id={employe._id} onClick={handleDeteleEmploye}>Delete</button>
+                            </div>
 
                             </tr>
 

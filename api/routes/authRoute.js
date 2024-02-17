@@ -7,7 +7,7 @@ import { verifyToken } from '../verifyEmploye.js'
 
 const route = express.Router()
 
-route.post('/registerEmploye' , registerEmploye)
+route.post('/registerEmploye',registerEmploye)
 route.post('/loginEmploye', loginEmploye)
 route.get('/logoutEmploye',logoutEmploye)
 
