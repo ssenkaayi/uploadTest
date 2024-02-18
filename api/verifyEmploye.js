@@ -1,25 +1,42 @@
-import asyncHamdler from "express-async-handler"
 
-import Employe from "./model/employeModel.js";
 import Jwt  from "jsonwebtoken";
+import Employe from "./model/employeModel.js";
+import asyncHandler from 'express-async-handler'
 
 
-export const verifyToken = asyncHamdler(async(req, res ,next)=>{
+export const verifyToken = (req,res,next)=>{
+
+    const token = req.cookies.access_token;
+    console.log(token)
+
+    if(!token) return next(errorHandler(401,'unauthorized'))
+
+    Jwt.verify(token,process.env.JWT_SECRET,(error,user)=>{
+
+        if(error) return next(errorHandler(403,'forbidden task'))
+        req.user = user;
+        next();
+    });
+
+}
+
+
+export const verifyAdmin = asyncHandler(async(req,res,next)=>{
+
+    const token = req.cookies.access_token
+    // console.log(token)
+
+    if(!token) return next(errorHandler(401,'unauthorized'))
+
+    const user = Jwt.verify(token,process.env.JWT_SECRET);
+    if(!user) return next(errorHandler(403,'forbidden task'))
+
+    const userInfo = await Employe.findById(user._id).select("-password")
+    // req.user.role == userInfo.role
+    if(userInfo.role!=='admin') return res.status(400).send('only admin is authrized to create user')
    
-    try{
+    req.user = user;
+    // console.log(userInfo.role)
 
-        const token = req.cookies.token_access
-        console.log(token)
-
-        if(!token) return res.status(400).send('you are not authorized')
-
-        const verified = Jwt.verify(token,process.env.JWT_SECRET)
-
-        const user = await Employe.findById(verified.id).select("-password")
-        console.log(user.role)
-        next()
-
-    }catch (error){
-
-    }
-})
+    next();
+} )

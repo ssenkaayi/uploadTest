@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 function AddEmploye({visible , onClose}) {
 
@@ -13,7 +13,7 @@ function AddEmploye({visible , onClose}) {
     const[loading,setLoading]=useState(false);
     const[error,setError]= useState(null);
     
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
   
     const handleChange = (e)=>{
       setFormData({
@@ -50,7 +50,6 @@ function AddEmploye({visible , onClose}) {
         //if response is True, register and navigate to the sign in page
         setLoading(false);
         setError(null)
-        // navigate('/dashbord/')
         handleOnClose()
   
       }catch(error){

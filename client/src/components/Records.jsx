@@ -12,7 +12,12 @@ function Records() {
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
 
-    const handleOnClose = ()=>setShowAddEmploye(false)
+    const handleOnClose = ()=>{
+      
+      setShowAddEmploye(false)
+      // setEmployes((prev)=>prev.filter((employes)))
+
+    }
 
 
     useEffect(()=>{
@@ -41,6 +46,7 @@ function Records() {
             setLoading(false)
            
             setEmployes(data)
+            // setEmployes((prev)=>prev.filter((data)))
         
           }
       

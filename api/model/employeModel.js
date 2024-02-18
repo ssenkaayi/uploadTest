@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 // import bcrypt from "bcryptjs"
 
+const role = {
+    Admin :'Admin'
+}
+
 const employeSchema = mongoose.Schema(
     
  {  firstName:{

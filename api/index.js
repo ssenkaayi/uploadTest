@@ -5,6 +5,7 @@ import bodyParser from 'body-parser'
 import authRoute from './routes/authRoute.js'
 import employeRoute from './routes/employeRoute.js'
 import { errorHandler } from './errorHandler.js'
+import cookieParser from 'cookie-parser';
 import path from 'path'
 
 
@@ -37,6 +38,7 @@ const server = express();
 
 
 // middle wares
+server.use(cookieParser());
 server.use(express.json())
 server.use('/api/auth',authRoute)
 server.use('/api/employe',employeRoute)

@@ -42,7 +42,7 @@ export const registerEmploye = asyncHandler(async(req,res)=>{
 
 const generateToken = (id)=>{
 
-    return Jwt.sign({id},process.env.JWT_SECRET,)
+    return Jwt.sign({_id:id},process.env.JWT_SECRET,)
 }
 
 export const loginEmploye = asyncHandler(async(req,res,next)=>{
