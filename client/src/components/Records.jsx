@@ -12,10 +12,10 @@ function Records() {
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
 
+
     const handleOnClose = ()=>{
       
       setShowAddEmploye(false)
-      // setEmployes((prev)=>prev.filter((employes)))
 
     }
 

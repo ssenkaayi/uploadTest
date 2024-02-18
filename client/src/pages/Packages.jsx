@@ -5,7 +5,7 @@ import { employeTable } from '../components/TableHeading'
 import { useEffect } from 'react'
 
 
-function Payments() {
+function Packages() {
 
     const [showAddEmploye,setShowAddEmploye] = useState(false)
     const [employes , setEmployes] = useState(null)
@@ -99,10 +99,10 @@ function Payments() {
 
         <div className='flex justify-between'>
 
-         <h3 className='text-regal-violet text-2xl p-2'> Manange Payments </h3>
+         <h3 className='text-regal-violet text-2xl p-2'> Manange Packages </h3>
 
          <button onClick={()=>setShowAddEmploye(true)} 
-          className='flex items-center p-search-box bg-dashbord rounded-xl text-white '>Add Payment</button>
+          className='flex items-center p-search-box bg-dashbord rounded-xl text-white '>Add Package</button>
 
         </div>
 
@@ -171,4 +171,4 @@ function Payments() {
   )
 }
 
-export default Payments
+export default Packages

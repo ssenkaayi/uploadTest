@@ -4,11 +4,12 @@ import Login from './pages/Login'
 import PrivateRoutes from './components/PrivateRoutes'
 import Dashbord from './pages/Dashbord'
 import Profile from './pages/Profile'
-import Orders from './pages/Orders'
 import Employes from './pages/Employes'
 import Luggages from './pages/Luggages'
 import Payments from './pages/Payments'
 import Settings from './pages/Settings'
+import Packages from './pages/Packages'
+import Trips from './pages/Trips'
 
 
 
@@ -34,7 +35,8 @@ export default function App() {
             <Route path='/dashbord/employes' element = {<Employes/>}/>
             <Route path='/dashbord/luggages' element = {<Luggages/>}/>
             <Route path='/dashbord/payments' element = {<Payments/>}/>
-            <Route path='/dashbord/orders'   element = {<Orders/>}/>
+            <Route path='/dashbord/packages'   element = {<Packages/>}/>
+            <Route path='/dashbord/trips' element = {<Trips/>}/>
             <Route path='/dashbord/settings' element = {<Settings/>}/>
             
 

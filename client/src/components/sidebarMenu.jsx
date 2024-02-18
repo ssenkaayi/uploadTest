@@ -9,8 +9,8 @@ export const sidebarMenu = [
     },
     {
 
-        title:'Orders',
-        url:'/dashbord/orders',
+        title:'Packages',
+        url:'/dashbord/packages',
         icon:'fa-solid fa-circle-info'
 
     },
@@ -27,17 +27,11 @@ export const sidebarMenu = [
         icon:'fa-solid fa-address-book'
 
     },
+
     {
 
-        title:'Profile',
-        url:'/dashbord/profile',
-        icon:'fa-solid fa-address-book'
-
-    },
-    {
-
-        title:'Settings',
-        url:'/dashbord/settings',
+        title:'Trips',
+        url:'/dashbord/trips',
         icon:'fa-solid fa-address-book'
 
     },
