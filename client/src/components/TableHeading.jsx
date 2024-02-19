@@ -6,3 +6,5 @@ export const luggageTable = ['Date','Sky name','Weight','Supplier ','Client','NO
 export const packageTable = ['Date','Weight','Supplier ','Client','Num Pieces','Issued by','Description']
 
 export const paymentTable = ['Date','Weight','Receipt NO','Client','Amount','Total','Status','Issued by']
+
+export const tripTable =    ['Date','Sky Team Name','Total Weight','Supplier','NO Luggages','Issued by']

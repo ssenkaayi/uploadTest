@@ -16,4 +16,22 @@ export const createTrip = asyncHandler(async(req,res)=>{
 })
 
 
+export const getTrips = async(req,res,next)=>{
+    try{
+
+        const trips = await Trip.find()
+        if(trips==undefined) return res.status(400).send('no trips found')
+
+        res.status(200).json(trips)
+       
+
+    }catch(error){
+
+
+        next(error)
+    }
+
+}
+
+
 

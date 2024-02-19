@@ -1,33 +1,33 @@
 import React from 'react'
-import AddEmploye from '../Model/AddEmploye'
 import { useState } from 'react'
-import { employeTable } from '../components/TableHeading'
+import { tripTable } from '../components/TableHeading'
 import { useEffect } from 'react'
+import AddTrip from '../Model/AddTrip'
 
 
 function Trips() {
 
-    const [showAddEmploye,setShowAddEmploye] = useState(false)
-    const [employes , setEmployes] = useState(null)
+    const [showAddTrip,setShowAddTrip] = useState(false)
+    const [trips , setTrips] = useState(null)
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
 
 
     const handleOnClose = ()=>{
       
-      setShowAddEmploye(false)
+      setShowAddTrip(false)
 
     }
 
 
     useEffect(()=>{
 
-        const fetchEmployes = async()=>{
+        const fetchTrips = async()=>{
     
           try{
       
             setLoading(true);
-            const res = await fetch('/api/employe/getEmployes',{
+            const res = await fetch('/api/trip/getTrips',{
               
                 method:'GET',
             
@@ -45,8 +45,8 @@ function Trips() {
             setError(false)
             setLoading(false)
            
-            setEmployes(data)
-            // setEmployes((prev)=>prev.filter((data)))
+            setTrips(data)
+            console.log(trips)
         
           }
       
@@ -57,7 +57,7 @@ function Trips() {
         }
       }
     
-        fetchEmployes()
+      fetchTrips()
     
         
     },[])
@@ -75,7 +75,7 @@ function Trips() {
     
         const data = await res.json();
     
-        console.log(data)
+        // console.log(data)
     
         if(data.success===false){
           console.log(data.message)
@@ -95,13 +95,13 @@ function Trips() {
 
     <div className='bg-white mt-card p-record mt-record rounded-2xl'>
 
-        <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>   
+        <AddTrip onClose={handleOnClose} visible={showAddTrip}/>   
 
         <div className='flex justify-between'>
 
          <h3 className='text-regal-violet text-2xl p-2'> Manange Trips </h3>
 
-         <button onClick={()=>setShowAddEmploye(true)} 
+         <button onClick={()=>setShowAddTrip(true)} 
           className='flex items-center p-search-box bg-dashbord rounded-xl text-white '>Add Trip</button>
 
         </div>
@@ -116,7 +116,7 @@ function Trips() {
 
                     <tr>
 
-                        {employeTable.map((item,index)=>{
+                        {tripTable.map((item,index)=>{
 
                             return(
 
@@ -133,25 +133,23 @@ function Trips() {
 
                 <tbody>
                 
-                    { employes !== null ?employes.map((employe,index)=>{ 
+                    { trips !== null ?trips.map((trip)=>{ 
 
                         return(
                             <tr>
-                            
-                            <td className='p-4 text-left'key={employe._id}>{employe.createdAt.split("T", 1)}</td>
-
-                            <td className='p-4 text-left'key={employe._id}>{employe.firstName}</td>
-                            <td className='p-4 text-left'key={employe._id}>{employe.lastName}</td>
-                            <td className='p-4 text-left'key={employe._id}>{employe.email}</td>
-                            <td className='p-4 text-left'key={employe._id}>{employe.phone}</td>
-                            <td className='p-4 text-left'key={employe._id}>{employe.address}</td>
-                            <td className='p-4 text-left'key={employe._id}>{employe.role}</td>
-
-                            <div className='text-green flex gap-4 items-center p-4'>
-                                <span className='p-2 cursor-pointer '>Edit</span>
-                                <span className='p-2 cursor-pointer '>View</span>
-                                <button className='p-2 cursor-pointer 'id={employe._id} onClick={handleDeteleEmploye}>Delete</button>
-                            </div>
+                          
+                              <td className='p-4 text-left'key={trip._id}>{trip.createdAt.split("T", 1)}</td>
+                              <td className='p-4 text-left'key={trip._id}>{trip.skyTeamName}</td>
+                              <td className='p-4 text-left'key={trip._id}>{trip.weight}</td>
+                              <td className='p-4 text-left'key={trip._id}>{trip.supplierName}</td>
+                              <td className='p-4 text-left'key={trip._id}>{trip.numberLuggages}</td>
+                              <td className='p-4 text-left'key={trip._id}>{trip.issuedBy}</td>
+                          
+                              <div className='text-green flex gap-4 items-center p-4'>
+                                  <span className='p-2 cursor-pointer '>Edit</span>
+                                  <span className='p-2 cursor-pointer '>View</span>
+                                  <button className='p-2 cursor-pointer' >Delete</button>
+                              </div>
 
                             </tr>
 
