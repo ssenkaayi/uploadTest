@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function AddLuggage({visible , onClose}) {
 
@@ -12,6 +13,7 @@ function AddLuggage({visible , onClose}) {
     const[formData,setFormData]=useState({});
     const[loading,setLoading]=useState(false);
     const[error,setError]= useState(null);
+    const{currentEmploye} = useSelector((state)=>state.employe)
     
     const navigate = useNavigate();
   
@@ -30,10 +32,10 @@ function AddLuggage({visible , onClose}) {
       e.preventDefault();
       try{
         //making a request to the server
-        const res = await fetch('/api/auth/registerEmploye',{
+        const res = await fetch('/api/luggage/create',{
           method:'POSt',
           headers:{'content-type':'application/json',},
-          body:JSON.stringify(formData)
+          body:JSON.stringify({...formData,issuedBy:currentEmploye.firstName})
         }
         );
         //getting response from the server
@@ -72,45 +74,35 @@ function AddLuggage({visible , onClose}) {
 
                 <div className='flex flex-col gap-4'>
 
-                    <label className='text-1xl font-semibold'>firstname</label>
-                    <input type="text" placeholder="Enter email" id='firstName' className='border p-3 rounded-lg'
+                    <label className='text-1xl font-semibold'>sky team name</label>
+                    <input type="text" placeholder="sky team name" id='skyTeamName' className='border p-3 rounded-lg'
                     required onChange={handleChange}
                     />
 
-                    <label className='text-1xl font-semibold'>lastname</label>
-                    <input type="text" placeholder="Enter Password" id='lastName' 
+                    <label className='text-1xl font-semibold'>number of luggages</label>
+                    <input type="text" placeholder="number of luggages" id='numberLuggages' 
                     className='border p-3 rounded-lg' required onChange={handleChange}
                     />
 
 
-                    <label className='text-1xl font-semibold'>email</label>
-                    <input type="text" placeholder="Enter Password" id='email' 
+                    <label className='text-1xl font-semibold'>weight</label>
+                    <input type="text" placeholder=" weight" id='weight' 
                     className='border p-3 rounded-lg' required onChange={handleChange}
                     />
 
 
-                    <label className='text-1xl font-semibold'> address </label>
-                    <input type="text" placeholder="Enter Password" id='address' 
+                    <label className='text-1xl font-semibold'> supplierName</label>
+                    <input type="text" placeholder="supplier name" id='supplierName' 
+                    className='border p-3 rounded-lg' required onChange={handleChange}
+                    />
+
+                    <label className='text-1xl font-semibold'> clientName</label>
+                    <input type="text" placeholder="client name" id='clientName' 
                     className='border p-3 rounded-lg' required onChange={handleChange}
                     />
 
 
-                    <label className='text-1xl font-semibold'>Phone</label>
-                    <input type="text" placeholder="Enter Password" id='phone' 
-                    className='border p-3 rounded-lg' required onChange={handleChange}
-                    />
 
-
-                    <label className='text-1xl font-semibold'>role</label>
-                    <input type="text" placeholder="Enter Password" id='role' 
-                    className='border p-3 rounded-lg' required onChange={handleChange}
-                    />
-
-
-                    <label className='text-1xl font-semibold'>password</label>
-                    <input type="password" placeholder="Enter Password" id='password' 
-                    className='border p-3 rounded-lg' required onChange={handleChange}
-                    />
 
                     <div className='flex justify-between items-center'>
                         
@@ -121,9 +113,6 @@ function AddLuggage({visible , onClose}) {
                         <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
                         > {loading? 'submiting...':'Submit'}
                         </button>
-
-
-
 
                     </div>
 
