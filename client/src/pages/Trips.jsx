@@ -62,33 +62,33 @@ function Trips() {
         
     },[])
 
-    const handleDeteleEmploye = async(e)=>{
+    // const handleDeteleEmploye = async(e)=>{
 
-      const button_id = e.target.id
-      console.log(button_id)
+    //   const button_id = e.target.id
+    //   console.log(button_id)
     
-      try{
+    //   try{
     
-        const res = await fetch(`/api/employe/deleteEmploye/${button_id}`,{
-          method:"DELETE",
-        })
+    //     const res = await fetch(`/api/employe/deleteEmploye/${button_id}`,{
+    //       method:"DELETE",
+    //     })
     
-        const data = await res.json();
+    //     const data = await res.json();
     
-        // console.log(data)
+    //     // console.log(data)
     
-        if(data.success===false){
-          console.log(data.message)
-        }
+    //     if(data.success===false){
+    //       console.log(data.message)
+    //     }
     
-        setEmployes((prev)=>prev.filter((employes)=>employes._id!==button_id))
+    //     setEmployes((prev)=>prev.filter((employes)=>employes._id!==button_id))
     
-      }catch(error){
-        console.log(error)
-      }
+    //   }catch(error){
+    //     console.log(error)
+    //   }
 
 
-    }
+    // }
 
 
   return (

@@ -27,7 +27,7 @@ const luggageSchema = mongoose.Schema(
         type:String,
         required:true
     },
-    numberPackage:{
+    numberLuggages:{
 
         type:Number,
         required:true
