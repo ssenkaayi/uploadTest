@@ -33,7 +33,7 @@ export const verifyAdmin = asyncHandler(async(req,res,next)=>{
 
     const userInfo = await Employe.findById(user._id).select("-password")
     // req.user.role == userInfo.role
-    if(userInfo.role!=='admin') return res.status(400).send('only admin is authrized to create user')
+    if(userInfo.role!=='admin') return res.status(400).send('Not an admin')
    
     req.user = user;
     // console.log(userInfo.role)

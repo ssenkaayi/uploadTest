@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 import authRoute from './routes/authRoute.js'
 import employeRoute from './routes/employeRoute.js'
+import tripRoute from './routes/tripRoute.js'
 import { errorHandler } from './errorHandler.js'
 import cookieParser from 'cookie-parser';
 import path from 'path'
@@ -42,6 +43,7 @@ server.use(cookieParser());
 server.use(express.json())
 server.use('/api/auth',authRoute)
 server.use('/api/employe',employeRoute)
+server.use('/api/trip',tripRoute)
 server.use(bodyParser.json())
 
 

@@ -28,6 +28,21 @@ export const loginValidation = (data)=>{
     return schema.validate(data)
 }
 
+export const tripValidation = (data)=>{
+
+    const schema = Joi.object({
+
+       
+        skyTeamName:Joi.string().min(5).required(),
+        weight:Joi.number().min(1).required(),
+        numberLuggages:Joi.number().min(1).required(),
+        supplierName:Joi.string().min(3).required(),
+        issuedBy:Joi.string().min(3).required()
+    })
+
+    return schema.validate(data)
+}
+
 // export const getValidation = (data)=>{
 
 //     const schema = Joi.object({
