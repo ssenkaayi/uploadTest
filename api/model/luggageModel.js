@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 
 const luggageSchema = mongoose.Schema(
     
- {  skyTeamName:{
+ {  
+    skyTeamName:{
 
         type:String,
         required:true
@@ -12,8 +13,10 @@ const luggageSchema = mongoose.Schema(
 
         type:Number,
         required:true
+
         },
-    supplierName:{
+    supplierName:
+    {
 
         type:String,
         required:true,
@@ -25,6 +28,7 @@ const luggageSchema = mongoose.Schema(
         required:true
     },
     numberPackage:{
+
         type:Number,
         required:true
     },

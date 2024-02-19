@@ -1,7 +1,7 @@
 import React from 'react'
 import AddEmploye from '../Model/AddEmploye'
 import { useState } from 'react'
-import { employeTable } from '../components/TableHeading'
+import { luggageTable } from '../components/TableHeading'
 import { useEffect } from 'react'
 
 
@@ -116,7 +116,7 @@ function Luggages() {
 
                     <tr>
 
-                        {employeTable.map((item,index)=>{
+                        {luggageTable.map((item,index)=>{
 
                             return(
 

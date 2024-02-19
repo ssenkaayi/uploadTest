@@ -1,7 +1,7 @@
 import React from 'react'
 import AddEmploye from '../Model/AddEmploye'
 import { useState } from 'react'
-import { employeTable } from '../components/TableHeading'
+import { employeTable, paymentTable } from '../components/TableHeading'
 import { useEffect } from 'react'
 
 
@@ -116,15 +116,15 @@ function Payments() {
 
                     <tr>
 
-                        {employeTable.map((item,index)=>{
+                      {paymentTable.map((item,index)=>{
 
-                            return(
+                          return(
 
-                                
-                            <th className='p-4 text-left ' key={index}>{item}</th>
+                              
+                          <th className='p-4 text-left ' key={index}>{item}</th>
 
-                            )
-                        })}
+                          )
+                      })}
 
                         <th className='p-4 text-left '>Action</th>
                     </tr>
@@ -133,7 +133,7 @@ function Payments() {
 
                 <tbody>
                 
-                    { employes !== null ?employes.map((employe,index)=>{ 
+                    { employes !== null ?employes.map((employe)=>{ 
 
                         return(
                             <tr>
