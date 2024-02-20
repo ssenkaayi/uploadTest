@@ -3,11 +3,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-function AddLuggage({visible , onClose}) {
+function AddLuggage({visible , onClose , skyTeamName }) {
 
     if(!visible) return null;
 
     const handleOnClose = ()=> onClose()
+    console.log(skyTeamName)
 
     
     const[formData,setFormData]=useState({});
@@ -35,7 +36,7 @@ function AddLuggage({visible , onClose}) {
         const res = await fetch('/api/luggage/create',{
           method:'POSt',
           headers:{'content-type':'application/json',},
-          body:JSON.stringify({...formData,issuedBy:currentEmploye.firstName})
+          body:JSON.stringify({...formData,issuedBy:currentEmploye.firstName,skyTeamName:skyTeamName})
         }
         );
         //getting response from the server
@@ -74,10 +75,6 @@ function AddLuggage({visible , onClose}) {
 
                 <div className='flex flex-col gap-4'>
 
-                    <label className='text-1xl font-semibold'>sky team name</label>
-                    <input type="text" placeholder="sky team name" id='skyTeamName' className='border p-3 rounded-lg'
-                    required onChange={handleChange}
-                    />
 
                     <label className='text-1xl font-semibold'>number of luggages</label>
                     <input type="text" placeholder="number of luggages" id='numberLuggages' 

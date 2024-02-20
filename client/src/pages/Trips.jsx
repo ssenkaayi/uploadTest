@@ -3,19 +3,25 @@ import { useState } from 'react'
 import { tripTable } from '../components/TableHeading'
 import { useEffect } from 'react'
 import AddTrip from '../Model/AddTrip'
+import AddLuggage from '../Model/AddLuggage'
+
 
 
 function Trips() {
 
     const [showAddTrip,setShowAddTrip] = useState(false)
     const [trips , setTrips] = useState(null)
+    const [skyTeamName , setSkyTeamName] = useState(null)
+    const [showAddLuggage,setShowAddLuggage] = useState(false)
+    const [luggages , setLuggages] = useState(null)
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
 
 
     const handleOnClose = ()=>{
-      
+
       setShowAddTrip(false)
+      setShowAddLuggage(false)
 
     }
 
@@ -46,7 +52,7 @@ function Trips() {
             setLoading(false)
            
             setTrips(data)
-            console.log(trips)
+            // console.log(trips)
         
           }
       
@@ -62,10 +68,21 @@ function Trips() {
         
     },[])
 
+    const handleSkyTeamName = (e)=>{
+
+    
+      const btn_id = e.target.id
+      setSkyTeamName(btn_id)
+      setShowAddLuggage(true)
+
+    }
+
+
+
     const handleDeteleTrip = async(e)=>{
 
       const button_id = e.target.id
-      console.log(button_id)
+      // console.log(button_id)
     
       try{
     
@@ -75,7 +92,7 @@ function Trips() {
     
         const data = await res.json();
     
-        console.log(data)
+        // console.log(data)
     
         if(data.success===false){
           console.log(data.message)
@@ -91,12 +108,13 @@ function Trips() {
 
     }
 
-
   return (
 
     <div className='bg-white mt-card p-record mt-record rounded-2xl'>
 
         <AddTrip onClose={handleOnClose} visible={showAddTrip}/>   
+
+        <AddLuggage  onClose={handleOnClose}  visible={showAddLuggage} skyTeamName={skyTeamName}/>   
 
         <div className='flex justify-between'>
 
@@ -124,7 +142,8 @@ function Trips() {
                             )
                         })}
 
-                        <th className='p-4 text-left '>Action</th>
+                        <th className='p-4 text-left '>Trip Status</th>
+                        <th className='p-4 text-left '>Manage Trip Luggages</th>
                     </tr>
 
                 </thead>
@@ -135,7 +154,7 @@ function Trips() {
 
                         return(
 
-                          <tr key={trip._id}>
+                          <tr className='items-center' key={trip._id}>
                         
                             <td className='p-4 text-left'>{trip.createdAt.split("T", 1)}</td>
                             <td className='p-4 text-left'>{trip.skyTeamName}</td>
@@ -145,10 +164,13 @@ function Trips() {
                             <td className='p-4 text-left'>{trip.transport}</td>
                             <td className='p-4 text-left'>{trip.tax}</td>
                             <td className='p-4 text-left'>{trip.issuedBy}</td>
+                            <td className='p-4 text-left' >{trip.tripStatus}</td>
+
+
 
                             <div className='flex gap-4 items-center p-4'>
 
-                              <span className='p-2 cursor-pointer '>Edit</span>
+                              <button className='p-2 cursor-pointer 'id={trip.skyTeamName} onClick={handleSkyTeamName}>Add</button>
                               <span className='p-2 cursor-pointer '>View</span>
                               <button className='p-2 cursor-pointer 'id={trip._id} onClick={handleDeteleTrip}>Delete</button>
 

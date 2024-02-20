@@ -1,174 +1,174 @@
-import React from 'react'
-import AddEmploye from '../Model/AddEmploye'
-import { useState } from 'react'
-import { employeTable } from './TableHeading'
-import { useEffect } from 'react'
+// import React from 'react'
+// import AddEmploye from '../Model/AddEmploye'
+// import { useState } from 'react'
+// import { employeTable } from './TableHeading'
+// import { useEffect } from 'react'
 
 
-function Records() {
+// function Records() {
 
-    const [showAddEmploye,setShowAddEmploye] = useState(false)
-    const [employes , setEmployes] = useState(null)
-    const [loading , setLoading] = useState(false)
-    const [error , setError] = useState(false)
+//     const [showAddEmploye,setShowAddEmploye] = useState(false)
+//     const [employes , setEmployes] = useState(null)
+//     const [loading , setLoading] = useState(false)
+//     const [error , setError] = useState(false)
 
 
-    const handleOnClose = ()=>{
+//     const handleOnClose = ()=>{
       
-      setShowAddEmploye(false)
+//       setShowAddEmploye(false)
 
-    }
+//     }
 
 
-    useEffect(()=>{
+//     useEffect(()=>{
 
-        const fetchEmployes = async()=>{
+//         const fetchEmployes = async()=>{
     
-          try{
+//           try{
       
-            setLoading(true);
-            const res = await fetch('/api/employe/getEmployes',{
+//             setLoading(true);
+//             const res = await fetch('/api/employe/getEmployes',{
               
-                method:'GET',
+//                 method:'GET',
             
-            })
+//             })
 
-            const data = await res.json();
-            // console.log(data)
+//             const data = await res.json();
+//             // console.log(data)
           
-            if(data.succuss===false){
-              setError(true)
-              setLoading(false)
-              return
-            }
+//             if(data.succuss===false){
+//               setError(true)
+//               setLoading(false)
+//               return
+//             }
             
-            setError(false)
-            setLoading(false)
+//             setError(false)
+//             setLoading(false)
            
-            setEmployes(data)
-            // setEmployes((prev)=>prev.filter((data)))
+//             setEmployes(data)
+//             // setEmployes((prev)=>prev.filter((data)))
         
-          }
+//           }
       
-          catch(error){
-            setError(error.message)
-            setLoading(false)
+//           catch(error){
+//             setError(error.message)
+//             setLoading(false)
       
-        }
-      }
+//         }
+//       }
     
-        fetchEmployes()
+//         fetchEmployes()
     
         
-    },[])
+//     },[])
 
-    const handleDeteleEmploye = async(e)=>{
+//     const handleDeteleEmploye = async(e)=>{
 
-      const button_id = e.target.id
-      console.log(button_id)
+//       const button_id = e.target.id
+//       console.log(button_id)
     
-      try{
+//       try{
     
-        const res = await fetch(`/api/employe/deleteEmploye/${button_id}`,{
-          method:"DELETE",
-        })
+//         const res = await fetch(`/api/employe/deleteEmploye/${button_id}`,{
+//           method:"DELETE",
+//         })
     
-        const data = await res.json();
+//         const data = await res.json();
     
-        console.log(data)
+//         console.log(data)
     
-        if(data.success===false){
-          console.log(data.message)
-        }
+//         if(data.success===false){
+//           console.log(data.message)
+//         }
     
-        setEmployes((prev)=>prev.filter((employes)=>employes._id!==button_id))
+//         setEmployes((prev)=>prev.filter((employes)=>employes._id!==button_id))
     
-      }catch(error){
-        console.log(error)
-      }
+//       }catch(error){
+//         console.log(error)
+//       }
 
 
-    }
+//     }
 
 
-  return (
+//   return (
 
-    <div className='bg-white mt-card p-record mt-record rounded-2xl'>
+//     <div className='bg-white mt-card p-record mt-record rounded-2xl'>
 
-        <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>   
+//         <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>   
 
-        <div className='flex justify-between'>
+//         <div className='flex justify-between'>
 
-         <h3 className='text-regal-violet text-2xl p-2'> Manange Employees </h3>
+//          <h3 className='text-regal-violet text-2xl p-2'> Manange Employees </h3>
 
-         <button onClick={()=>setShowAddEmploye(true)} 
-          className='flex items-center p-search-box bg-dashbord rounded-xl text-white '>Add Employe</button>
+//          <button onClick={()=>setShowAddEmploye(true)} 
+//           className='flex items-center p-search-box bg-dashbord rounded-xl text-white '>Add Employe</button>
 
-        </div>
+//         </div>
 
        
 
-        <div className=' w-full mt-record'>
+//         <div className=' w-full mt-record'>
 
-            <table className=' w-full border-collapse' >
+//             <table className=' w-full border-collapse' >
 
-                <thead  className='bg-regal-violet text-white'>
+//                 <thead  className='bg-regal-violet text-white'>
 
-                    <tr>
+//                     <tr>
 
-                        {employeTable.map((item,index)=>{
+//                         {employeTable.map((item,index)=>{
 
-                            return(
+//                             return(
 
                                 
-                            <th className='p-4 text-left ' key={index}>{item}</th>
+//                             <th className='p-4 text-left ' key={index}>{item}</th>
 
-                            )
-                        })}
+//                             )
+//                         })}
 
-                        <th className='p-4 text-left '>Action</th>
-                    </tr>
+//                         <th className='p-4 text-left '>Action</th>
+//                     </tr>
 
-                </thead>
+//                 </thead>
 
-                <tbody>
+//                 <tbody>
                 
-                    { employes !== null ?employes.map((employe,index)=>{ 
+//                     { employes !== null ?employes.map((employe,index)=>{ 
 
-                        return(
-                            <tr>
+//                         return(
+//                             <tr>
                             
-                            <td className='p-4 text-left'key={employe._id}>{employe.createdAt.split("T", 1)}</td>
+//                             <td className='p-4 text-left'key={employe._id}>{employe.createdAt.split("T", 1)}</td>
 
-                            <td className='p-4 text-left'key={employe._id}>{employe.firstName}</td>
-                            <td className='p-4 text-left'key={employe._id}>{employe.lastName}</td>
-                            <td className='p-4 text-left'key={employe._id}>{employe.email}</td>
-                            <td className='p-4 text-left'key={employe._id}>{employe.phone}</td>
-                            <td className='p-4 text-left'key={employe._id}>{employe.address}</td>
-                            <td className='p-4 text-left'key={employe._id}>{employe.role}</td>
+//                             <td className='p-4 text-left'key={employe._id}>{employe.firstName}</td>
+//                             <td className='p-4 text-left'key={employe._id}>{employe.lastName}</td>
+//                             <td className='p-4 text-left'key={employe._id}>{employe.email}</td>
+//                             <td className='p-4 text-left'key={employe._id}>{employe.phone}</td>
+//                             <td className='p-4 text-left'key={employe._id}>{employe.address}</td>
+//                             <td className='p-4 text-left'key={employe._id}>{employe.role}</td>
 
-                            <div className='text-green flex gap-4 items-center p-4'>
-                                <span className='p-2 cursor-pointer '>Edit</span>
-                                <span className='p-2 cursor-pointer '>View</span>
-                                <button className='p-2 cursor-pointer 'id={employe._id} onClick={handleDeteleEmploye}>Delete</button>
-                            </div>
+//                             <div className='text-green flex gap-4 items-center p-4'>
+//                                 <span className='p-2 cursor-pointer '>Edit</span>
+//                                 <span className='p-2 cursor-pointer '>View</span>
+//                                 <button className='p-2 cursor-pointer 'id={employe._id} onClick={handleDeteleEmploye}>Delete</button>
+//                             </div>
 
-                            </tr>
+//                             </tr>
 
-                        )
-                    }):""}
+//                         )
+//                     }):""}
 
-                </tbody>
+//                 </tbody>
 
-            </table>
+//             </table>
 
-        </div>
+//         </div>
 
 
 
-    </div>
+//     </div>
 
-  )
-}
+//   )
+// }
 
-export default Records
+// export default Records

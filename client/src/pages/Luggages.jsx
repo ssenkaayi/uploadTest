@@ -63,33 +63,36 @@ function Luggages() {
         
     },[])
 
-    // const handleDeteleEmploye = async(e)=>{
+    const handleDeteleLuggage = async(e)=>{
 
-    //   const button_id = e.target.id
-    //   console.log(button_id)
+      const button_id = e.target.id
+      // console.log(button_id)
     
-    //   try{
+      try{
     
-    //     const res = await fetch(`/api/employe/deleteEmploye/${button_id}`,{
-    //       method:"DELETE",
-    //     })
+        const res = await fetch(`/api/luggage/delete/${button_id}`,{
+          method:"DELETE",
+        })
     
-    //     const data = await res.json();
+        const data = await res.json();
     
-    //     console.log(data)
+        // console.log(data)
     
-    //     if(data.success===false){
-    //       console.log(data.message)
-    //     }
+        if(data.success===false){
+          console.log(data.message)
+        }
     
-    //     setEmployes((prev)=>prev.filter((employes)=>employes._id!==button_id))
+        setTrips((prev)=>prev.filter((trip)=>trip._id!==button_id))
     
-    //   }catch(error){
-    //     console.log(error)
-    //   }
+      }catch(error){
+
+        console.log(error)
+      }
 
 
-    // }
+    }
+
+ 
 
 
   return (
@@ -150,7 +153,7 @@ function Luggages() {
                             <div className='text-green flex gap-4 items-center p-4'>
                                 <span className='p-2 cursor-pointer '>Edit</span>
                                 <span className='p-2 cursor-pointer '>View</span>
-                                <button className='p-2 cursor-pointer 'id={luggage._id} >Delete</button>
+                                <button className='p-2 cursor-pointer 'id={luggage._id} onClick={handleDeteleLuggage} >Delete</button>
                             </div>
 
                             </tr>

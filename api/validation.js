@@ -39,6 +39,7 @@ export const tripValidation = (data)=>{
         supplierName:Joi.string().min(3).required(),
         transport:Joi.number().min(3).required(),
         tax:Joi.number().min(3).required(),
+        tripStatus:Joi.string().min(3).required(),
         issuedBy:Joi.string().min(3).required()
     })
 

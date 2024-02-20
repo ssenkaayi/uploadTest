@@ -65,7 +65,7 @@ function Records() {
     const handleDeteleEmploye = async(e)=>{
 
       const button_id = e.target.id
-      console.log(button_id)
+  
     
       try{
     
@@ -90,12 +90,14 @@ function Records() {
 
     }
 
+    
+
 
   return (
 
     <div className='bg-white mt-card p-record mt-record rounded-2xl'>
 
-        <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>   
+        <AddEmploye onClose={handleOnClose} visible={showAddEmploye} />   
 
         <div className='flex justify-between'>
 
@@ -133,7 +135,7 @@ function Records() {
 
                 <tbody>
                 
-                    { employes !== null ?employes.map((employe,index)=>{ 
+                    { employes !== null ?employes.map((employe)=>{ 
 
                         return(
                             <tr>

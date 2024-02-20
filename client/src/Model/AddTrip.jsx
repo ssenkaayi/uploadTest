@@ -40,7 +40,7 @@ function AddTrip({visible , onClose}) {
       );
       //getting response from the server
       const data =  await res.json();
-      // console.log(data)
+      console.log(data)
 
       //if response is false, show the error message to the client
       if(data.success===false){
@@ -104,7 +104,13 @@ function AddTrip({visible , onClose}) {
                   <label className='text-1xl font-semibold'> tax</label>
                   <input type="text" placeholder="tax" id='tax' 
                   className='border p-3 rounded-lg' required onChange={handleChange}
+
                   />
+
+                  <label className='text-1xl font-semibold'>Trip Status</label>
+                    <input type="text" placeholder="sky team name" id='tripStatus' className='border p-3 rounded-lg'
+                    required onChange={handleChange}
+                    />
 
 
                   <div className='flex justify-between items-center'>

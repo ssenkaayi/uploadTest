@@ -40,6 +40,11 @@ const tripSchema = mongoose.Schema(
         type:Number,
         required:true
     },
+    tripStatus:{
+
+        type:String,
+        required:true
+    },
     issuedBy:{
 
         type:String,
