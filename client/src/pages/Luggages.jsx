@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { luggageTable } from '../components/TableHeading'
 import { useEffect } from 'react'
 import AddLuggage from '../Model/AddLuggage'
+import { useNavigate } from 'react-router-dom';
 
 
 function Luggages() {
@@ -12,11 +13,18 @@ function Luggages() {
     const [luggages , setLuggages] = useState(null)
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
+    const navigate = useNavigate();
 
 
     const handleOnClose = ()=>{
       
       setShowAddLuggage(false)
+
+    }
+
+    const navigateToTrip = ()=>{
+      
+      navigate('/dashbord/trips')
 
     }
 
@@ -105,7 +113,7 @@ function Luggages() {
 
          <h3 className='text-regal-violet text-2xl p-2'> Manange Luggages</h3>
 
-         <button onClick={()=>setShowAddLuggage(true)} 
+         <button onClick={navigateToTrip} 
           className='flex items-center p-search-box bg-dashbord rounded-xl text-white '>Add Luggage</button>
 
         </div>
