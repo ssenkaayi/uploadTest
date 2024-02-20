@@ -33,5 +33,24 @@ export const getTrips = async(req,res,next)=>{
 
 }
 
+export const  deleteTrip = async(req,res,next)=>{
 
+    const trip = await Trip.findById(req.params.id)
+
+    if(!trip) return next(errorHandler(401,'Trip with id is not found'))
+
+    // if(req.user.id!==listing.userRef) return next(errorHandler(401,'you can not authorized delete profile'))
+
+    try{
+
+
+        await Trip.findByIdAndDelete(req.params.id)
+
+        res.status(200).json({"success":true})
+
+    }catch(error){
+        next(error)
+    }
+
+}
 

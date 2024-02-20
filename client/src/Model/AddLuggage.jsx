@@ -52,7 +52,7 @@ function AddLuggage({visible , onClose}) {
         //if response is True, register and navigate to the sign in page
         setLoading(false);
         setError(null)
-        navigate('/dashbord/employes')
+        navigate('/dashbord/luggages')
         handleOnClose()
   
       }catch(error){

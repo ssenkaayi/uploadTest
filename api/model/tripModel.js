@@ -28,6 +28,18 @@ const tripSchema = mongoose.Schema(
         type:Number,
         required:true
     },
+      
+    transport:{
+
+        type:Number,
+        required:true
+    },
+      
+    tax:{
+
+        type:Number,
+        required:true
+    },
     issuedBy:{
 
         type:String,

@@ -7,4 +7,4 @@ export const packageTable = ['Date','Weight','Supplier ','Client','Num Pieces','
 
 export const paymentTable = ['Date','Weight','Receipt NO','Client','Amount','Total','Status','Issued by']
 
-export const tripTable =    ['Date','Sky Team Name','Total Weight','Supplier','NO Luggages','Issued by']
+export const tripTable =    ['Date','Sky Team Name','Total Weight','Supplier','NO Luggages','Transport','Tax','Issued by']

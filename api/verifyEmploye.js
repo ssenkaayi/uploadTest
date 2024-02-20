@@ -2,6 +2,7 @@
 import Jwt  from "jsonwebtoken";
 import Employe from "./model/employeModel.js";
 import asyncHandler from 'express-async-handler'
+import errorHandler from "./errorHandler.js";
 
 
 export const verifyToken = (req,res,next)=>{
@@ -33,7 +34,7 @@ export const verifyAdmin = asyncHandler(async(req,res,next)=>{
 
     const userInfo = await Employe.findById(user._id).select("-password")
     // req.user.role == userInfo.role
-    if(userInfo.role!=='admin') return res.status(400).send('Not an admin')
+    if(userInfo.role!=='admin') return next(errorHandler(401,'only admin is authorized to create user'))
    
     req.user = user;
     // console.log(userInfo.role)

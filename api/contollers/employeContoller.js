@@ -57,6 +57,7 @@ export const updateEmploye = async(req,res,next)=>{
 
 
 export const getEmployes = async(req,res,next)=>{
+    
     try{
 
         const employes = await Employe.find().select("-password")
