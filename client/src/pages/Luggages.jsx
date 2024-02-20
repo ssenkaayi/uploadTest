@@ -82,7 +82,7 @@ function Luggages() {
           console.log(data.message)
         }
     
-        setTrips((prev)=>prev.filter((trip)=>trip._id!==button_id))
+        setLuggages((prev)=>prev.filter((luggage)=>luggage._id!==button_id))
     
       }catch(error){
 
