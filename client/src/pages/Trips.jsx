@@ -11,7 +11,7 @@ function Trips() {
 
     const [showAddTrip,setShowAddTrip] = useState(false)
     const [trips , setTrips] = useState(null)
-    const [skyTeamName , setSkyTeamName] = useState(null)
+    const [trip_id , setTrip_id] = useState(null)
     const [showAddLuggage,setShowAddLuggage] = useState(false)
     const [luggages , setLuggages] = useState(null)
     const [loading , setLoading] = useState(false)
@@ -70,9 +70,8 @@ function Trips() {
 
     const handleSkyTeamName = (e)=>{
 
-    
       const btn_id = e.target.id
-      setSkyTeamName(btn_id)
+      setTrip_id(btn_id)
       setShowAddLuggage(true)
 
     }
@@ -114,7 +113,7 @@ function Trips() {
 
         <AddTrip onClose={handleOnClose} visible={showAddTrip}/>   
 
-        <AddLuggage  onClose={handleOnClose}  visible={showAddLuggage} skyTeamName={skyTeamName}/>   
+        <AddLuggage  onClose={handleOnClose}  visible={showAddLuggage} trip_id={trip_id} />   
 
         <div className='flex justify-between'>
 
@@ -170,7 +169,7 @@ function Trips() {
 
                             <div className='flex gap-4 items-center p-4'>
 
-                              <button className='p-2 cursor-pointer 'id={trip.skyTeamName} onClick={handleSkyTeamName}>Add</button>
+                              <button className='p-2 cursor-pointer 'id={trip._id} onClick={handleSkyTeamName}>Add</button>
                               <span className='p-2 cursor-pointer '>View</span>
                               <button className='p-2 cursor-pointer 'id={trip._id} onClick={handleDeteleTrip}>Delete</button>
 

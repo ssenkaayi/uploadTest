@@ -2,18 +2,25 @@
 import { luggageValidation} from '../validation.js'
 import asyncHandler from 'express-async-handler'
 import Luggage from '../model/luggageModel.js';
+import Trip from '../model/tripModel.js';
+import errorHandler from '../errorHandler.js';
 
 
 export const createLuggage = asyncHandler(async(req,res)=>{
 
     const {error} = luggageValidation(req.body)
   
-    if(error) return res.status(400).send(error.details[0].message)
+    if(error) return next(errorHandler(400,error.details[0].message))
 
-    const createLuggage = await Luggage.create(req.body)
+    const skyTeamExist = await Trip.findById(req.body.trip_id)
+    if(!skyTeamExist) return next(errorHandler(400,'Trip doesnt exist'))
+    console.log(skyTeamExist)
+
+    const createLuggage = await Luggage.create({...req.body,skyTeamName:skyTeamExist.skyTeamName})
+    if(!createLuggage) return next(errorHandler(400,'error creating luggage'))
+    console.log(createLuggage)
     res.status(200).send(createLuggage)
    
-  
 })
 
 

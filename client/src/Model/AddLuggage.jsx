@@ -3,12 +3,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-function AddLuggage({visible , onClose , skyTeamName }) {
+function AddLuggage({visible , onClose , trip_id }) {
 
     if(!visible) return null;
 
     const handleOnClose = ()=> onClose()
-    console.log(skyTeamName)
+    console.log(trip_id)
 
     
     const[formData,setFormData]=useState({});
@@ -36,7 +36,7 @@ function AddLuggage({visible , onClose , skyTeamName }) {
         const res = await fetch('/api/luggage/create',{
           method:'POSt',
           headers:{'content-type':'application/json',},
-          body:JSON.stringify({...formData,issuedBy:currentEmploye.firstName,skyTeamName:skyTeamName})
+          body:JSON.stringify({...formData,issuedBy:currentEmploye.firstName,trip_id:trip_id})
         }
         );
         //getting response from the server

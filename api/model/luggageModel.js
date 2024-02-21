@@ -9,6 +9,11 @@ const luggageSchema = mongoose.Schema(
         type:String,
         required:true
     },
+    trip_id:{
+
+        type:String,
+        required:true
+    },
     weight:{
 
         type:Number,

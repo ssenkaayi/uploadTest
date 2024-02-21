@@ -33,12 +33,12 @@ export const tripValidation = (data)=>{
     const schema = Joi.object({
 
        
-        skyTeamName:Joi.string().min(5).required(),
+        skyTeamName:Joi.string().min(4).required(),
         weight:Joi.number().min(1).required(),
         numberLuggages:Joi.number().min(1).required(),
         supplierName:Joi.string().min(3).required(),
         transport:Joi.number().min(3).required(),
-        tax:Joi.number().min(3).required(),
+        tax:Joi.number().required(),
         tripStatus:Joi.string().min(3).required(),
         issuedBy:Joi.string().min(3).required()
     })
@@ -51,7 +51,7 @@ export const luggageValidation = (data)=>{
     const schema = Joi.object({
 
        
-        skyTeamName:Joi.string().min(5).required(),
+        trip_id:Joi.string().min(4).required(),
         weight:Joi.number().min(1).required(),
         numberLuggages:Joi.number().min(1).required(),
         supplierName:Joi.string().min(3).required(),
