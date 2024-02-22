@@ -1,15 +1,14 @@
 import React from 'react'
-import AddEmploye from '../Model/AddEmploye'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import AddLuggage from '../Model/AddSUpplier'
+import AddClient from '../Model/AddClient'
 import { useNavigate } from 'react-router-dom';
 import { supplierTable } from '../components/TableHeading'
 
 
 function Suppliers() {
 
-    const [showAddLuggage,setShowAddLuggage] = useState(false)
+    const [showAddClient,setShowAddClient] = useState(false)
     const [suppliers , setSuppliers] = useState(null)
     const [supplier_id, setSupplier_id] = useState(null)
     const [loading , setLoading] = useState(false)
@@ -19,8 +18,14 @@ function Suppliers() {
 
     const handleOnClose = ()=>{
       
-      setShowAddLuggage(false)
+      setShowAddClient(false)
 
+    }
+
+    const handleSupplierId = (e)=>{
+
+      setSupplier_id(e.target.id)
+      setShowAddClient(true)
     }
 
     const navigateToTrip = ()=>{
@@ -110,7 +115,7 @@ function Suppliers() {
 
     <div className='bg-white mt-card p-record mt-record rounded-2xl'>
 
-        <AddLuggage onClose={handleOnClose} visible={showAddLuggage}/>   
+        <AddClient onClose={handleOnClose} visible={showAddClient} supplier_id={supplier_id}/>   
 
         <div className='flex justify-between'>
 
@@ -162,7 +167,7 @@ function Suppliers() {
                             <td className='p-4 text-left'>{supplier.issued_by}</td>
 
                             <div className='text-green flex gap-4 items-center p-4'>
-                                <span className='p-2 cursor-pointer '>Edit</span>
+                                <button className='p-2 cursor-pointer 'id={supplier._id} onClick={handleSupplierId} >Add</button>
                                 <span className='p-2 cursor-pointer '>View</span>
                                 <button className='p-2 cursor-pointer 'id={supplier._id} onClick={handleDeteleLuggage} >Delete</button>
                             </div>
