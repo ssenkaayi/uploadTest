@@ -35,7 +35,7 @@ function Clients() {
             })
 
             const data = await res.json();
-            console.log(data)
+            // console.log(data)
           
             if(data.succuss===false){
               setError(true)
@@ -47,7 +47,7 @@ function Clients() {
             setLoading(false)
            
             setClients(data)
-            console.log(clients)
+            // console.log(clients)
             // setEmployes((prev)=>prev.filter((data)))
         
           }
@@ -67,7 +67,7 @@ function Clients() {
     const handleDeteleEmploye = async(e)=>{
 
       const button_id = e.target.id
-      console.log(button_id)
+      // console.log(button_id)
     
       try{
     
@@ -77,7 +77,7 @@ function Clients() {
     
         const data = await res.json();
     
-        console.log(data)
+        // console.log(data)
     
         if(data.success===false){
           console.log(data.message)

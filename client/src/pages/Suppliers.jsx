@@ -2,7 +2,7 @@ import React from 'react'
 import AddEmploye from '../Model/AddEmploye'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import AddLuggage from '../Model/AddLuggage'
+import AddLuggage from '../Model/AddSUpplier'
 import { useNavigate } from 'react-router-dom';
 import { supplierTable } from '../components/TableHeading'
 
@@ -11,6 +11,7 @@ function Suppliers() {
 
     const [showAddLuggage,setShowAddLuggage] = useState(false)
     const [suppliers , setSuppliers] = useState(null)
+    const [supplier_id, setSupplier_id] = useState(null)
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
     const navigate = useNavigate();
@@ -37,7 +38,7 @@ function Suppliers() {
       
             setLoading(true);
             const res = await fetch('/api/supplier/getSupplier/',{  
-              // /api/supplier/getSupplier/
+
               
                 method:'GET',
             

@@ -90,9 +90,6 @@ function Records() {
 
     }
 
-    
-
-
   return (
 
     <div className='bg-white mt-card p-record mt-record rounded-2xl'>

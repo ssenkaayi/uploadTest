@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-function AddLuggage({visible , onClose , trip_id }) {
+function AddSupplier({visible , onClose , trip_id }) {
 
     if(!visible) return null;
 
@@ -33,15 +33,15 @@ function AddLuggage({visible , onClose , trip_id }) {
       e.preventDefault();
       try{
         //making a request to the server
-        const res = await fetch('/api/luggage/create',{
+        const res = await fetch('/api/supplier/create',{
           method:'POSt',
           headers:{'content-type':'application/json',},
-          body:JSON.stringify({...formData,issuedBy:currentEmploye.firstName,trip_id:trip_id})
+          body:JSON.stringify({...formData,issued_by:currentEmploye.firstName,trip_id:trip_id})
         }
         );
         //getting response from the server
         const data =  await res.json();
-        // console.log(data)
+        console.log(data)
   
         //if response is false, show the error message to the client
         if(data.success===false){
@@ -53,7 +53,7 @@ function AddLuggage({visible , onClose , trip_id }) {
         //if response is True, register and navigate to the sign in page
         setLoading(false);
         setError(null)
-        navigate('/dashbord/luggages')
+        navigate('/dashbord/suppliers')
         handleOnClose()
   
       }catch(error){
@@ -76,42 +76,22 @@ function AddLuggage({visible , onClose , trip_id }) {
                 <div className='flex flex-col gap-4'>
 
 
-                    <label className='text-1xl font-semibold'>number of luggages</label>
-                    <input type="text" placeholder="number of luggages" id='numberLuggages' 
-                    className='border p-3 rounded-lg' required onChange={handleChange}
-                    />
+                  <label className='text-1xl font-semibold'> supplierName</label>
+                  <input type="text" placeholder="supplier name" id='name' 
+                  className='border p-3 rounded-lg' required onChange={handleChange}
+                  />
 
+                  <div className='flex justify-between items-center'>
+                      
+                      <button onClick={handleOnClose} className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
+                      type="button"> cancel
+                      </button>
 
-                    <label className='text-1xl font-semibold'>weight</label>
-                    <input type="text" placeholder=" weight" id='weight' 
-                    className='border p-3 rounded-lg' required onChange={handleChange}
-                    />
+                      <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
+                      > {loading? 'submiting...':'Submit'}
+                      </button>
 
-
-                    <label className='text-1xl font-semibold'> supplierName</label>
-                    <input type="text" placeholder="supplier name" id='supplierName' 
-                    className='border p-3 rounded-lg' required onChange={handleChange}
-                    />
-
-                    <label className='text-1xl font-semibold'> clientName</label>
-                    <input type="text" placeholder="client name" id='clientName' 
-                    className='border p-3 rounded-lg' required onChange={handleChange}
-                    />
-
-
-
-
-                    <div className='flex justify-between items-center'>
-                        
-                        <button onClick={handleOnClose} className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
-                        type="button"> cancel
-                        </button>
-
-                        <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
-                        > {loading? 'submiting...':'Submit'}
-                        </button>
-
-                    </div>
+                  </div>
 
                 </div>
 
@@ -126,4 +106,4 @@ function AddLuggage({visible , onClose , trip_id }) {
   )
 }
 
-export default AddLuggage
+export default AddSupplier

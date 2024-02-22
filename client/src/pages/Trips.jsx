@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { tripTable } from '../components/TableHeading'
 import { useEffect } from 'react'
 import AddTrip from '../Model/AddTrip'
-import AddLuggage from '../Model/AddLuggage'
+import AddSupplier from '../Model/AddSUpplier'
 
 
 
@@ -12,8 +12,7 @@ function Trips() {
     const [showAddTrip,setShowAddTrip] = useState(false)
     const [trips , setTrips] = useState(null)
     const [trip_id , setTrip_id] = useState(null)
-    const [showAddLuggage,setShowAddLuggage] = useState(false)
-    const [luggages , setLuggages] = useState(null)
+    const [showAddSupplier,setShowAddSupplier] = useState(false)
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
 
@@ -21,7 +20,7 @@ function Trips() {
     const handleOnClose = ()=>{
 
       setShowAddTrip(false)
-      setShowAddLuggage(false)
+      setShowAddSupplier(false)
 
     }
 
@@ -40,7 +39,7 @@ function Trips() {
             })
 
             const data = await res.json();
-            console.log(data)
+            // console.log(data)
           
             if(data.succuss===false){
               setError(true)
@@ -72,7 +71,7 @@ function Trips() {
 
       const btn_id = e.target.id
       setTrip_id(btn_id)
-      setShowAddLuggage(true)
+      setShowAddSupplier(true)
 
     }
 
@@ -90,8 +89,7 @@ function Trips() {
         })
     
         const data = await res.json();
-    
-        console.log(data)
+  
     
         if(data.success===false){
           console.log(data.message)
@@ -113,7 +111,7 @@ function Trips() {
 
         <AddTrip onClose={handleOnClose} visible={showAddTrip}/>   
 
-        <AddLuggage  onClose={handleOnClose}  visible={showAddLuggage} trip_id={trip_id} />   
+        <AddSupplier  onClose={handleOnClose}  visible={showAddSupplier} trip_id={trip_id} />   
 
         <div className='flex justify-between'>
 
