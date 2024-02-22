@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const tripSchema = mongoose.Schema(
     
  {  
-    skyTeamName:{
+    name:{
 
         type:String,
         required:true
@@ -12,21 +12,27 @@ const tripSchema = mongoose.Schema(
     weight:{
 
         type:Number,
-        required:true
+        default:0
 
         },
-    supplierName:
+    supplier_name:
     {
 
-        type:String,
-        required:true,
+        type:[String],
+        default:null
+        
+    },
+    supplier_id:
+    {
+        type:[String],
+        default:null
         
     },
   
-    numberLuggages:{
+    number_suppliers:{
 
         type:Number,
-        required:true
+        default:0
     },
       
     transport:{
@@ -40,12 +46,17 @@ const tripSchema = mongoose.Schema(
         type:Number,
         required:true
     },
-    tripStatus:{
+    trip_payment:{
 
-        type:String,
+        type:Number,
         required:true
     },
-    issuedBy:{
+    market_fees:{
+
+        type:Number,
+        default:0
+    },
+    issued_by:{
 
         type:String,
         required:true

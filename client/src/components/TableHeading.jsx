@@ -1,10 +1,10 @@
 
 export const employeTable = ['Date','Fisrt name','Last name','Email','Phone','Address','Role']
 
-export const luggageTable = ['Date','Sky name','Supplier','Client','Weight','NO Pieces','Issued by']
+export const supplierTable = ['Date','Trip name','Supplier','Client','Weight','NO Clients','Issued by']
 
-export const packageTable = ['Date','Weight','Supplier ','Client','Num Pieces','Issued by','Description']
+export const clientTable = ['Date','Supplier ','Client','Weight','Num Pieces','payment status','Description','Store status','Issued by']
 
 export const paymentTable = ['Date','Weight','Receipt NO','Client','Amount','Total','Status','Issued by']
 
-export const tripTable =    ['Date','Sky Team Name','Total Weight','Supplier','NO Luggages','Transport','Tax','Issued by']
+export const tripTable =    ['Date','Trip Name','Weight','Suppliers','NO suppliers','Transport','Tax','Trip payment','Market fees','Issued by']

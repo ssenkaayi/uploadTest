@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 // import bcrypt from "bcryptjs"
 
-const luggageSchema = mongoose.Schema(
+const supplierSchema = mongoose.Schema(
     
  {  
-    skyTeamName:{
+    trip_name:{
 
         type:String,
         required:true
@@ -17,36 +17,40 @@ const luggageSchema = mongoose.Schema(
     weight:{
 
         type:Number,
-        required:true
+        default:0
 
         },
-    supplierName:
+    name:
     {
 
         type:String,
         required:true,
         
     },
-    clientName:{
+    client_name:{
 
-        type:String,
-        required:true
+        type:[String],
+        default:null
     },
-    numberLuggages:{
+    client_id:{
+
+        type:[String],
+        default:null
+    },
+    number_clients:{
 
         type:Number,
-        required:true
+        default:0
     },
-    issuedBy:{
+    issued_by:{
 
         type:String,
         required:true
     },
-
 
 } , {timestamps:true}
 
 );
 
-const Luggage = mongoose.model('Luggage',luggageSchema)
-export default Luggage
+const Supplier = mongoose.model('Supplier',supplierSchema)
+export default Supplier

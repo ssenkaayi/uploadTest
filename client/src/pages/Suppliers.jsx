@@ -1,33 +1,43 @@
 import React from 'react'
 import AddEmploye from '../Model/AddEmploye'
 import { useState } from 'react'
-import { packageTable} from '../components/TableHeading'
 import { useEffect } from 'react'
+import AddLuggage from '../Model/AddLuggage'
+import { useNavigate } from 'react-router-dom';
+import { supplierTable } from '../components/TableHeading'
 
 
-function Packages() {
+function Suppliers() {
 
-    const [showAddEmploye,setShowAddEmploye] = useState(false)
-    const [employes , setEmployes] = useState(null)
+    const [showAddLuggage,setShowAddLuggage] = useState(false)
+    const [suppliers , setSuppliers] = useState(null)
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
+    const navigate = useNavigate();
 
 
     const handleOnClose = ()=>{
       
-      setShowAddEmploye(false)
+      setShowAddLuggage(false)
+
+    }
+
+    const navigateToTrip = ()=>{
+      
+      navigate('/dashbord/trips')
 
     }
 
 
     useEffect(()=>{
 
-        const fetchEmployes = async()=>{
+        const fetchSuppliers = async()=>{
     
           try{
       
             setLoading(true);
-            const res = await fetch('/api/employe/getEmployes',{
+            const res = await fetch('/api/supplier/getSupplier/',{  
+              // /api/supplier/getSupplier/
               
                 method:'GET',
             
@@ -45,7 +55,8 @@ function Packages() {
             setError(false)
             setLoading(false)
            
-            setEmployes(data)
+            setSuppliers(data)
+            // console.log(suppliers)
             // setEmployes((prev)=>prev.filter((data)))
         
           }
@@ -57,52 +68,55 @@ function Packages() {
         }
       }
     
-        fetchEmployes()
+        fetchSuppliers()
     
         
     },[])
 
-    const handleDeteleEmploye = async(e)=>{
+    const handleDeteleLuggage = async(e)=>{
 
       const button_id = e.target.id
-      console.log(button_id)
+      // console.log(button_id)
     
       try{
     
-        const res = await fetch(`/api/employe/deleteEmploye/${button_id}`,{
+        const res = await fetch(`/api/lu/delete/${button_id}`,{
           method:"DELETE",
         })
     
         const data = await res.json();
     
-        console.log(data)
+        // console.log(data)
     
         if(data.success===false){
           console.log(data.message)
         }
     
-        setEmployes((prev)=>prev.filter((employes)=>employes._id!==button_id))
+        setLuggages((prev)=>prev.filter((luggage)=>luggage._id!==button_id))
     
       }catch(error){
+
         console.log(error)
       }
 
 
     }
 
+ 
+
 
   return (
 
     <div className='bg-white mt-card p-record mt-record rounded-2xl'>
 
-        <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>   
+        <AddLuggage onClose={handleOnClose} visible={showAddLuggage}/>   
 
         <div className='flex justify-between'>
 
-         <h3 className='text-regal-violet text-2xl p-2'> Manange Packages </h3>
+         <h3 className='text-regal-violet text-2xl p-2'> Manange Suppliers</h3>
 
-         <button onClick={()=>setShowAddEmploye(true)} 
-          className='flex items-center p-search-box bg-dashbord rounded-xl text-white '>Add Package</button>
+         <button onClick={navigateToTrip} 
+          className='flex items-center p-search-box bg-dashbord rounded-xl text-white '>Add Supplier</button>
 
         </div>
 
@@ -116,7 +130,7 @@ function Packages() {
 
                     <tr>
 
-                        {packageTable.map((item,index)=>{
+                        {supplierTable.map((item,index)=>{
 
                             return(
 
@@ -133,24 +147,23 @@ function Packages() {
 
                 <tbody>
                 
-                    { employes !== null ?employes.map((employe,index)=>{ 
+                    { suppliers !== null ? suppliers.map((supplier)=>{ 
 
                         return(
-                            <tr>
+                            <tr key={supplier._id}>
                             
-                            <td className='p-4 text-left'key={employe._id}>{employe.createdAt.split("T", 1)}</td>
-
-                            <td className='p-4 text-left'key={employe._id}>{employe.firstName}</td>
-                            <td className='p-4 text-left'key={employe._id}>{employe.lastName}</td>
-                            <td className='p-4 text-left'key={employe._id}>{employe.email}</td>
-                            <td className='p-4 text-left'key={employe._id}>{employe.phone}</td>
-                            <td className='p-4 text-left'key={employe._id}>{employe.address}</td>
-                            <td className='p-4 text-left'key={employe._id}>{employe.role}</td>
+                            <td className='p-4 text-left'>{supplier.createdAt.split("T", 1)}</td>
+                            <td className='p-4 text-left'>{supplier.trip_name}</td>
+                            <td className='p-4 text-left'>{supplier.name}</td>
+                            <td className='p-4 text-left'>{supplier.client_name}</td>
+                            <td className='p-4 text-left'>{supplier.weight}</td>
+                            <td className='p-4 text-left'>{supplier.number_clients}</td>
+                            <td className='p-4 text-left'>{supplier.issued_by}</td>
 
                             <div className='text-green flex gap-4 items-center p-4'>
                                 <span className='p-2 cursor-pointer '>Edit</span>
                                 <span className='p-2 cursor-pointer '>View</span>
-                                <button className='p-2 cursor-pointer 'id={employe._id} onClick={handleDeteleEmploye}>Delete</button>
+                                <button className='p-2 cursor-pointer 'id={supplier._id} onClick={handleDeteleLuggage} >Delete</button>
                             </div>
 
                             </tr>
@@ -171,4 +184,4 @@ function Packages() {
   )
 }
 
-export default Packages
+export default Suppliers

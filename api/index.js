@@ -5,7 +5,8 @@ import bodyParser from 'body-parser'
 import authRoute from './routes/authRoute.js'
 import employeRoute from './routes/employeRoute.js'
 import tripRoute from './routes/tripRoute.js'
-import luggageRout from './routes/luggageRoute.js'
+import supplierRoute from './routes/supplierRoute.js'
+import clientRoute from './routes/clientRoute.js'
 import { errorHandler } from './errorHandler.js'
 import cookieParser from 'cookie-parser';
 import path from 'path'
@@ -45,7 +46,8 @@ server.use(express.json())
 server.use('/api/auth',authRoute)
 server.use('/api/employe',employeRoute)
 server.use('/api/trip',tripRoute)
-server.use('/api/luggage',luggageRout)
+server.use('/api/supplier',supplierRoute)
+server.use('/api/client',clientRoute)
 server.use(bodyParser.json())
 
 

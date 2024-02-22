@@ -1,30 +1,32 @@
 import mongoose from "mongoose";
 // import bcrypt from "bcryptjs"
 
-const paymentSchema = mongoose.Schema(
+const clientSchema = mongoose.Schema(
     
- {  skyTeamName:{
-
-        type:String,
-        required:true
-    },
+ {  
     weight:{
 
         type:Number,
         required:true
+
         },
-    pieces:{
+    number_pieces:{
 
         type:Number,
         required:true,
 
     },
-    clientName:{
+    name:{
 
         type:String,
         required:true
     },
-    supplierName:{
+    supplier_name:{
+
+        type:String,
+        required:true
+    },
+    supplier_id:{
 
         type:String,
         required:true
@@ -33,8 +35,18 @@ const paymentSchema = mongoose.Schema(
         type:String,
         required:true
     },
+    total_payments:{
 
-    issuedName:{
+        type:Number,
+        default:0
+    },
+    store_status:{
+
+        type:Number,
+        default:0
+    },
+
+    issued_by:{
         type:String,
         required:true
     },
@@ -43,5 +55,5 @@ const paymentSchema = mongoose.Schema(
 
 );
 
-const Payment = mongoose.model('Payment',paymentSchema)
-export default Payment
+const Client = mongoose.model('Client', clientSchema)
+export default Client

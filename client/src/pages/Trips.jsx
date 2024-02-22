@@ -40,7 +40,7 @@ function Trips() {
             })
 
             const data = await res.json();
-            // console.log(data)
+            console.log(data)
           
             if(data.succuss===false){
               setError(true)
@@ -91,7 +91,7 @@ function Trips() {
     
         const data = await res.json();
     
-        // console.log(data)
+        console.log(data)
     
         if(data.success===false){
           console.log(data.message)
@@ -141,8 +141,7 @@ function Trips() {
                             )
                         })}
 
-                        <th className='p-4 text-left '>Trip Status</th>
-                        <th className='p-4 text-left '>Manage Trip Luggages</th>
+                        <th className='p-4 text-left '>Manage Suppliers In Trip</th>
                     </tr>
 
                 </thead>
@@ -156,14 +155,15 @@ function Trips() {
                           <tr className='items-center' key={trip._id}>
                         
                             <td className='p-4 text-left'>{trip.createdAt.split("T", 1)}</td>
-                            <td className='p-4 text-left'>{trip.skyTeamName}</td>
+                            <td className='p-4 text-left'>{trip.name}</td>
                             <td className='p-4 text-left'>{trip.weight}</td>
-                            <td className='p-4 text-left'>{trip.supplierName}</td>
-                            <td className='p-4 text-left'>{trip.numberLuggages}</td>
+                            <td className='p-4 text-left gap-1'>{trip.supplier_name}</td>
+                            <td className='p-4 text-left'>{trip.number_suppliers}</td>
                             <td className='p-4 text-left'>{trip.transport}</td>
                             <td className='p-4 text-left'>{trip.tax}</td>
-                            <td className='p-4 text-left'>{trip.issuedBy}</td>
-                            <td className='p-4 text-left' >{trip.tripStatus}</td>
+                            <td className='p-4 text-left'>{trip.trip_payment}</td>
+                            <td className='p-4 text-left'>{trip.market_fees}</td>
+                            <td className='p-4 text-left'>{trip.issued_by}</td>
 
 
 

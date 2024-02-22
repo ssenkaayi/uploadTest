@@ -35,12 +35,12 @@ function AddTrip({visible , onClose}) {
       const res = await fetch('/api/trip/create',{
         method:'POSt',
         headers:{'content-type':'application/json',},
-        body:JSON.stringify({...formData,issuedBy:currentEmploye.firstName})
+        body:JSON.stringify({...formData,issued_by:currentEmploye.firstName})
       }
       );
       //getting response from the server
       const data =  await res.json();
-      console.log(data)
+      // console.log(data)
 
       //if response is false, show the error message to the client
       if(data.success===false){
@@ -74,26 +74,9 @@ function AddTrip({visible , onClose}) {
 
               <div className='flex flex-col gap-4'>
 
-                  <label className='text-1xl font-semibold'>sky team name</label>
-                  <input type="text" placeholder="sky team name" id='skyTeamName' className='border p-3 rounded-lg'
+                  <label className='text-1xl font-semibold'>Trip name</label>
+                  <input type="text" placeholder="sky team name" id='name' className='border p-3 rounded-lg'
                   required onChange={handleChange}
-                  />
-
-                  <label className='text-1xl font-semibold'>number of luggages</label>
-                  <input type="text" placeholder="number of luggages" id='numberLuggages' 
-                  className='border p-3 rounded-lg' required onChange={handleChange}
-                  />
-
-
-                  <label className='text-1xl font-semibold'>total weight</label>
-                  <input type="text" placeholder="total weight" id='weight' 
-                  className='border p-3 rounded-lg' required onChange={handleChange}
-                  />
-
-
-                  <label className='text-1xl font-semibold'> supplier</label>
-                  <input type="text" placeholder="supplier name" id='supplierName' 
-                  className='border p-3 rounded-lg' required onChange={handleChange}
                   />
 
                   <label className='text-1xl font-semibold'> transport</label>
@@ -107,8 +90,8 @@ function AddTrip({visible , onClose}) {
 
                   />
 
-                  <label className='text-1xl font-semibold'>Trip Status</label>
-                    <input type="text" placeholder="sky team name" id='tripStatus' className='border p-3 rounded-lg'
+                  <label className='text-1xl font-semibold'>Trip payment</label>
+                    <input type="text" placeholder="sky team name" id='trip_payment' className='border p-3 rounded-lg'
                     required onChange={handleChange}
                     />
 

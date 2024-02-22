@@ -9,15 +9,15 @@ export const sidebarMenu = [
     },
     {
 
-        title:'Packages',
-        url:'/dashbord/packages',
+        title:'Clients',
+        url:'/dashbord/clients',
         icon:'fa-solid fa-circle-info'
 
     },
     {
 
-        title:'Luggages',
-        url:'/dashbord/luggages',
+        title:'Suppliers',
+        url:'/dashbord/suppliers',
         icon:'fa-solid fa-briefcase'
 
     },    {
