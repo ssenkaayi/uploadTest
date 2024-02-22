@@ -1,9 +1,9 @@
 import React from 'react'
 import AddEmploye from '../Model/AddEmploye'
 import { useState } from 'react'
-// import { packageTable} from '../components/TableHeading'
 import { useEffect } from 'react'
 import { clientTable } from '../components/TableHeading'
+import { useNavigate } from 'react-router-dom';
 
 
 function Clients() {
@@ -12,6 +12,7 @@ function Clients() {
     const [clients , setClients] = useState(null)
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
+    const navigate = useNavigate()
 
 
     const handleOnClose = ()=>{
@@ -64,6 +65,12 @@ function Clients() {
         
     },[])
 
+    const navigateToSupplier = ()=>{
+      
+      navigate('/dashbord/suppliers')
+
+    }
+
     const handleDeteleEmploye = async(e)=>{
 
       const button_id = e.target.id
@@ -103,8 +110,8 @@ function Clients() {
 
          <h3 className='text-regal-violet text-2xl p-2'> Manange Clients </h3>
 
-         <button onClick={()=>setShowAddEmploye(true)} 
-          className='flex items-center p-search-box bg-dashbord rounded-xl text-white '>Add Client</button>
+         <button 
+          className='flex items-center p-search-box bg-dashbord rounded-xl text-white' onClick={navigateToSupplier}>Add Client</button>
 
         </div>
 
@@ -128,14 +135,14 @@ function Clients() {
                             )
                         })}
 
-                        <th className='p-4 text-left '>Action</th>
+                        <th className='p-4 text-left '>Manage Luggages</th>
                     </tr>
 
                 </thead>
 
                 <tbody>
                 
-                    { clients !== null ?clients.map((client)=>{ 
+                    { clients !== null ? clients.map((client)=>{ 
 
                         return(
                             <tr key={client._id}>
