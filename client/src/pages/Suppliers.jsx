@@ -44,8 +44,7 @@ function Suppliers() {
             setLoading(true);
             const res = await fetch('/api/supplier/getSupplier/',{  
 
-              
-                method:'GET',
+              method:'GET',
             
             })
 
@@ -62,7 +61,7 @@ function Suppliers() {
             setLoading(false)
            
             setSuppliers(data)
-            // console.log(suppliers)
+            console.log(suppliers)
             // setEmployes((prev)=>prev.filter((data)))
         
           }

@@ -16,6 +16,8 @@ export const createClient = asyncHandler(async(req,res,next)=>{
     if(!supplier) return res.status(400).send('supplier doesnt exist')
     
     const supplier_id = supplier._id
+
+    const trip_id = supplier.trip_id
     
     const create_client = await Client.create({...req.body,supplier_name:supplier.name})
    
@@ -35,7 +37,11 @@ export const createClient = asyncHandler(async(req,res,next)=>{
     const id = supplierWeight.trip_id
     // console.log(supplierWeight)
 
-    await Trip.findByIdAndUpdate({_id:id},{$set:{weight:supplierWeight.weight}},{new:true})
+    const trip_weight = await Trip.findById(trip_id)
+    const updated_trip_weight = (trip_weight.weight + supplierWeight.weight)
+
+
+    await Trip.findByIdAndUpdate({_id:id},{$set:{weight:updated_trip_weight}},{new:true})
     // console.log(updatedTripWeight)
 
 
