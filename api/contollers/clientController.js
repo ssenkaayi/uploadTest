@@ -27,21 +27,21 @@ export const createClient = asyncHandler(async(req,res,next)=>{
    
     const new_number_client = (updatedSupplier.client_name)
    
-    const new_client_weight = updatedSupplier.weight + create_client.weight
+    const new_supplier_weight = updatedSupplier.weight + create_client.weight
 
-    await Supplier.findByIdAndUpdate({_id:supplier_id},{$set:{number_clients:new_number_client.length,
-        weight:new_client_weight,}},{new:true})
+    const updatedSupplierWeight = await Supplier.findByIdAndUpdate({_id:supplier_id},{$set:{number_clients:new_number_client.length,
+        weight:new_supplier_weight,}},{new:true})
 
-    const supplierWeight = await Supplier.findById(req.body.supplier_id)
-    if(!supplierWeight) return next(errorHandler(400,'supplier doesnt exist'))
-    const id = supplierWeight.trip_id
-    // console.log(supplierWeight)
+    // const supplierWeight = await Supplier.findById(req.body.supplier_id)
+    // if(!supplierWeight) return next(errorHandler(400,'supplier doesnt exist'))
+    // const id = supplierWeight.trip_id
+    // // console.log(supplierWeight)
 
     const trip_weight = await Trip.findById(trip_id)
-    const updated_trip_weight = (trip_weight.weight + supplierWeight.weight)
+    const updated_trip_weight = (trip_weight.weight + create_client.weight)
 
 
-    await Trip.findByIdAndUpdate({_id:id},{$set:{weight:updated_trip_weight}},{new:true})
+    await Trip.findByIdAndUpdate({_id:trip_id},{$set:{weight:updated_trip_weight}},{new:true})
     // console.log(updatedTripWeight)
 
 

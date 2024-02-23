@@ -27,7 +27,7 @@ export const createSupplier = asyncHandler(async(req,res,next)=>{
     const new_number_suppliers = (updatedTripPush.supplier_name).length
    
     const updatedTripSet = await Trip.findByIdAndUpdate({_id:id},{$set:{number_suppliers:new_number_suppliers}},{new:true})
-    console.log(updatedTripSet)
+    // console.log(updatedTripSet)
 
     res.status(200).send(create_suplier)
    
