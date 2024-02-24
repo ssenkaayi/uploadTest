@@ -165,18 +165,18 @@ function Trips() {
 
 
 
-                            <div className='flex gap-4 items-center p-4'>
+                            <td className='flex gap-4 items-center p-4'>
 
                               <button className='p-2 cursor-pointer 'id={trip._id} onClick={handleSkyTeamName}>Add</button>
                               <span className='p-2 cursor-pointer '>View</span>
                               <button className='p-2 cursor-pointer 'id={trip._id} onClick={handleDeteleTrip}>Delete</button>
 
-                            </div>
+                            </td>
 
                           </tr>
 
                         )
-                    }):""}
+                    }):<tr> <td className='p-4 text-left'>loading</td> </tr>}
 
                 </tbody>
 

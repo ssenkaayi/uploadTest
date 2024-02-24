@@ -9,7 +9,7 @@ import { supplierTable } from '../components/TableHeading'
 function Suppliers() {
 
     const [showAddClient,setShowAddClient] = useState(false)
-    const [suppliers , setSuppliers] = useState(null)
+    const [suppliers , setSuppliers] = useState([])
     const [supplier_id, setSupplier_id] = useState(null)
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
@@ -152,29 +152,29 @@ function Suppliers() {
 
                 <tbody>
                 
-                    { suppliers !== null ? suppliers.map((supplier)=>{ 
+                    { suppliers !== null ? suppliers.map((supplier,index)=>{ 
 
                         return(
-                            <tr key={supplier._id}>
+                            <tr key={index}>
                             
-                            <td className='p-4 text-left'>{supplier.createdAt.split("T", 1)}</td>
-                            <td className='p-4 text-left'>{supplier.trip_name}</td>
-                            <td className='p-4 text-left'>{supplier.name}</td>
-                            <td className='p-4 text-left'>{supplier.client_name}</td>
-                            <td className='p-4 text-left'>{supplier.weight}</td>
-                            <td className='p-4 text-left'>{supplier.number_clients}</td>
-                            <td className='p-4 text-left'>{supplier.issued_by}</td>
+                              <td className='p-4 text-left'>{supplier.createdAt.split("T", 1)}</td>
+                              <td className='p-4 text-left'>{supplier.trip_name}</td>
+                              <td className='p-4 text-left'>{supplier.name}</td>
+                              <td className='p-4 text-left'>{supplier.client_name}</td>
+                              <td className='p-4 text-left'>{supplier.weight}</td>
+                              <td className='p-4 text-left'>{supplier.number_clients}</td>
+                              <td className='p-4 text-left'>{supplier.issued_by}</td>
 
-                            <div className='text-green flex gap-4 items-center p-4'>
-                                <button className='p-2 cursor-pointer 'id={supplier._id} onClick={handleSupplierId} >Add</button>
-                                <span className='p-2 cursor-pointer '>View</span>
-                                <button className='p-2 cursor-pointer 'id={supplier._id} onClick={handleDeteleLuggage} >Delete</button>
-                            </div>
+                              <td className='text-green flex gap-4 items-center p-4'>
+                                  <button className='p-2 cursor-pointer 'id={supplier._id} onClick={handleSupplierId} >Add</button>
+                                  <span className='p-2 cursor-pointer '>View</span>
+                                  <button className='p-2 cursor-pointer 'id={supplier._id} onClick={handleDeteleLuggage} >Delete</button>
+                              </td>
 
                             </tr>
 
                         )
-                    }):""}
+                    }):<tr> <td className='p-4 text-left'>loading</td> </tr>}
 
                 </tbody>
 

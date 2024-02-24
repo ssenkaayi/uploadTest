@@ -146,16 +146,16 @@ function Records() {
                             <td className='p-4 text-left'key={employe._id}>{employe.address}</td>
                             <td className='p-4 text-left'key={employe._id}>{employe.role}</td>
 
-                            <div className='text-green flex gap-4 items-center p-4'>
+                            <td className='text-green flex gap-4 items-center p-4'>
                                 <span className='p-2 cursor-pointer '>Edit</span>
                                 <span className='p-2 cursor-pointer '>View</span>
                                 <button className='p-2 cursor-pointer 'id={employe._id} onClick={handleDeteleEmploye}>Delete</button>
-                            </div>
+                            </td>
 
                             </tr>
 
                         )
-                    }):""}
+                    }):<tr> <td className='p-4 text-left'>loading</td> </tr>}
 
                 </tbody>
 

@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 function Payments() {
 
     const [showAddEmploye,setShowAddEmploye] = useState(false)
-    const [employes , setEmployes] = useState(null)
+    const [employes , setEmployes] = useState([])
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
 
@@ -133,12 +133,12 @@ function Payments() {
 
                 <tbody>
                 
-                    { employes !== null ?employes.map((employe)=>{ 
+                    { employes !== null ?employes.map((employe,index)=>{ 
 
                         return(
                             <tr>
                             
-                            <td className='p-4 text-left'key={employe._id}>{employe.createdAt.split("T", 1)}</td>
+                            <td className='p-4 text-left'key={index}>{employe.createdAt.split("T", 1)}</td>
 
                             <td className='p-4 text-left'key={employe._id}>{employe.firstName}</td>
                             <td className='p-4 text-left'key={employe._id}>{employe.lastName}</td>
@@ -147,16 +147,16 @@ function Payments() {
                             <td className='p-4 text-left'key={employe._id}>{employe.address}</td>
                             <td className='p-4 text-left'key={employe._id}>{employe.role}</td>
 
-                            <div className='text-green flex gap-4 items-center p-4'>
+                            <td className='text-green flex gap-4 items-center p-4'>
                                 <span className='p-2 cursor-pointer '>Edit</span>
                                 <span className='p-2 cursor-pointer '>View</span>
                                 <button className='p-2 cursor-pointer 'id={employe._id} onClick={handleDeteleEmploye}>Delete</button>
-                            </div>
+                            </td>
 
                             </tr>
 
                         )
-                    }):""}
+                    }):<tr> <td className='p-4 text-left'>loading</td> </tr>}
 
                 </tbody>
 
