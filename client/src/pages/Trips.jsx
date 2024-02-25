@@ -51,6 +51,7 @@ function Trips() {
             setLoading(false)
            
             setTrips(data)
+            // setTrips((prev)=>[...prev,data])
             // console.log(trips)
         
           }

@@ -1,21 +1,23 @@
 import React from 'react'
-import Base from '../components/Base'
 import Sidebar from '../components/Sidebar'
-import HeroSection from '../components/HeroSection'
+
+import { Outlet } from 'react-router-dom'
 
 
 
 function Dashbord() {
+
   return (
-    
     
     <div className='flex font-primary'>
 
       <Sidebar/>
       
-      <Base/>
+      <div className='relative bg-base w-full p-4'>
 
-      {/* <HeroSection/> */}
+        <Outlet/>
+
+      </div>
 
       
 

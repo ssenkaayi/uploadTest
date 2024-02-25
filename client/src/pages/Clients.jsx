@@ -6,6 +6,7 @@ import { clientTable } from '../components/TableHeading'
 import { useNavigate } from 'react-router-dom';
 
 
+
 function Clients() {
 
     const [showAddEmploye,setShowAddEmploye] = useState(false)
@@ -15,6 +16,8 @@ function Clients() {
     const navigate = useNavigate()
     const [searchItem, setSearchItem] = useState('')
     const [filteredClients, setFilteredClients] = useState([])
+    const [currentPage, setCurrentPage] = useState(1);
+    const [clientsPerPage, setClientaPerPage] = useState(8);
 
     useEffect(()=>{
 
@@ -25,7 +28,7 @@ function Clients() {
           try{
       
             setLoading(true);
-            const res = await fetch('/api/client/getClients',{
+            const res = await fetch(`/api/client/getClients?page=${currentPage}&limit=${clientsPerPage}`,{
               
                 method:'GET',
             
@@ -44,9 +47,6 @@ function Clients() {
            
             setClients(data)
             setFilteredClients(data)
-            console.log(clients)
-    
-        
           }
       
           catch(error){
@@ -59,7 +59,7 @@ function Clients() {
         fetchClients()
     
         
-    },[])
+    },[clientsPerPage,currentPage])
 
 
     const handleInputChange = (e) => { 
@@ -67,15 +67,17 @@ function Clients() {
       const searchTerm = e.target.value;
       setSearchItem(searchTerm)
 
+   
+
       // // filter the items using the apiUsers state
       const filteredItems = clients.filter((client) =>
       client.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
 
       setFilteredClients(filteredItems);
-    }
 
-    // console.log(filteredClients)
+      
+    }
 
 
     const handleOnClose = ()=>{
@@ -118,102 +120,195 @@ function Clients() {
 
     }
 
+    const totalPages = Math.ceil(filteredClients.length / clientsPerPage);
+    const startIndex = (currentPage - 1) * clientsPerPage;
+    const endIndex = startIndex + clientsPerPage;
+    const currentClients = filteredClients.slice(startIndex, endIndex);
+    const numbers = [...Array(totalPages+1).keys()].slice(1)
+    const paginationNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+        paginationNumbers.push(i);
+    }
+
+    const changePage = (e)=>{
+
+      setCurrentPage(e.target.id)
+
+    }
+
+    const changeNextPage = ()=>{
+
+      {(currentPage !== 1)?setCurrentPage(currentPage+1):''}
+      
+
+    }
+
+    const changePrePage = ()=>{
+
+      {currentPage !== totalPages?setCurrentPage(currentPage-1):''}
+       
+    }
+  
+
 
   return (
 
-    <div className='bg-white mt-card p-record mt-record rounded-2xl'>
 
-        <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>   
+  <div>
 
-        <div className='flex justify-between'>
+      <div  className='flex justify-between items-center flex-wrap
+        bg-white rounded-2x p-header mb-4 my-2 rounded-lg '>
 
-         <h3 className='text-regal-violet text-2xl p-2'> Manange Clients </h3>
+        <div className='flex flex-col  text-dashbord '>
 
-         <div className='flex items-center gap-1'>
+          <span className='test-xs'>Admin</span>
+          <span className='text-2xl' >Dashbord</span>
+
+          </div>
+
+
+          <div className='flex items-center gap-1'>
 
           <div className='flex items-center p-search-box bg-search-bar rounded-2xl text-dashbord'>
 
-            <svg svg="true"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 cursor-pointer text-sm hover:trb">
-            <path fillRule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clipRule="evenodd" />
-            </svg>
+          <svg svg="true"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 cursor-pointer text-sm hover:trb">
+          <path fillRule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clipRule="evenodd" />
+          </svg>
 
-            < input className='bg-transparent p-2' type='text' placeholder='search'    value={searchItem} onChange={handleInputChange} />
-              
+          < input className='bg-transparent p-2' type='text' placeholder='search' value={searchItem} onChange={handleInputChange} />
+
           </div>
 
-            {/* <img className='w-12 h-12 cursor-pointer rounded-full' src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' alt='avater'/> */}
-          </div>
+          <img className='w-12 h-12 cursor-pointer rounded-full' src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' alt='avater'/>
+        </div>
+
+
+      </div>
+
+
+
+    <div className='bg-white mt-card p-record mt-record rounded-2xl'>
+
+    <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>   
+
+    <div className='flex justify-between'>
+
+    <h3 className='text-regal-violet text-2xl p-2'> Manange Clients </h3>
+
+    <div className='flex items-center gap-1'>
+
+    <div className='flex items-center p-search-box bg-search-bar rounded-2xl text-dashbord'>
+
+    </div>
+
+    {/* <img className='w-12 h-12 cursor-pointer rounded-full' src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' alt='avater'/> */}
+    </div>
+
+    <button 
+    className='flex items-center p-search-box bg-dashbord rounded-xl text-white' onClick={navigateToSupplier}>Add Client</button>
+
+    </div>
+
+
+
+    <div className=' w-full mt-record'>
+
+    <table className=' w-full border-collapse' >
+
+    <thead  className='bg-regal-violet text-white'>
+
+        <tr>
+
+            {clientTable.map((item,index)=>{
+
+                return(
+
+                    
+                <th className='p-4 text-left ' key={index}>{item}</th>
+
+                )
+            })}
+
+            <th className='p-4 text-left '>Manage Luggages</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        { currentClients !== null ? currentClients.map((client,index)=>{ 
+
+            return(
+                <tr key={index}>
+                
+                <td className='p-4 text-left'>{client.createdAt.split("T", 1)}</td>
+                
+                <td className='p-4 text-left'>{client.supplier_name}</td>
+                <td className='p-4 text-left'>{client.name}</td>
+                <td className='p-4 text-left'>{client.weight}</td>
+                <td className='p-4 text-left'>{client.number_pieces}</td>
+                <td className='p-4 text-left'>{client.total_payments}</td>
+                <td className='p-4 text-left'>{client.description}</td>
+                <td className='p-4 text-left'>{client.store_status}</td>
+                <td className='p-4 text-left'>{client.issued_by}</td>
+
+                <td className='text-green flex gap-4 items-center p-4'>
+                    <span className='p-2 cursor-pointer '>Edit</span>
+                    <span className='p-2 cursor-pointer '>View</span>
+                    <button className='p-2 cursor-pointer 'id={client._id} onClick={handleDeteleEmploye}>Delete</button>
+                </td>
+
+                </tr>
+
+            )
+        }):<tr> <td className='p-4 text-left'>loading</td> </tr>}
+
+    </tbody>
+
+    </table>
+
+    </div>
+
+
+
+
+
+    <div >
+
+      <ul className='flex gap-4'>
+
+        <li>
+          <a href='#' className='page-link ' onClick={changePrePage}>Prev</a>
+        </li>
+
+        {paginationNumbers.map((pageNumber,index) => (
 
           <button 
-          className='flex items-center p-search-box bg-dashbord rounded-xl text-white' onClick={navigateToSupplier}>Add Client</button>
+          key={index} onClick={changePage} id = {index}
+          className={currentPage === pageNumber ? 'active' : ''}
+          >
+            {pageNumber}
 
-        </div>
+          </button>
+        ))}
 
-       
+        <li>
+          <a href='#' className='page-link ' onClick={changeNextPage}>Next</a>
+        </li>
 
-        <div className=' w-full mt-record'>
-
-            <table className=' w-full border-collapse' >
-
-                <thead  className='bg-regal-violet text-white'>
-
-                    <tr>
-
-                        {clientTable.map((item,index)=>{
-
-                            return(
-
-                                
-                            <th className='p-4 text-left ' key={index}>{item}</th>
-
-                            )
-                        })}
-
-                        <th className='p-4 text-left '>Manage Luggages</th>
-                    </tr>
-
-                </thead>
-
-                <tbody>
-                
-                    { filteredClients !== null ? filteredClients.map((client,index)=>{ 
-
-                        return(
-                            <tr key={index}>
-                            
-                            <td className='p-4 text-left'>{client.createdAt.split("T", 1)}</td>
-                            
-                            <td className='p-4 text-left'>{client.supplier_name}</td>
-                            <td className='p-4 text-left'>{client.name}</td>
-                            <td className='p-4 text-left'>{client.weight}</td>
-                            <td className='p-4 text-left'>{client.number_pieces}</td>
-                            <td className='p-4 text-left'>{client.total_payments}</td>
-                            <td className='p-4 text-left'>{client.description}</td>
-                            <td className='p-4 text-left'>{client.store_status}</td>
-                            <td className='p-4 text-left'>{client.issued_by}</td>
-
-                            <td className='text-green flex gap-4 items-center p-4'>
-                                <span className='p-2 cursor-pointer '>Edit</span>
-                                <span className='p-2 cursor-pointer '>View</span>
-                                <button className='p-2 cursor-pointer 'id={client._id} onClick={handleDeteleEmploye}>Delete</button>
-                            </td>
-
-                            </tr>
-
-                        )
-                    }):<tr> <td className='p-4 text-left'>loading</td> </tr>}
-
-                </tbody>
-
-            </table>
-
-        </div>
+      </ul>
+    </div>
 
 
 
     </div>
 
+
+</div>
+
+   
+
   )
-}
+  }
 
 export default Clients

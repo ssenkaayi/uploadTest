@@ -61,8 +61,8 @@ function Suppliers() {
             setLoading(false)
            
             setSuppliers(data)
-            console.log(suppliers)
-            // setEmployes((prev)=>prev.filter((data)))
+            // console.log(suppliers)
+            // setEmployes((prev)=>[...prev,data]);
         
           }
       
