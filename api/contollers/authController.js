@@ -7,14 +7,14 @@ import asyncHandler from 'express-async-handler'
 
 export const registerEmploye = asyncHandler(async(req,res)=>{
 
-    const {error} = registerValidation(req.body)
+    // const {error} = registerValidation(req.body)
   
-    if(error) return res.status(400).send(error.details[0].message)
+    // if(error) return res.status(400).send(error.details[0].message)
 
     const {firstName, lastName,email,phone, role, password,address} = req.body
 
     const isEmploye = await Employe.findOne({email})
-    console.log(email)
+    
     if(isEmploye) return res.status(400).send('account with email exists')
   
     const hashedPassword = bcrypt.hashSync(password,10)

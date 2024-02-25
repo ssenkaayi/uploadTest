@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 // import bcrypt from "bcryptjs"
 
-const role = {
-    Admin :'Admin'
-}
+// const role = {
+//     Admin :'Admin'
+// }
 
 const employeSchema = mongoose.Schema(
     
@@ -50,32 +50,6 @@ const employeSchema = mongoose.Schema(
 } , {timestamps:true}
 
 );
-
-// const hashPassword = async(next)=>{
-
-//     if(!this.isModified('password')){
-//         return next()
-//     }
-
-//     const salt = await bcrypt.genSalt(10);
-//     const hashedPassword = await bcrypt.hash(this.password,salt)
-//     this.password = hashedPassword;
-// }
-
-
-// userSchema.pre('save', async(next)=>{
-
-  
-
-//     if(!this.isModified("password")){
-//         return next()
-//     }
-
-//     const salt = await bcrypt.genSalt(10);
-//     const hashedPassword = await bcrypt.hash(this.password,salt);
-//     this.password = hashedPassword
-// }
-// )
 
 
 

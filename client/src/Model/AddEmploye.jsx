@@ -37,8 +37,8 @@ function AddEmploye({visible , onClose}) {
         }
         );
         //getting response from the server
-        // const data =  await res.json();
-        // console.log(data)
+        const data =  await res.json();
+        console.log(data)
   
         //if response is false, show the error message to the client
         if(data.success===false){
