@@ -28,7 +28,7 @@ export default function App() {
 
         <Route element={<PrivateRoutes/>}>
 
-          <Route path="/dashbord" element={<Dashbord/>} >
+          <Route path="/dashbord/" element={<Dashbord/>} >
 
             {/* <Route path='' element = {<Dashbord/>}/> */}
             <Route path='/dashbord/profile'  element = {<Profile/>}/>

@@ -4,11 +4,14 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { clientTable } from '../components/TableHeading'
 import { useNavigate } from 'react-router-dom';
+import ViewClient from '../Model/ViewClient'
+import EditClient from '../Model/EditClient'
 
 
 
 function Clients() {
-
+    const [showViewClient,setShowViewClient] = useState(false)
+    const [showEditClient,setShowEditClient] = useState(false)
     const [showAddEmploye,setShowAddEmploye] = useState(false)
     const [clients , setClients] = useState([])
     const [loading , setLoading] = useState(false)
@@ -17,7 +20,19 @@ function Clients() {
     const [searchItem, setSearchItem] = useState('')
     const [filteredClients, setFilteredClients] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
-    const [clientsPerPage, setClientaPerPage] = useState(8);
+    const [clientsPerPage, setClientaPerPage] = useState(7);
+
+    const totalPages = Math.ceil(filteredClients.length / clientsPerPage);
+    const startIndex = (currentPage - 1) * clientsPerPage;
+    const endIndex = startIndex + clientsPerPage;
+    const currentClients = filteredClients.slice(startIndex, endIndex);
+    const numbers = [...Array(totalPages+1).keys()].slice(1)
+    const paginationNumbers = [];
+
+    for (let i = 1; i <= totalPages; i++) {
+        paginationNumbers.push(i);
+    }
+
 
     useEffect(()=>{
 
@@ -83,6 +98,8 @@ function Clients() {
     const handleOnClose = ()=>{
       
       setShowAddEmploye(false)
+      setShowViewClient(false)
+      setShowEditClient(false)
 
     }
 
@@ -92,14 +109,14 @@ function Clients() {
 
     }
 
-    const handleDeteleEmploye = async(e)=>{
+    const handleDeleteClient = async(e)=>{
 
       const button_id = e.target.id
-      // console.log(button_id)
+      console.log('delete')
     
       try{
     
-        const res = await fetch(`/api/client/deleteEmploye/${button_id}`,{
+        const res = await fetch(`/api/client/delete/${button_id}`,{
           method:"DELETE",
         })
     
@@ -111,7 +128,7 @@ function Clients() {
           console.log(data.message)
         }
     
-        setEmployes((prev)=>prev.filter((employes)=>employes._id!==button_id))
+        setClients((prev)=>prev.filter((client)=>client._id!==button_id))
     
       }catch(error){
         console.log(error)
@@ -120,15 +137,6 @@ function Clients() {
 
     }
 
-    const totalPages = Math.ceil(filteredClients.length / clientsPerPage);
-    const startIndex = (currentPage - 1) * clientsPerPage;
-    const endIndex = startIndex + clientsPerPage;
-    const currentClients = filteredClients.slice(startIndex, endIndex);
-    const numbers = [...Array(totalPages+1).keys()].slice(1)
-    const paginationNumbers = [];
-    for (let i = 1; i <= totalPages; i++) {
-        paginationNumbers.push(i);
-    }
 
     const changePage = (e)=>{
 
@@ -190,6 +198,8 @@ function Clients() {
     <div className='bg-white mt-card p-record mt-record rounded-2xl'>
 
     <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>   
+    <EditClient onClose={handleOnClose} visible={showEditClient}/>
+    <ViewClient onClose={handleOnClose} visible={showViewClient}/>
 
     <div className='flex justify-between'>
 
@@ -253,9 +263,9 @@ function Clients() {
                 <td className='p-4 text-left'>{client.issued_by}</td>
 
                 <td className='text-green flex gap-4 items-center p-4'>
-                    <span className='p-2 cursor-pointer '>Edit</span>
-                    <span className='p-2 cursor-pointer '>View</span>
-                    <button className='p-2 cursor-pointer 'id={client._id} onClick={handleDeteleEmploye}>Delete</button>
+                    <button className='p-2 cursor-pointer 'id={client._id} onClick={()=>setShowEditClient(true)}>Edit</button>
+                    <button className='p-2 cursor-pointer 'id={client._id} onClick={()=>setShowViewClient(true)}>View</button>
+                    <button className='p-2 cursor-pointer 'id={client._id} onClick={handleDeleteClient}>Delete</button>
                 </td>
 
                 </tr>

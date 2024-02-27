@@ -3,11 +3,13 @@ import AddEmploye from '../Model/AddEmploye'
 import { useState } from 'react'
 import { employeTable } from '../components/TableHeading'
 import { useEffect } from 'react'
+import EditClient from '../Model/EditClient'
 
 
 function Records() {
 
     const [showAddEmploye,setShowAddEmploye] = useState(false)
+    const [showViewClient,setShowViewClient] = useState(false)
     const [employes , setEmployes] = useState(null)
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
@@ -16,6 +18,7 @@ function Records() {
     const handleOnClose = ()=>{
       
       setShowAddEmploye(false)
+      setShowViewClient(false)
 
     }
 
@@ -90,6 +93,34 @@ function Records() {
 
     }
 
+    const handleViewClient = async(e)=>{
+
+      const button_id = e.target.id
+  
+    
+      try{
+    
+        const res = await fetch(`/api/employe/deleteEmploye/${button_id}`,{
+          method:"DELETE",
+        })
+    
+        const data = await res.json();
+    
+        console.log(data)
+    
+        if(data.success===false){
+          console.log(data.message)
+        }
+    
+        setEmployes((prev)=>prev.filter((employes)=>employes._id!==button_id))
+    
+      }catch(error){
+        console.log(error)
+      }
+
+
+    }
+
   return (
 
     <>
@@ -126,14 +157,15 @@ function Records() {
 
       <div className='bg-white mt-card p-record mt-record rounded-2xl'>
 
-<AddEmploye onClose={handleOnClose} visible={showAddEmploye} />   
+      <AddEmploye onClose={handleOnClose} visible={showAddEmploye} />   
+      <EditClient onClose={handleOnClose} visible={showViewClient}/>
 
-<div className='flex justify-between'>
+      <div className='flex justify-between'>
 
- <h3 className='text-regal-violet text-2xl p-2'> Manange Employees </h3>
+      <h3 className='text-regal-violet text-2xl p-2'> Manange Employees </h3>
 
- <button onClick={()=>setShowAddEmploye(true)} 
-  className='flex items-center p-search-box bg-dashbord rounded-xl text-white '>Add Employe</button>
+      <button onClick={()=>setShowAddEmploye(true)} 
+        className='flex items-center p-search-box bg-dashbord rounded-xl text-white '>Add Employe</button>
 
 </div>
 
@@ -167,7 +199,7 @@ function Records() {
             { employes !== null ?employes.map((employe)=>{ 
 
                 return(
-                    <tr>
+                  <tr>
                     
                     <td className='p-4 text-left'key={employe._id}>{employe.createdAt.split("T", 1)}</td>
 
@@ -180,12 +212,12 @@ function Records() {
                     
 
                     <td className='text-green flex gap-4 items-center p-4'>
+                        <button className='p-2 cursor-pointer' id={employe._id} onClick={()=>setShowViewClient(true)}>View</button>
                         <span className='p-2 cursor-pointer '>Edit</span>
-                        <span className='p-2 cursor-pointer '>View</span>
-                        <button className='p-2 cursor-pointer 'id={employe._id} onClick={handleDeteleEmploye}>Delete</button>
+                        <button className='p-2 cursor-pointer'id={employe._id} onClick={handleDeteleEmploye}>Delete</button>
                     </td>
 
-                    </tr>
+                  </tr>
 
                 )
             }):<tr> <td className='p-4 text-left'>loading</td> </tr>}
@@ -198,14 +230,8 @@ function Records() {
 </div>
 
 
-
-
-
 </div>
-
 </>
-
-   
 
   )
 }

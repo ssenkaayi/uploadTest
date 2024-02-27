@@ -78,14 +78,14 @@ function Suppliers() {
         
     },[])
 
-    const handleDeteleLuggage = async(e)=>{
+    const handleDeteleSupplier = async(e)=>{
 
       const button_id = e.target.id
       // console.log(button_id)
     
       try{
     
-        const res = await fetch(`/api/lu/delete/${button_id}`,{
+        const res = await fetch(`/api/supplier/delete/${button_id}`,{
           method:"DELETE",
         })
     
@@ -97,7 +97,7 @@ function Suppliers() {
           console.log(data.message)
         }
     
-        setLuggages((prev)=>prev.filter((luggage)=>luggage._id!==button_id))
+        setSuppliers((prev)=>prev.filter((supplier)=>supplier._id!==button_id))
     
       }catch(error){
 
@@ -168,7 +168,7 @@ function Suppliers() {
                               <td className='text-green flex gap-4 items-center p-4'>
                                   <button className='p-2 cursor-pointer 'id={supplier._id} onClick={handleSupplierId} >Add</button>
                                   <span className='p-2 cursor-pointer '>View</span>
-                                  <button className='p-2 cursor-pointer 'id={supplier._id} onClick={handleDeteleLuggage} >Delete</button>
+                                  <button className='p-2 cursor-pointer 'id={supplier._id} onClick={handleDeteleSupplier} >Delete</button>
                               </td>
 
                             </tr>

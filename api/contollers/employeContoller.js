@@ -12,7 +12,6 @@ export const getEmploye = asyncHandler(async(req,res)=>{
     const {password:pass,...rest} = isEmploye._doc
     res.status(200).send(rest)
    
-  
 })
 
 export const  deleteEmploye = async(req,res,next)=>{
@@ -73,3 +72,4 @@ export const getEmployes = async(req,res,next)=>{
     }
 
 }
+

@@ -76,3 +76,26 @@ export const getClients = async(req,res,next)=>{
     }
 
 }
+
+export const  deleteClient = async(req,res,next)=>{
+
+
+    // res.status(200).json('delete client')
+    // if(req.user.id!==listing.userRef) return next(errorHandler(401,'you can not authorized delete profile'))
+
+    try{
+
+        
+        const client = await Client.findById(req.params.id)
+        if(!client) return next(errorHandler(401,'client with id is not found'))
+
+
+        await Client.findByIdAndDelete(req.params.id)
+
+        res.status(200).json({"success":true})
+
+    }catch(error){
+        next(error)
+    }
+
+}
