@@ -156,7 +156,7 @@ function Trips() {
                             <td className='p-4 text-left'>{trip.createdAt.split("T", 1)}</td>
                             <td className='p-4 text-left'>{trip.name}</td>
                             <td className='p-4 text-left'>{trip.weight}</td>
-                            <td className='p-4 text-left gap-1'>{trip.supplier_name}</td>
+                            <td className='p-4 text-left'>{trip.supplier_name}</td>
                             <td className='p-4 text-left'>{trip.number_suppliers}</td>
                             <td className='p-4 text-left'>{trip.transport}</td>
                             <td className='p-4 text-left'>{trip.tax}</td>

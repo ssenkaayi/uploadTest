@@ -21,16 +21,17 @@ const clientSchema = mongoose.Schema(
         type:String,
         required:true
     },
-    supplier_name:{
-
-        type:String,
-        required:true
-    },
     supplier_id:{
 
-        type:String,
+        type:[String],
         required:true
     },
+    supplier_name:{
+
+        type:[String],
+        required:true
+    },
+
     description:{
         type:String,
         required:true

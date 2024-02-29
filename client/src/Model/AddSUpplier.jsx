@@ -33,10 +33,10 @@ function AddSupplier({visible , onClose , trip_id }) {
       e.preventDefault();
       try{
         //making a request to the server
-        const res = await fetch('/api/supplier/create',{
+        const res = await fetch(`/api/supplier/create/${trip_id}`,{
           method:'POSt',
           headers:{'content-type':'application/json',},
-          body:JSON.stringify({...formData,issued_by:currentEmploye.firstName,trip_id:trip_id})
+          body:JSON.stringify({...formData,issued_by:currentEmploye.firstName,})
         }
         );
         //getting response from the server

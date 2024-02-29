@@ -5,7 +5,7 @@ import { createClient , getClients ,deleteClient ,getClient} from '../contollers
 
 const route = express.Router()
 
-route.post('/create',createClient)
+route.post('/create/:id',createClient)
 route.get('/getClients',getClients)
 route.get('/getClient/:id',getClient)
 route.delete('/delete/:id',deleteClient)

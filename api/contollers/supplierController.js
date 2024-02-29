@@ -1,6 +1,5 @@
 
 import asyncHandler from 'express-async-handler'
-import Luggage from '../model/supplierModel.js';
 import Trip from '../model/tripModel.js';
 import errorHandler from '../errorHandler.js';
 import Supplier from '../model/supplierModel.js';
@@ -12,21 +11,24 @@ export const createSupplier = asyncHandler(async(req,res,next)=>{
   
     // if(error) return next(errorHandler(400,error.details[0].message))
 
-    const trip = await Trip.findById(req.body.trip_id)
-    if(!trip) return next(errorHandler(400,'Trip doesnt exist'))
-    const id = trip._id
+    const trip = await Trip.findById(req.params.id)
+    if(!trip) return next(errorHandler(400,'Trip with provided id doesnt exist'))
+    // console.log(trip.name,trip._id)
+   
     
-    const create_suplier = await Supplier.create({...req.body,trip_name:trip.name})
+    const create_suplier = await Supplier.create({...req.body,trip_name:trip.name,trip_id:trip._id})
+    console.log(create_suplier)
 
-    // const new_trip_weight = trip.weight + create_suplier.weight
+    // // const new_trip_weight = trip.weight + create_suplier.weight
     
 
-    const updatedTripPush = await Trip.findByIdAndUpdate({_id:id},{$push:{supplier_name:create_suplier.name,
-    supplier_id:create_suplier.id,}},{new:true})
+    const updatedTripPush = await Trip.findByIdAndUpdate({_id:req.params.id},{$push:{supplier_name:create_suplier.name,
+    supplier_id:create_suplier._id,}},{new:true})
+    // console.log(updatedTripPush)
 
     const new_number_suppliers = (updatedTripPush.supplier_name).length
    
-    const updatedTripSet = await Trip.findByIdAndUpdate({_id:id},{$set:{number_suppliers:new_number_suppliers}},{new:true})
+    const updatedTripSet = await Trip.findByIdAndUpdate({_id:req.params.id},{$set:{number_suppliers:new_number_suppliers}},{new:true})
     // console.log(updatedTripSet)
 
     res.status(200).send(create_suplier)

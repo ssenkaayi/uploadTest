@@ -8,25 +8,23 @@ export const createPayment = asyncHandler(async(req,res,next)=>{
 
     const client = await Client.findById(req.body.client_id)
     if(!client) return res.status(400).send('client doesnt exist')
-
-
     console.log(client)
 
-    // const client_name = Client.name
-    // const client_weight = Client.weight
-    // const client_payment_status = client.payment_status
+    const client_name = Client.name
+    const client_weight = Client.weight
+    const client_payment_status = client.total_payments
 
 
-    res.status(200).send(client)
+    res.status(200).send(client_name,client_weight,client_payment_status)
    
 })
 
 
-export const getClients = async(req,res,next)=>{
+export const getPayments = async(req,res,next)=>{
 
     try{
 
-        const client = await Client.find()
+        const client = await Payment.find()
         if(client==undefined) return res.status(400).send('no packages for clients')
 
         res.status(200).json(client)

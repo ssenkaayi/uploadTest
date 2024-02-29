@@ -4,16 +4,18 @@ import mongoose from "mongoose";
 const supplierSchema = mongoose.Schema(
     
  {  
-    trip_name:{
-
-        type:String,
-        required:true
-    },
     trip_id:{
 
-        type:String,
+        type:[String],
         required:true
     },
+
+    trip_name:{
+
+        type:[String],
+        required:true
+    },
+
     weight:{
 
         type:Number,
@@ -27,16 +29,17 @@ const supplierSchema = mongoose.Schema(
         required:true,
         
     },
-    client_name:{
-
-        type:[String],
-        default:null
-    },
     client_id:{
 
         type:[String],
         default:null
     },
+    client_weight:{
+
+        type:[Number],
+        default:null
+    },
+
     number_clients:{
 
         type:Number,

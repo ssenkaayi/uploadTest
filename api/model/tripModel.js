@@ -24,7 +24,15 @@ const tripSchema = mongoose.Schema(
     },
     supplier_id:
     {
+
         type:[String],
+        default:null
+        
+    },
+    supplier_weight:
+    {
+
+        type:[Number],
         default:null
         
     },

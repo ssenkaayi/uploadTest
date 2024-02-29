@@ -33,10 +33,10 @@ function AddClient({visible , onClose , supplier_id }) {
       e.preventDefault();
       try{
         //making a request to the server
-        const res = await fetch('/api/client/create',{
+        const res = await fetch(`/api/client/create/${supplier_id}`,{
           method:'POSt',
           headers:{'content-type':'application/json',},
-          body:JSON.stringify({...formData,issued_by:currentEmploye.firstName,supplier_id:supplier_id})
+          body:JSON.stringify({...formData,issued_by:currentEmploye.firstName,})
         }
         );
         //getting response from the server
