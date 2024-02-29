@@ -6,6 +6,7 @@ import { clientTable } from '../components/TableHeading'
 import { useNavigate } from 'react-router-dom';
 import ViewClient from '../Model/ViewClient'
 import EditClient from '../Model/EditClient'
+import AddPayments from '../Model/AddPayments'
 
 
 
@@ -13,6 +14,7 @@ function Clients() {
     const [showViewClient,setShowViewClient] = useState(false)
     const [showEditClient,setShowEditClient] = useState(false)
     const [showAddEmploye,setShowAddEmploye] = useState(false)
+    const [showAddPayment,setshowAddPayment] = useState(false)
     const [clients , setClients] = useState([])
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
@@ -21,9 +23,10 @@ function Clients() {
     const [filteredClients, setFilteredClients] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
     const [clientsPerPage, setClientaPerPage] = useState(7);
+    const [client_id , setClient_id] = useState(null)
 
     const totalPages = Math.ceil(filteredClients.length / clientsPerPage);
-    const startIndex = (currentPage - 1) * clientsPerPage;
+    const startIndex = (currentPage-1) * clientsPerPage;
     const endIndex = startIndex + clientsPerPage;
     const currentClients = filteredClients.slice(startIndex, endIndex);
     const numbers = [...Array(totalPages+1).keys()].slice(1)
@@ -32,6 +35,8 @@ function Clients() {
     for (let i = 1; i <= totalPages; i++) {
         paginationNumbers.push(i);
     }
+
+
 
 
     useEffect(()=>{
@@ -94,12 +99,34 @@ function Clients() {
       
     }
 
+    const handleViewClient = (e)=>{
+
+      setClient_id(e.target.id)
+      setShowViewClient(true)
+      // setShowEditClient(true)
+    }
+
+    const handleEditClient = (e)=>{
+
+      setClient_id(e.target.id)
+      setShowEditClient(true)
+      // setShowEditClient(true)
+    }
+
+    const handleMakePayment =(e)=>{
+
+      setClient_id(e.target.id)
+      setshowAddPayment(true)
+
+    }
+
 
     const handleOnClose = ()=>{
       
       setShowAddEmploye(false)
       setShowViewClient(false)
       setShowEditClient(false)
+      setshowAddPayment(false)
 
     }
 
@@ -146,14 +173,14 @@ function Clients() {
 
     const changeNextPage = ()=>{
 
-      {(currentPage !== 1)?setCurrentPage(currentPage+1):''}
+      {(currentPage >= startIndex)?setCurrentPage(currentPage+1):''}
       
 
     }
 
     const changePrePage = ()=>{
 
-      {currentPage !== totalPages?setCurrentPage(currentPage-1):''}
+      {currentPage <= endIndex?setCurrentPage(currentPage-1):''}
        
     }
   
@@ -198,8 +225,9 @@ function Clients() {
     <div className='bg-white mt-card p-record mt-record rounded-2xl'>
 
     <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>   
-    <EditClient onClose={handleOnClose} visible={showEditClient}/>
-    <ViewClient onClose={handleOnClose} visible={showViewClient}/>
+    <EditClient onClose={handleOnClose} visible={showEditClient} client_id={client_id}/>
+    <ViewClient onClose={handleOnClose} visible={showViewClient} client_id={client_id}/>
+    <AddPayments onClose={handleOnClose} visible={showAddPayment} client_id={client_id}/>
 
     <div className='flex justify-between'>
 
@@ -239,7 +267,7 @@ function Clients() {
                 )
             })}
 
-            <th className='p-4 text-left '>Manage Luggages</th>
+            <th className='p-4 text-center '>Manage Clients</th>
         </tr>
 
     </thead>
@@ -263,9 +291,12 @@ function Clients() {
                 <td className='p-4 text-left'>{client.issued_by}</td>
 
                 <td className='text-green flex gap-4 items-center p-4'>
-                    <button className='p-2 cursor-pointer 'id={client._id} onClick={()=>setShowEditClient(true)}>Edit</button>
-                    <button className='p-2 cursor-pointer 'id={client._id} onClick={()=>setShowViewClient(true)}>View</button>
-                    <button className='p-2 cursor-pointer 'id={client._id} onClick={handleDeleteClient}>Delete</button>
+
+                  <button className='p-2 cursor-pointer 'id={client._id} onClick={handleMakePayment}>Payment</button>
+                  <button className='p-2 cursor-pointer 'id={client._id} onClick={handleEditClient}>Edit</button>
+                  <button className='p-2 cursor-pointer 'id={client._id} onClick={handleViewClient}>View</button>
+                  <button className='p-2 cursor-pointer 'id={client._id} onClick={handleDeleteClient}>Delete</button>
+                   
                 </td>
 
                 </tr>

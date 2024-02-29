@@ -2,9 +2,11 @@ import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function EditClient({visible , onClose}) {
+function EditClient({visible , onClose, client_id}) {
 
   if(!visible) return null;
+
+  console.log(client_id)
 
   const handleOnClose = ()=> onClose()
 

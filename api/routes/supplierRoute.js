@@ -5,7 +5,7 @@ const route = express.Router()
 
 route.post('/create',createSupplier)
 route.get('/getSupplier',getSuppliers)
-route.delete('/delete:id',deleteSupplier)
+route.delete('/delete/:id',deleteSupplier)
 // route.delete('/delete/:id',deleteLuggage)
 
 export default route

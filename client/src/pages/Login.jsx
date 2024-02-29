@@ -65,8 +65,7 @@ export default function Login() {
 
   return (
 
-    <div className='bg-base bg-opacity-30
-    backdrop-blur-sm flex justify-center items-center'>
+    <div className='bg-base flex justify-center items-center'>
 
     
       <form className='font-primay p-3 flex max-w-lg mx-auto w-80 bg-white text-regal-violet flex-col gap-4' >

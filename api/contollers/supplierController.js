@@ -53,9 +53,9 @@ export const getSuppliers = async(req,res,next)=>{
 
 export const  deleteSupplier = async(req,res,next)=>{
 
-    const luggage = await Supplier.findById(req.params.id)
+    const supplier = await Supplier.findById(req.params.id)
 
-    if(!luggage) return next(errorHandler(401,'Supplier with id is not found'))
+    if(!supplier) return next(errorHandler(401,'Supplier with id is not found'))
 
     // if(req.user.id!==listing.userRef) return next(errorHandler(401,'you can not authorized delete profile'))
 
