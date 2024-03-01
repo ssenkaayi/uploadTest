@@ -15,28 +15,14 @@ const tripSchema = mongoose.Schema(
         default:0
 
         },
-    supplier_name:
+ 
+    suppliers:
     {
 
-        type:[String],
+        type:[{}],
         default:null
         
     },
-    supplier_id:
-    {
-
-        type:[String],
-        default:null
-        
-    },
-    supplier_weight:
-    {
-
-        type:[Number],
-        default:null
-        
-    },
-  
     number_suppliers:{
 
         type:Number,

@@ -16,17 +16,17 @@ export const createSupplier = asyncHandler(async(req,res,next)=>{
     // console.log(trip.name,trip._id)
    
     
-    const create_suplier = await Supplier.create({...req.body,trip_name:trip.name,trip_id:trip._id})
+    const create_suplier = await Supplier.create({...req.body,trip:{name:trip.name,_id:trip._id}})
     console.log(create_suplier)
 
     // // const new_trip_weight = trip.weight + create_suplier.weight
     
 
-    const updatedTripPush = await Trip.findByIdAndUpdate({_id:req.params.id},{$push:{supplier_name:create_suplier.name,
-    supplier_id:create_suplier._id,}},{new:true})
+    const updatedTripPush = await Trip.findByIdAndUpdate({_id:req.params.id},{$push:{suppliers:{name:create_suplier.name,
+    _id:create_suplier._id,weight:create_suplier.weight}}},{new:true})
     // console.log(updatedTripPush)
 
-    const new_number_suppliers = (updatedTripPush.supplier_name).length
+    const new_number_suppliers = (updatedTripPush.suppliers).length
    
     const updatedTripSet = await Trip.findByIdAndUpdate({_id:req.params.id},{$set:{number_suppliers:new_number_suppliers}},{new:true})
     // console.log(updatedTripSet)
