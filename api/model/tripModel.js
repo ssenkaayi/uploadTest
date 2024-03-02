@@ -16,13 +16,14 @@ const tripSchema = mongoose.Schema(
 
         },
  
-    suppliers:
-    {
+    suppliers:[
 
-        type:[{}],
-        default:null
-        
-    },
+        {
+            name:String,
+            weight:Number
+        }
+    ]   
+    ,
     number_suppliers:{
 
         type:Number,

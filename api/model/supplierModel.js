@@ -22,11 +22,16 @@ const supplierSchema = mongoose.Schema(
         required:true,
         
     },
-    clients:{
+    clients:[
 
-        type:[{}],
-        default:null
-    },
+        {
+          
+            name:String,
+            weight:Number,
+        }
+    ]
+      
+    ,
     number_clients:{
 
         type:Number,

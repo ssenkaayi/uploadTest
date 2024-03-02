@@ -153,6 +153,8 @@ function Clients() {
     
         if(data.success===false){
           console.log(data.message)
+          setError(data.message)
+          setLoading(false)
         }
     
         setClients((prev)=>prev.filter((client)=>client._id!==button_id))
@@ -311,7 +313,7 @@ function Clients() {
     </div>
 
 
-
+        {error}
 
 
     <div >
