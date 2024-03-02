@@ -63,7 +63,7 @@ export const createClient = asyncHandler(async(req,res,next)=>{
      new_trip_weight += supplier_trip.suppliers[i].weight;
     }
 
-    console.log(new_trip_weight)
+    // console.log(new_trip_weight)
 
     await Trip.findByIdAndUpdate({_id:trip_id},{$set:{weight:new_trip_weight}},{new:true})
 
@@ -116,48 +116,47 @@ export const  deleteClient = async(req,res,next)=>{
         const supplier_id = client.supplier._id
  
         const supplier = await Supplier.findById(supplier_id)
+        const trip_id = supplier.trip._id
         if(!supplier) return res.status(400).json({"message":'supplier with id doesnt exist'})
-        console.log(supplier)
+        // console.log(supplier)
     
         // assigning supplier_id and trip_id so as to be able to update the weight field
         
-        const trip_id = supplier.trip_id
-    
-        const updatedSupplier = await Supplier.findOneAndUpdate({'clients.name':client.name},{$pull:{'clients.$':{name:client.name,
+        const updatedSupplier = await Supplier.findOneAndUpdate({'clients._id':client._id},{$pull:{clients:{name:client.name,
         _id:client._id,weight:client.weight}}},{new:true})
+        // console.log(updatedSupplier.clients.length)
         
-        // const updatedSupplier = await Supplier.findOne({'clients.name':client.name})
-        // console.log(client._id)
-        if(!updatedSupplier) return res.status(400).json({"message":'client with id doesnt exist'})
-        console.log(updatedSupplier)
-        
-    
-       //updating supplier weight
-    //    const arr = updatedSupplier.clients.weight
-    //    let new_supplier_weight = 0;
-    //    for (let i = 0; i < arr.length; i++) {
-    //     new_supplier_weight += arr[i];
-    //    }
+        //updating supplier weight
+       const arr = updatedSupplier.clients
+       let new_supplier_weight = 0;
+       for (let i = 0; i < arr.length; i++) {
+        new_supplier_weight += arr[i].weight;
+       }
     //    console.log(new_supplier_weight)
+
+       await Supplier.findByIdAndUpdate({_id:supplier_id},{$set:{number_clients:arr.length,
+        weight:new_supplier_weight,}},{new:true})
     
-    //    const supplier_trip = await Trip.findOneAndUpdate({'suppliers._id':supplier_id},{$set:{'suppliers.$':{name:supplier.name,_id:supplier_id,weight:new_supplier_weight}}},{new:true})
-    //    if(!supplier_trip) res.status(400).json({"message":"failed to update supplier trip"})
+       const supplier_trip = await Trip.findOneAndUpdate({'suppliers._id':supplier_id},{$set:{'suppliers.$':{name:supplier.name,_id:supplier_id,weight:new_supplier_weight}}},{new:true})
+       if(!supplier_trip) res.status(400).json({"message":"failed to update supplier trip"})
     //    console.log(supplier_trip)
     
-    //     //updating trip weight
+        //updating trip weight
     
-    //     // const  = updatedSupplier.client_weight
-    //     let new_trip_weight = 0;
-    //     for (let i = 0; i < supplier_trip.suppliers.length; i++) {
-    //      new_trip_weight += supplier_trip.suppliers[i].weight;
-    //     }
+        // const  = updatedSupplier.client_weight
+        let new_trip_weight = 0;
+        for (let i = 0; i < supplier_trip.suppliers.length; i++) {
+         new_trip_weight += supplier_trip.suppliers[i].weight;
+        }
+        // console.log(new_trip_weight)
+        // console.log(supplier_trip)
+        const trip = await Trip.findByIdAndUpdate({_id:trip_id},{$set:{weight:new_trip_weight}},{new:true})
+        // console.log(trip)
+        if(!trip) return res.status(400).json({"message":"trip with id is not found"})
     
-    //     await Trip.findByIdAndUpdate({_id:trip_id},{$set:{weight:new_trip_weight}},{new:true})
-    //     console.log()
-    
-    //     // sending response to the client
+        // sending response to the client
         
-    //     await Client.findByIdAndDelete(req.params.id)
+        await Client.findByIdAndDelete(req.params.id)
         res.status(200).json({"success":true})
 
     }catch(error){
