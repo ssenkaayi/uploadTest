@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { paymentTable } from '../components/TableHeading'
 
 function ViewClient({visible , onClose , client_id}) {
 
@@ -77,9 +78,9 @@ function ViewClient({visible , onClose , client_id}) {
   return (
 
     <div className='fixed inset-0 bg-black bg-opacity-30
-    backdrop-blur-sm flex justify-center items-center h-100vh' >
+    backdrop-blur-sm flex justify-center h-100vh' >
         
-        <div className=' bg-white flex flex-col font-primay p-20 mx-auto bg-whit gap-4 rounded'>  
+        <div className=' bg-white flex flex-col font-primay p-20 bg-whit gap-4 rounded'>  
 
             
 
@@ -122,6 +123,33 @@ function ViewClient({visible , onClose , client_id}) {
 
             </div>
 
+            <div className=' w-full mt-record'>
+
+              <table className=' w-full border-collapse' >
+
+                  <thead  className='bg-regal-violet text-white'>
+
+                      <tr>
+
+                        {paymentTable.map((item,index)=>{
+
+                            return(
+
+                                
+                            <th className='p-4 text-left ' key={index}>{item}</th>
+
+                            )
+                        })}
+
+                          <th className='p-4 text-left '>Action</th>
+                      </tr>
+
+                  </thead>
+
+              </table>
+
+            </div>
+
             <div className='flex justify-between items-center'>
                       
                 <button onClick={handleOnClose} className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
@@ -133,6 +161,9 @@ function ViewClient({visible , onClose , client_id}) {
                 </button>
 
             </div>
+
+
+ 
 
 
 
