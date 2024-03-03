@@ -79,7 +79,7 @@ function ViewClient({visible , onClose , client_id}) {
     <div className='fixed inset-0 bg-black bg-opacity-30
     backdrop-blur-sm flex justify-center items-center h-100vh' >
         
-        <div className=' bg-white flex flex-col lg:max-w-xl lg:mx-auto font-primay p-20 mx-auto bg-whit gap-4 rounded'>  
+        <div className=' bg-white flex flex-col font-primay p-20 mx-auto bg-whit gap-4 rounded'>  
 
             
 

@@ -26,7 +26,7 @@ function Clients() {
     const [client_id , setClient_id] = useState(null)
 
     const totalPages = Math.ceil(filteredClients.length / clientsPerPage);
-    const startIndex = (currentPage) * clientsPerPage;
+    const startIndex = (currentPage - 1) * clientsPerPage;
     const endIndex = startIndex + clientsPerPage;
     const currentClients = filteredClients.slice(startIndex, endIndex);
     const numbers = [...Array(totalPages+1).keys()].slice(1)
