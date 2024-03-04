@@ -15,7 +15,7 @@ function Suppliers() {
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
     const navigate = useNavigate();
-    const [limit,setLimit] = useState(1)
+    const [limit,setLimit] = useState(7)
     const [pageCount,setPageCount] = useState(1)
     const currentPage = useRef()
 
