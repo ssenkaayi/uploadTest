@@ -39,10 +39,37 @@ export const createSupplier = asyncHandler(async(req,res,next)=>{
 export const getSuppliers = async(req,res,next)=>{
     try{
 
-        const supplier = await Supplier.find()
-        if(supplier==undefined) return res.status(400).send('no trips found')
+        const suppliers = await Supplier.find()
+        if(suppliers==undefined) return res.status(400).send('no trips found')
+        
+        const page  = parseInt (req.query.page)
+        const limit = parseInt (req.query.limit)
 
-        res.status(200).json(supplier)
+        const startIndex = (page - 1) * limit
+        const lastIndex  = (page) * limit
+
+        const results = {}
+        results.totalSuppliers = suppliers.length
+        results.pageCount = Math.ceil(suppliers.length/limit)
+
+        if(lastIndex < suppliers.length){
+            results.next = {
+                page: page + 1
+
+            }
+        }
+
+        if(startIndex > 0){
+            results.prev = {
+                page: page - 1
+                
+            }
+        }
+        
+        results.result = suppliers.slice(startIndex,lastIndex)
+
+
+        res.status(200).json(results)
        
 
     }catch(error){

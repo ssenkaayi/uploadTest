@@ -7,10 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import ViewClient from '../Model/ViewClient'
 import EditClient from '../Model/EditClient'
 import AddPayments from '../Model/AddPayments'
+import ReactPaginate from 'react-paginate';
+import { useRef } from 'react'
 
 
 
 function Clients() {
+
     const [showViewClient,setShowViewClient] = useState(false)
     const [showEditClient,setShowEditClient] = useState(false)
     const [showAddEmploye,setShowAddEmploye] = useState(false)
@@ -21,73 +24,83 @@ function Clients() {
     const navigate = useNavigate()
     const [searchItem, setSearchItem] = useState('')
     const [filteredClients, setFilteredClients] = useState([])
-    const [currentPage, setCurrentPage] = useState(1);
-    const [clientsPerPage, setClientaPerPage] = useState(7);
     const [client_id , setClient_id] = useState(null)
-
-    const totalPages = Math.ceil(filteredClients.length / clientsPerPage);
-    const startIndex = (currentPage - 1) * clientsPerPage;
-    const endIndex = startIndex + clientsPerPage;
-    const currentClients = filteredClients.slice(startIndex, endIndex);
-    const numbers = [...Array(totalPages+1).keys()].slice(1)
-    const paginationNumbers = [];
-
-    for (let i = 1; i <= totalPages; i++) {
-        paginationNumbers.push(i);
-    }
-
-
-
-
+    const [limit,setLimit] = useState(7)
+    const [pageCount,setPageCount] = useState(1)
+    const currentPage = useRef()
+    
     useEffect(()=>{
 
-        const fetchClients = async()=>{
-
-
-    
-          try{
-      
-            setLoading(true);
-            const res = await fetch(`/api/client/getClients?page=${currentPage}&limit=${clientsPerPage}`,{
-              
-                method:'GET',
-            
-            })
-
-            const data = await res.json();
-          
-            if(data.succuss===false){
-              setError(true)
-              setLoading(false)
-              return
-            }
-            
-            setError(false)
-            setLoading(false)
-           
-            setClients(data)
-            setFilteredClients(data)
-          }
-      
-          catch(error){
-            setError(error.message)
-            setLoading(false)
-      
-        }
-      }
-    
-        fetchClients()
+      currentPage.current = 1
+      getPagenatedClients()
+      // fetchClients()
     
         
-    },[clientsPerPage,currentPage])
+    },[])
 
+  //   const fetchClients = async()=>{
+
+  //     try{
+
+  //       setLoading(true);
+
+  //       const res = await fetch(`/api/client/getClients?page=${currentPage.current}&limit=${limit}`,{
+          
+  //           method:'GET',
+        
+  //       })
+
+  //       const data = await res.json();
+      
+  //       if(data.succuss===false){
+  //         setError(true)
+  //         setLoading(false)
+  //         return
+  //       }
+        
+  //       setError(false)
+  //       setLoading(false)
+       
+  //       setClients(data)
+  //       setFilteredClients(data)
+  //     }
+  
+  //     catch(error){
+  //       setError(error.message)
+  //       setLoading(false)
+  
+  //   }
+  // }
+
+  const handlePageClick = (e)=>{
+    // console.log(e)
+    currentPage.current = (e.selected+1)
+    getPagenatedClients()
+
+  }
+
+   const getPagenatedClients =async()=>{
+
+    const res = await fetch(`/api/client/getClients?page=${currentPage.current}&limit=${limit}`,{
+          
+      method:'GET',
+  
+  })
+
+    const data = await res.json();
+
+    setPageCount(data.pageCount)
+    setClients(data.result)
+    setFilteredClients(data.result)
+
+   }
 
     const handleInputChange = (e) => { 
 
+      // console.log(e)
+
       const searchTerm = e.target.value;
       setSearchItem(searchTerm)
-
-   
 
       // // filter the items using the apiUsers state
       const filteredItems = clients.filter((client) =>
@@ -95,6 +108,7 @@ function Clients() {
       );
 
       setFilteredClients(filteredItems);
+      // console.log(filteredClients)
 
       
     }
@@ -162,30 +176,7 @@ function Clients() {
       }catch(error){
         console.log(error)
       }
-
-
     }
-
-
-    const changePage = (e)=>{
-
-      setCurrentPage(e.target.id)
-
-    }
-
-    const changeNextPage = ()=>{
-
-      {(currentPage !==1 )?setCurrentPage(currentPage+1):''}
-      
-
-    }
-
-    const changePrePage = ()=>{
-
-      {currentPage <= endIndex?setCurrentPage(currentPage-1):''}
-       
-    }
-  
 
 
   return (
@@ -274,9 +265,11 @@ function Clients() {
 
     </thead>
 
+    {/* {clients} */}
+
     <tbody>
 
-        { currentClients !== null ? currentClients.map((client,index)=>{ 
+        { filteredClients !== null ? filteredClients.map((client,index)=>{ 
 
             return(
                 <tr key={index}>
@@ -300,15 +293,26 @@ function Clients() {
                   <button className='p-2 cursor-pointer 'id={client._id} onClick={handleDeleteClient}>Delete</button>
                    
                 </td>
-
                 </tr>
-
             )
         }):<tr> <td className='p-4 text-left'>loading</td> </tr>}
 
     </tbody>
 
     </table>
+
+    <ReactPaginate className="flex gap-4"
+
+      breakLabel="..."
+      nextLabel="next >"
+      onPageChange={handlePageClick}
+      pageRangeDisplayed={5}
+      pageCount={pageCount}
+      previousLabel="< previous"
+      renderOnZeroPageCount={null}
+
+
+    />
 
     </div>
 
@@ -318,38 +322,12 @@ function Clients() {
 
     <div >
 
-      <ul className='flex gap-4'>
-
-        <li>
-          <a href='#' className='page-link ' onClick={changePrePage}>Prev</a>
-        </li>
-
-        {paginationNumbers.map((pageNumber,index) => (
-
-          <button 
-          key={index} onClick={changePage} id = {index}
-          className={currentPage === pageNumber ? 'active' : ''}
-          >
-            {pageNumber}
-
-          </button>
-        ))}
-
-        <li>
-          <a href='#' className='page-link ' onClick={changeNextPage}>Next</a>
-        </li>
-
-      </ul>
     </div>
-
-
 
     </div>
 
 
 </div>
-
-   
 
   )
   }

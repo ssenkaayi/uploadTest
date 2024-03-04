@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import AddClient from '../Model/AddClient'
 import { useNavigate } from 'react-router-dom';
 import { supplierTable } from '../components/TableHeading'
+import ReactPaginate from 'react-paginate';
 
 
 function Suppliers() {
@@ -14,6 +15,9 @@ function Suppliers() {
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
     const navigate = useNavigate();
+    const [limit,setLimit] = useState(1)
+    const [pageCount,setPageCount] = useState(1)
+    const currentPage = useRef()
 
 
     const handleOnClose = ()=>{
@@ -34,46 +38,48 @@ function Suppliers() {
 
     }
 
+    const fetchSuppliers = async()=>{
+    
+      try{
+  
+        setLoading(true);
+        const res = await fetch('/api/supplier/getSupplier/',{  
+
+          method:'GET',
+        
+        })
+
+        const data = await res.json();
+        // console.log(data)
+      
+        if(data.succuss===false){
+          setError(true)
+          setLoading(false)
+          return
+        }
+        
+        setError(false)
+        setLoading(false)
+       
+        setSuppliers(data.result)
+        // console.log(suppliers)
+        // setEmployes((prev)=>[...prev,data]);
+    
+      }
+  
+      catch(error){
+        setError(error.message)
+        setLoading(false)
+  
+    }
+  }
+
 
     useEffect(()=>{
-
-        const fetchSuppliers = async()=>{
     
-          try{
-      
-            setLoading(true);
-            const res = await fetch('/api/supplier/getSupplier/',{  
-
-              method:'GET',
-            
-            })
-
-            const data = await res.json();
-            // console.log(data)
-          
-            if(data.succuss===false){
-              setError(true)
-              setLoading(false)
-              return
-            }
-            
-            setError(false)
-            setLoading(false)
-           
-            setSuppliers(data)
-            // console.log(suppliers)
-            // setEmployes((prev)=>[...prev,data]);
-        
-          }
-      
-          catch(error){
-            setError(error.message)
-            setLoading(false)
-      
-        }
-      }
-    
-        fetchSuppliers()
+      // fetchSuppliers()
+      currentPage.current = 1
+      getPagenatedSuppliers()
     
         
     },[])
@@ -104,6 +110,28 @@ function Suppliers() {
         console.log(error)
       }
 
+
+    }
+
+    const handlePageClick = (e)=>{
+      // console.log(e)
+      currentPage.current = (e.selected+1)
+      getPagenatedSuppliers()
+
+    }
+
+    const getPagenatedSuppliers = async()=>{
+
+      const res = await fetch(`/api/supplier/getSupplier?page=${currentPage.current}&limit=${limit}`,{  
+
+        method:'GET',
+      
+      })
+
+      const data = await res.json();
+      // console.log(data)
+      setSuppliers(data.result)
+      setPageCount(data.pageCount)
 
     }
 
@@ -178,7 +206,22 @@ function Suppliers() {
 
                 </tbody>
 
+
+
             </table>
+
+            <ReactPaginate className="flex gap-4"
+
+              breakLabel="..."
+              nextLabel="next >"
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={5}
+              pageCount={pageCount}
+              previousLabel="< previous"
+              renderOnZeroPageCount={null}
+    
+
+            />
 
         </div>
 
