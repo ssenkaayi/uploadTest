@@ -9,6 +9,7 @@ import EditClient from '../Model/EditClient'
 import AddPayments from '../Model/AddPayments'
 import ReactPaginate from 'react-paginate';
 import { useRef } from 'react'
+import {FaSearch} from 'react-icons/fa'
 
 
 
@@ -33,44 +34,10 @@ function Clients() {
 
       currentPage.current = 1
       getPagenatedClients()
-      // fetchClients()
+      
     
         
     },[])
-
-  //   const fetchClients = async()=>{
-
-  //     try{
-
-  //       setLoading(true);
-
-  //       const res = await fetch(`/api/client/getClients?page=${currentPage.current}&limit=${limit}`,{
-          
-  //           method:'GET',
-        
-  //       })
-
-  //       const data = await res.json();
-      
-  //       if(data.succuss===false){
-  //         setError(true)
-  //         setLoading(false)
-  //         return
-  //       }
-        
-  //       setError(false)
-  //       setLoading(false)
-       
-  //       setClients(data)
-  //       setFilteredClients(data)
-  //     }
-  
-  //     catch(error){
-  //       setError(error.message)
-  //       setLoading(false)
-  
-  //   }
-  // }
 
   const handlePageClick = (e)=>{
     // console.log(e)
@@ -86,6 +53,12 @@ function Clients() {
       method:'GET',
   
   })
+
+  const handleSearch = async()=>{
+    const res = await fetch(`/api/client/searchClient/?page=${key}`,{
+      method:'GET'
+    })
+  }
 
     const data = await res.json();
 
@@ -171,7 +144,7 @@ function Clients() {
           setLoading(false)
         }
     
-        setClients((prev)=>prev.filter((client)=>client._id!==button_id))
+        setFilteredClients((prev)=>prev.filter((client)=>client._id!==button_id))
     
       }catch(error){
         console.log(error)
@@ -192,18 +165,16 @@ function Clients() {
           <span className='test-xs'>Admin</span>
           <span className='text-2xl' >Dashbord</span>
 
-          </div>
+        </div>
 
 
-          <div className='flex items-center gap-1'>
+        <div className='flex items-center gap-1'>
 
-          <div className='flex items-center p-search-box bg-search-bar rounded-2xl text-dashbord'>
+          <div className='flex items-center p-search-box bg-search-bar rounded-2xl  text-dashbord'>
 
-          <svg svg="true"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 cursor-pointer text-sm hover:trb">
-          <path fillRule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clipRule="evenodd" />
-          </svg>
+            <FaSearch className='w-6 h-6 cursor-pointer text-sm hover:trb'/>
 
-          < input className='bg-transparent p-2' type='text' placeholder='search' value={searchItem} onChange={handleInputChange} />
+            < input className='bg-transparent p-2 outline-none' type='text' placeholder='search' value={searchItem} onChange={handleInputChange} />
 
           </div>
 

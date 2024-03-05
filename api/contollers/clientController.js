@@ -188,3 +188,27 @@ export const  deleteClient = async(req,res,next)=>{
     }
 
 }
+
+
+export const searchClient = async(req,res,next)=>{
+
+    try{
+
+        const search = await Client.find(
+            {
+                "$or" : [
+                    {name:{$regex:req.params.key}}
+
+                ]
+            }
+        ).sort({createdAt:-1})
+
+        res.status(200).json(search)
+      
+        
+
+    }catch(error){
+        next(error)
+    }
+
+}

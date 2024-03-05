@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-
 import { useDispatch,useSelector} from 'react-redux';
 import { signInStart,signInSuccess,signInFailure } from '../redux/employe/employeSlice';
+import { FaUser, FaLock } from 'react-icons/fa';
 
 export default function Login() {
 
@@ -38,8 +38,7 @@ export default function Login() {
       );
       //getting response from the server
       const data =  await res.json();
-     
-      
+
 
       // if response is false, show the error message to the client
 
@@ -49,8 +48,6 @@ export default function Login() {
       }
 
       //if response is True, register and navigate to the sign in page
-      
-      
       
       dispatch(signInSuccess(data));
       navigate('/dashbord')
@@ -62,48 +59,64 @@ export default function Login() {
   }
 
 
-
+//bg-base flex justify-center items-center
   return (
 
-    <div className='bg-base flex justify-center items-center'>
-
-    
-      <form className='font-primay p-3 flex max-w-lg mx-auto w-80 bg-white text-regal-violet flex-col gap-4' >
-
-        < img className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2 my-7' 
-          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" 
-          alt="Avatar"
-        />
-
-        <h1 className='text-3xl text-center font-semibold my-7'>Login</h1>
+    <div className='bg-base min-h-screen justify-center items-center flex'>
 
 
-        <div className='flex flex-col gap-4'>
+      <div className='w-login-w'>
 
-          <label className='text-1xl font-semibold'>Email</label>
-          <input type="email" placeholder="Enter email" id='email' className='border p-3 rounded-lg'
+
+        <form className='flex flex-col font-primay bg-white text-regal-violet p-3 gap-y-4 ' >
+
+          <h3 className='text-3xl text-center font-semibold self-center mt-6 my-5'> MARIS CARGO LIMITED</h3>
+
+          <div className='flex flex-col justify-center item-center'>
+
+            < FaUser  className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2' />
+
+            <h1 className='self-center mt-2'>Login</h1>           
+
+          </div>
+
+          <label className=''>Email</label>
+
+          <div className='relative w-full h-1/2 '>
+            <input type="email" placeholder="Enter email" id='email' className='outline-none w-full border p-3 rounded-lg'
             required onChange={handleEmployeData}
             />
+            {/* <FaUser/> */}
 
-          <label className='text-1xl font-semibold'>Password</label>
-          <input type="password" placeholder="Enter Password" id='password' 
-          className='border p-3 rounded-lg' required 
-          onChange={handleEmployeData}/>
-
-          <button className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
-            onClick={handleSubmit} type="submit" disabled={loading} > {loading? 'loading...':'Login'}
-          </button>
+          </div>
 
 
-        </div>
-
-        <div className='flex gap-2 mt-5'>
           
-        </div>
+          <label className=''>Password</label>
 
-        {error && <p className='text-red-500 mt-5'>{error}</p>}
+          <div className='relative w-full h-1/2 '>  
 
-      </form>
+            <input type="password" placeholder="Enter Password" id='password' 
+            className='right-5 w-full border p-3 rounded-lg outline-none' required 
+            onChange={handleEmployeData}/>
+            {/* <FaLock className='absolute '/> */}
+
+          </div>
+
+          <div className='w-full mb-6 mt-4'>
+
+            <button className=' bg-regal-violet text-white p-3 rounded-lg uppercase hover:opacity-95 w-full'
+            onClick={handleSubmit} type="submit" disabled={loading} > {loading? 'loading...':'Login'}
+            </button>
+
+          </div>
+
+
+          {error && <p className='text-red-500 mt-5'>{error}</p>}
+
+        </form>
+
+      </div>
 
     </div>
 

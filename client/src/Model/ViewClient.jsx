@@ -82,12 +82,9 @@ function ViewClient({visible , onClose , client_id}) {
         
         <div className=' bg-white flex flex-col font-primay p-20 bg-whit gap-4 rounded'>  
 
-            
-
             <div className='flex gap-4 items-center justify-center mb-5'>
 
                 <h3 className='text-4xl font-bold uppercase'>{clientsDetails.name}'s Invoice</h3> 
-
 
                 <ul className=' flex items-center justify-between flex-wrap'>
                     <li> <button onClick={handlePrint} className='btn btn-print'> Print  </button>  </li> 
@@ -133,9 +130,7 @@ function ViewClient({visible , onClose , client_id}) {
 
                         {paymentTable.map((item,index)=>{
 
-                            return(
-
-                                
+                            return(     
                             <th className='p-4 text-left ' key={index}>{item}</th>
 
                             )
@@ -161,11 +156,6 @@ function ViewClient({visible , onClose , client_id}) {
                 </button>
 
             </div>
-
-
- 
-
-
 
             {error && <p className='text-red-500 mt-5'>{error}</p>}
         

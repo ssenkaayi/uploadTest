@@ -20,7 +20,8 @@ export default {
       width:{
         'sidebar':'110px',
         'hover':'240px',
-        "card-w":"290px"
+        "card-w":"290px",
+        "login-w":"450px"
        
       },
       height:{
@@ -46,7 +47,8 @@ export default {
       margin:{
         'li':'8px 0',
         'primary':['0'],
-        "record":"1rem"
+        "record":"1rem",
+        "login":"36px 0"
 
       },
 
