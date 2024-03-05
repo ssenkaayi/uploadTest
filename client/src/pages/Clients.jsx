@@ -9,7 +9,9 @@ import EditClient from '../Model/EditClient'
 import AddPayments from '../Model/AddPayments'
 import ReactPaginate from 'react-paginate';
 import { useRef } from 'react'
-import {FaSearch} from 'react-icons/fa'
+import {CiSearch } from 'react-icons/ci'
+import { FaUser } from 'react-icons/fa'
+import { CiUser } from "react-icons/ci";
 
 
 
@@ -172,13 +174,14 @@ function Clients() {
 
           <div className='flex items-center p-search-box bg-search-bar rounded-2xl  text-dashbord'>
 
-            <FaSearch className='w-6 h-6 cursor-pointer text-sm hover:trb'/>
+            <CiSearch className='w-6 h-6 cursor-pointer text-sm hover:trb'/>
 
             < input className='bg-transparent p-2 outline-none' type='text' placeholder='search' value={searchItem} onChange={handleInputChange} />
 
           </div>
 
           <img className='w-12 h-12 cursor-pointer rounded-full' src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' alt='avater'/>
+          {/* <  CiUser  className='w-12 h-12 cursor-pointer rounded-full' /> */}
         </div>
 
 
