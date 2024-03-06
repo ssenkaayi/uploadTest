@@ -38,13 +38,13 @@ function Navbar({searchBox}) {
     
         <div className='flex items-center gap-1'>
 
-          <div className='flex items-center p-search-box bg-search-bar rounded-2xl text-dashbord'>
+          {/* <div className='flex items-center p-search-box bg-search-bar rounded-2xl text-dashbord'>
 
             < input className='bg-transparent p-2' type='text' placeholder='search' value={searchItem} onChange={handleInputChange} />
               
-          </div>
+          </div> */}
 
-            <img className='w-12 h-12 cursor-pointer rounded-full' src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' alt='avater'/>
+          <img className='w-12 h-12 cursor-pointer rounded-full' src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' alt='avater'/>
         </div>
 
 
