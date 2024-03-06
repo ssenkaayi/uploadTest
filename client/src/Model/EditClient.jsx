@@ -6,7 +6,7 @@ function EditClient({visible , onClose, client_id}) {
 
   
 
-  console.log(client_id)
+  // console.log(client_id)
 
   const handleOnClose = ()=> onClose()
 

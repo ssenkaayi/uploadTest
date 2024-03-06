@@ -8,7 +8,7 @@ function AddSupplier({visible , onClose , trip_id }) {
     
 
     const handleOnClose = ()=> onClose()
-    console.log(trip_id)
+    // console.log(trip_id)
 
     
     const[formData,setFormData]=useState({});
@@ -41,7 +41,7 @@ function AddSupplier({visible , onClose , trip_id }) {
         );
         //getting response from the server
         const data =  await res.json();
-        console.log(data)
+        // console.log(data)
   
         //if response is false, show the error message to the client
         if(data.success===false){
