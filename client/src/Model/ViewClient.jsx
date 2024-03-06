@@ -22,7 +22,7 @@ function ViewClient({visible , onClose , client_id}) {
     window.print()
   }
 
-  console.log(client_id)
+  // console.log(client_id)
 
 
   useEffect(()=>{
