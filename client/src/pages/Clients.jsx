@@ -92,7 +92,7 @@ function Clients() {
 
       setClient_id(_id)
       setShowViewClient(true)
-      // setShowEditClient(true)
+     
     }
 
     const handleEditClient = (_id)=>{

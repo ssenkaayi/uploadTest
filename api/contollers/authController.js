@@ -3,6 +3,7 @@ import Employe from '../model/employeModel.js';
 import bcrypt from "bcryptjs"
 import Jwt  from "jsonwebtoken";
 import asyncHandler from 'express-async-handler'
+import errorHandler from '../errorHandler.js';
 
 
 export const registerEmploye = asyncHandler(async(req,res)=>{
@@ -47,24 +48,34 @@ const generateToken = (id)=>{
 
 export const loginEmploye = asyncHandler(async(req,res,next)=>{
 
-    const {error} = loginValidation(req.body)
+    // const {error} = loginValidation(req.body)
 
-    if(error) return res.status(400).send(error.details[0].message)
+    // if(!error) return next(errorHandler(400,error.details[0].message)) 
 
     const {email,password} = req.body
 
-    // console.log(email,password)
+    console.log(email,password)
 
-    const isEmploye = await Employe.findOne({email})
-    if(!isEmploye) return res.status(400).json({"message":'employe dosent exist'})
+    try{
 
-    const isValidPassword = bcrypt.compareSync(password,isEmploye.password)
-    if(!isValidPassword) return res.status(400).json({"message":'incorrect email and password'})
+        const isEmploye = await Employe.findOne({email})
+        if(!isEmploye) return next(errorHandler(400,'employe dosent exist'))
+    
+        const isValidPassword = bcrypt.compareSync(password,isEmploye.password)
+        if(!isValidPassword) return next(errorHandler(400,'incorrect email and password')) 
+    
+    
+        const token = generateToken(isEmploye._id)
+        const {password:pass,...rest} = isEmploye._doc
+        res.cookie('access_token',token,{httpOnly:true}).status(200).json(rest)
 
-
-    const token = generateToken(isEmploye._id)
-    const {password:pass,...rest} = isEmploye._doc
-    res.cookie('access_token',token,{httpOnly:true}).status(200).send(rest)
+ 
+    
+    
+      }catch(error){
+        next(error)
+    }
+    
 
     
 })
@@ -72,7 +83,7 @@ export const loginEmploye = asyncHandler(async(req,res,next)=>{
 export const logoutEmploye = asyncHandler(async(req,res,next)=>{
 
 
-    res.clearCookie('access_token',).status(200).json({"message":"logged out succesfully"})
+    res.clearCookie('access_token').status(200).json("logged out succesfully")
 
     
 })

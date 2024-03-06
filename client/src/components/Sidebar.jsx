@@ -17,7 +17,7 @@ function Sidebar() {
         try{
 
             dispatch(signOutStart())
-            const res = await fetch('/api/employe/logoutEmploye');
+            const res = await fetch('/api/auth/logoutEmploye');
             const data = await res.json();
 
             if(data.success===false){

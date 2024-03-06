@@ -63,7 +63,17 @@ server.get('*',(resq, res) => {
 
 // error handler middle ware
 
-server.use(errorHandler)
+// server.use(errorHandler)
+//creating an error Handler
+server.use((err,req,res,next)=>{
+    const statusCode = err.statusCode || 500;
+    const message = err.message || 'internal Server Error';
+    res.status(statusCode).json({
+        success:false,
+        statusCode:statusCode,
+        message:message,
+    });
+})
 
 const startServer= ()=>{
     server.listen(PORT,()=>{

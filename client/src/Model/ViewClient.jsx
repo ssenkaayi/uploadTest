@@ -29,11 +29,9 @@ function ViewClient({visible , onClose , client_id}) {
 
     const fetchClients = async()=>{
 
-
-
       try{
   
-        setLoading(true);
+        // setLoading(true);
         const res = await fetch(`/api/client/getClient/${client_id}`,{
           
             method:'GET',

@@ -18,14 +18,19 @@ export default function Login() {
 
     {...employData,
       [e.target.id]:e.target.value,})
+
+      // console.log(employData)
   }
 
   //linking our api to send req to the server
   const handleSubmit = async(e)=>{
+
+    
   
     e.preventDefault();
 
     try{
+
       dispatch(signInStart())
       //making a request to the server
       const res = await fetch('/api/auth/loginEmploye',{
@@ -39,12 +44,11 @@ export default function Login() {
       //getting response from the server
       const data =  await res.json();
 
-
       // if response is false, show the error message to the client
 
       if(data.success===false){
         dispatch(signInFailure(data.message));
-        return ;
+        return
       }
 
       //if response is True, register and navigate to the sign in page
@@ -68,7 +72,7 @@ export default function Login() {
       <div className='w-login-w'>
 
 
-        <form className='flex flex-col font-primay bg-white text-regal-violet p-3 gap-y-4 ' >
+        <form onSubmit={handleSubmit} className='flex flex-col font-primay bg-white text-regal-violet p-3 gap-y-4 '  >
 
           <h3 className='text-3xl text-center font-semibold self-center mt-6 my-5'> MARIS CARGO LIMITED</h3>
 
@@ -106,13 +110,13 @@ export default function Login() {
           <div className='w-full mb-6 mt-4'>
 
             <button className=' bg-regal-violet text-white p-3 rounded-lg uppercase hover:opacity-95 w-full'
-            onClick={handleSubmit} type="submit" disabled={loading} > {loading? 'loading...':'Login'}
+            type="submit" disabled={loading} > {loading? 'loading...':'Login'}
             </button>
 
           </div>
 
 
-          {error && <p className='text-red-500 mt-5'>{error}</p>}
+          {error && <p className='text-red-500 mt-5 text-center'>{error}</p>}
 
         </form>
 
