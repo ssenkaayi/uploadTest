@@ -12,7 +12,7 @@ function Sidebar() {
 
     const handleSignOut = async()=>{
 
-        console.log('sign out')
+        // console.log('sign out')
 
         try{
 

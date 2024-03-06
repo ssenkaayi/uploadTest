@@ -54,7 +54,7 @@ export const loginEmploye = asyncHandler(async(req,res,next)=>{
 
     const {email,password} = req.body
 
-    console.log(email,password)
+    // console.log(email,password)
 
     try{
 
