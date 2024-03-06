@@ -68,9 +68,9 @@ function Trips() {
         
     },[])
 
-    const handleSkyTeamName = (e)=>{
+    const handleSkyTeamName = (_id)=>{
 
-      const btn_id = e.target.id
+      const btn_id = _id
       setTrip_id(btn_id)
       setShowAddSupplier(true)
 
@@ -78,9 +78,9 @@ function Trips() {
 
 
 
-    const handleDeteleTrip = async(e)=>{
+    const handleDeteleTrip = async(_id)=>{
 
-      const button_id = e.target.id
+      const button_id = _id
       // console.log(button_id)
     
       try{
@@ -168,9 +168,9 @@ function Trips() {
 
                             <td className='flex gap-4 items-center p-4'>
 
-                              <button className='p-2 cursor-pointer 'id={trip._id} onClick={handleSkyTeamName}>Add</button>
+                              <button className='p-2 cursor-pointer 'id="add" onClick={()=>handleSkyTeamName(trip._id)}>Add</button>
                               <span className='p-2 cursor-pointer '>View</span>
-                              <button className='p-2 cursor-pointer 'id={trip._id} onClick={handleDeteleTrip}>Delete</button>
+                              <button className='p-2 cursor-pointer 'id="delete" onClick={()=>handleDeteleTrip(trip._id)}>Delete</button>
 
                             </td>
 

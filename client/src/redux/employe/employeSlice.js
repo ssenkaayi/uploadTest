@@ -20,10 +20,24 @@ const employeSlice = createSlice({
             state.loading = false;
             state.error = null;
 
+        }
+        ,
+        signOutStart:(state)=>{
+            state.loading=true;
         },
         signInFailure:(state,action)=>{
             state.error = action.payload;
             state.loading = false
+        }
+        ,
+        signOutSuccess:(state)=>{
+            state.currentEmploye = null;
+            state.loading = false;
+            state.error = null;
+        },
+        signOutFailure:(state,action)=>{
+            state.error =action.payload;
+            state.loading=false;  
         },
         // updateUserStart:(state)=>{
         //     state.loading=true;
@@ -51,25 +65,13 @@ const employeSlice = createSlice({
         //     state.error = action.payload
         //     state.loading = false;
 
-        // },
-        // signOutStart:(state)=>{
-        //     state.loading=true;
-        // },
-        // signOutSuccess:(state)=>{
-        //     state.currentUser = null;
-        //     state.loading = false;
-        //     state.error = null;
-        // },
-        // signOutFailure:(state,action)=>{
-        //     state.error =action.payload;
-        //     state.loading=false;  
         // }
     }
 })
 
 export const{
-    signInStart,signInSuccess,
-    signInFailure
+    signInStart,signInSuccess,signInFailure,
+    signOutFailure,signOutStart,signOutSuccess
 } =  employeSlice.actions;
 
 export default employeSlice.reducer;

@@ -65,9 +65,9 @@ function Records() {
         
     },[])
 
-    const handleDeteleEmploye = async(e)=>{
+    const handleDeteleEmploye = async(_id)=>{
 
-      const button_id = e.target.id
+      const button_id = _id
   
     
       try{
@@ -177,44 +177,44 @@ function Records() {
 
         <thead  className='bg-regal-violet text-white'>
 
-            <tr>
+          <tr>
 
-                {employeTable.map((item,index)=>{
+            {employeTable.map((item,index)=>{
 
-                    return(
+              return(
 
-                        
-                    <th className='p-4 text-left ' key={index}>{item}</th>
+                  
+              <th className='p-4 text-left ' key={index}>{item}</th>
 
-                    )
-                })}
+              )
+            })}
 
-                <th className='p-4 text-left '>Action</th>
-            </tr>
+            <th className='p-4 text-left '>Manage Employes</th>
+          </tr>
 
         </thead>
 
         <tbody>
         
-            { employes !== null ?employes.map((employe)=>{ 
+            { employes !== null ?employes.map((employe,index)=>{ 
 
                 return(
-                  <tr>
+                  <tr key={index}>
                     
-                    <td className='p-4 text-left'key={employe._id}>{employe.createdAt.split("T", 1)}</td>
+                    <td className='p-4 text-left'>{employe.createdAt.split("T", 1)}</td>
 
-                    <td className='p-4 text-left'key={employe._id}>{employe.firstName}</td>
-                    <td className='p-4 text-left'key={employe._id}>{employe.lastName}</td>
-                    <td className='p-4 text-left'key={employe._id}>{employe.email}</td>
-                    <td className='p-4 text-left'key={employe._id}>{employe.phone}</td>
-                    <td className='p-4 text-left'key={employe._id}>{employe.address}</td>
-                    <td className='p-4 text-left'key={employe._id}>{employe.role}</td>
+                    <td className='p-4 text-left'>{employe.firstName}</td>
+                    <td className='p-4 text-left'>{employe.lastName}</td>
+                    <td className='p-4 text-left'>{employe.email}</td>
+                    <td className='p-4 text-left'>{employe.phone}</td>
+                    <td className='p-4 text-left'>{employe.address}</td>
+                    <td className='p-4 text-left'>{employe.role}</td>
                     
 
                     <td className='text-green flex gap-4 items-center p-4'>
-                        <button className='p-2 cursor-pointer' id={employe._id} onClick={()=>setShowViewClient(true)}>View</button>
+                        <button className='p-2 cursor-pointer' id='view' onClick={()=>setShowViewClient(true)}>View</button>
                         <span className='p-2 cursor-pointer '>Edit</span>
-                        <button className='p-2 cursor-pointer'id={employe._id} onClick={handleDeteleEmploye}>Delete</button>
+                        <button className='p-2 cursor-pointer'id='delete' onClick={()=>handleDeteleEmploye(employe._id)}>Delete</button>
                     </td>
 
                   </tr>

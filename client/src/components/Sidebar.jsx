@@ -1,9 +1,40 @@
 import React from 'react'
 import { sidebarMenu } from './sidebarMenu'
 import { Link } from 'react-router-dom'
+import { useDispatch} from 'react-redux';
+import { signOutFailure,signOutStart,signOutSuccess } from '../redux/employe/employeSlice';
+import { useNavigate } from 'react-router-dom';
 
 function Sidebar() {
-  return (
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleSignOut = async()=>{
+
+        console.log('sign out')
+
+        try{
+
+            dispatch(signOutStart())
+            const res = await fetch('/api/employe/logoutEmploye');
+            const data = await res.json();
+
+            if(data.success===false){
+            dispatch(signOutFailure(error.message));
+            return
+            }
+
+            dispatch(signOutSuccess(data))
+            navigate('/')
+
+        }catch(error){
+            dispatch(signOutFailure(error.message))
+        }
+    }
+      
+
+    return (
 
     <div 
 
@@ -55,11 +86,9 @@ function Sidebar() {
             <li 
                 className='transition-li
                 text-sm left-0 absolute bottom-0
-                hover:bg-menu p-4 m-li rounded-lg w-full'>
-
-                <Link 
-                className=' flex items-center
-                text-sm gap-1.5' > <i className="fa-solid fa-right-to-bracket"/> Logout  </Link>
+                hover:bg-menu p-4 m-li rounded-lg w-full'> 
+              
+                <button className="flex items-center text-sm gap-1.5 fa-solid fa-right-to-bracket" onClick={handleSignOut}> Logout </button>
 
             </li>
 

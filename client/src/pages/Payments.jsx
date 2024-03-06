@@ -62,10 +62,10 @@ function Payments() {
         
     },[])
 
-    const handleDeteleEmploye = async(e)=>{
+    const handleDeteleEmploye = async(id)=>{
 
-      const button_id = e.target.id
-      console.log(button_id)
+      const button_id = id
+      // console.log(button_id)
     
       try{
     
@@ -136,21 +136,21 @@ function Payments() {
                     { employes !== null ?employes.map((employe,index)=>{ 
 
                         return(
-                            <tr>
+                            <tr key={index}>
                             
                             <td className='p-4 text-left'key={index}>{employe.createdAt.split("T", 1)}</td>
 
-                            <td className='p-4 text-left'key={employe._id}>{employe.firstName}</td>
-                            <td className='p-4 text-left'key={employe._id}>{employe.lastName}</td>
-                            <td className='p-4 text-left'key={employe._id}>{employe.email}</td>
-                            <td className='p-4 text-left'key={employe._id}>{employe.phone}</td>
-                            <td className='p-4 text-left'key={employe._id}>{employe.address}</td>
-                            <td className='p-4 text-left'key={employe._id}>{employe.role}</td>
+                            <td className='p-4 text-left'>{employe.firstName}</td>
+                            <td className='p-4 text-left'>{employe.lastName}</td>
+                            <td className='p-4 text-left'>{employe.email}</td>
+                            <td className='p-4 text-left'>{employe.phone}</td>
+                            <td className='p-4 text-left'>{employe.address}</td>
+                            <td className='p-4 text-left'>{employe.role}</td>
 
                             <td className='text-green flex gap-4 items-center p-4'>
                                 <span className='p-2 cursor-pointer '>Edit</span>
                                 <span className='p-2 cursor-pointer '>View</span>
-                                <button className='p-2 cursor-pointer 'id={employe._id} onClick={handleDeteleEmploye}>Delete</button>
+                                <button className='p-2 cursor-pointer 'id='delete' onClick={()=>handleDeteleEmploye(employe._id)}>Delete</button>
                             </td>
 
                             </tr>
