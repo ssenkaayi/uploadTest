@@ -26,7 +26,7 @@ function Sidebar() {
             }
 
             dispatch(signOutSuccess(data))
-            navigate('/')
+            navigate('/login')
 
         }catch(error){
             dispatch(signOutFailure(error.message))
