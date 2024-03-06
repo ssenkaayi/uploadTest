@@ -15,7 +15,7 @@ export const registerEmploye = asyncHandler(async(req,res)=>{
 
     const isEmploye = await Employe.findOne({email})
     
-    if(isEmploye) return res.status(400).send('account with email exists')
+    if(isEmploye) return res.status(400).send({"message":'account with email exists'})
   
     const hashedPassword = bcrypt.hashSync(password,10)
     // console.log(hashedPassword)
@@ -56,10 +56,10 @@ export const loginEmploye = asyncHandler(async(req,res,next)=>{
     // console.log(email,password)
 
     const isEmploye = await Employe.findOne({email})
-    if(!isEmploye) return res.status(400).send('employe dosent exist')
+    if(!isEmploye) return res.status(400).json({"message":'employe dosent exist'})
 
     const isValidPassword = bcrypt.compareSync(password,isEmploye.password)
-    if(!isValidPassword) return res.status(400).send('incorrect email and password')
+    if(!isValidPassword) return res.status(400).json({"message":'incorrect email and password'})
 
 
     const token = generateToken(isEmploye._id)
@@ -72,7 +72,7 @@ export const loginEmploye = asyncHandler(async(req,res,next)=>{
 export const logoutEmploye = asyncHandler(async(req,res,next)=>{
 
 
-    res.clearCookie('access_token',).status(200).send("logged out succesfully")
+    res.clearCookie('access_token',).status(200).json({"message":"logged out succesfully"})
 
     
 })

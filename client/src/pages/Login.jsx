@@ -44,7 +44,7 @@ export default function Login() {
 
       if(data.success===false){
         dispatch(signInFailure(data.message));
-        return;
+        return ;
       }
 
       //if response is True, register and navigate to the sign in page

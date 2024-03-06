@@ -7,6 +7,6 @@ export default function PrivateRoutes() {
   
   const {currentEmploye} = useSelector(state => state.employe)
   return (
-    currentEmploye ? <Outlet/> : <Navigate to="/login"/>
+    currentEmploye ? <Outlet/> : <Navigate to="/"/>
   )
 }

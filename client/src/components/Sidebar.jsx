@@ -21,12 +21,12 @@ function Sidebar() {
             const data = await res.json();
 
             if(data.success===false){
-            dispatch(signOutFailure(error.message));
+            dispatch(signOutFailure(data.message));
             return
             }
 
             dispatch(signOutSuccess(data))
-            navigate('/login')
+            navigate('/')
 
         }catch(error){
             dispatch(signOutFailure(error.message))
