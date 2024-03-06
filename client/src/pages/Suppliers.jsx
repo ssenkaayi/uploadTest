@@ -89,7 +89,7 @@ function Suppliers() {
 
     const handleDeteleSupplier = async(_id)=>{
 
-      // const button_id = _id
+      const button_id = _id
       console.log(button_id)
     
       try{

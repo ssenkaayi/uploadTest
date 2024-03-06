@@ -6,7 +6,7 @@ import { paymentTable } from '../components/TableHeading'
 
 function ViewClient({visible , onClose , client_id}) {
 
-  
+  if(!visible) return null;
 
   const handleOnClose = ()=> onClose()
 
@@ -22,7 +22,7 @@ function ViewClient({visible , onClose , client_id}) {
     window.print()
   }
 
-//   console.log(client_id)
+  console.log(client_id)
 
 
   useEffect(()=>{
@@ -31,7 +31,7 @@ function ViewClient({visible , onClose , client_id}) {
 
       try{
   
-        // setLoading(true);
+        setLoading(true);
         const res = await fetch(`/api/client/getClient/${client_id}`,{
           
             method:'GET',
@@ -68,7 +68,7 @@ function ViewClient({visible , onClose , client_id}) {
     
 },[])
 
-if(!visible) return null;
+
 
 
   

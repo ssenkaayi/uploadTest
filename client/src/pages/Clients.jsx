@@ -88,9 +88,11 @@ function Clients() {
       
     }
 
-    const handleViewClient = (_id)=>{
+    const handleViewClient = (id)=>{
 
-      setClient_id(_id)
+      // console.log(id)
+
+      setClient_id(id)
       setShowViewClient(true)
      
     }

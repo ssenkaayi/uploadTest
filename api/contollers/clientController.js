@@ -120,7 +120,7 @@ export const getClient = asyncHandler(async(req,res)=>{
 
 
     const isClient = await Client.findById(req.params.id)
-    if(!isClient) return res.status(400).send('you are not authorise to view client data')
+    if(!isClient) return next(errorHandler(400,'you are not authorise to view client data')) 
   
     // const {password:pass,...rest} = isEmploye._doc
     res.status(200).send(isClient)
