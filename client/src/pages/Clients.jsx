@@ -210,13 +210,14 @@ function Clients() {
             < input className='bg-transparent p-2 outline-none' type='text' placeholder='search' value={searchItem} onChange={handleInputChange} />
 
           </div>
+          <button 
+            className='flex items-center p-search-box bg-dashbord rounded-xl text-white' onClick={navigateToSupplier}>Add Client
+          </button>
 
       
         </div>
 
-        <button 
-          className='flex items-center p-search-box bg-dashbord rounded-xl text-white' onClick={navigateToSupplier}>Add Client
-        </button>
+
 
       </div>
 
