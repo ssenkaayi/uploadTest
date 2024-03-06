@@ -88,23 +88,23 @@ function Clients() {
       
     }
 
-    const handleViewClient = (e)=>{
+    const handleViewClient = (_id)=>{
 
-      setClient_id(e.target.id)
+      setClient_id(_id)
       setShowViewClient(true)
       // setShowEditClient(true)
     }
 
-    const handleEditClient = (e)=>{
+    const handleEditClient = (_id)=>{
 
-      setClient_id(e.target.id)
+      setClient_id(_id)
       setShowEditClient(true)
       // setShowEditClient(true)
     }
 
-    const handleMakePayment =(e)=>{
+    const handleMakePayment =(_id)=>{
 
-      setClient_id(e.target.id)
+      setClient_id(_id)
       setshowAddPayment(true)
 
     }
@@ -125,11 +125,9 @@ function Clients() {
 
     }
 
-    const handleDeleteClient = async(e)=>{
+    const handleDeleteClient = async(_id)=>{
 
-      const button_id = e.target.id
-      console.log('delete')
-    
+      const button_id =_id
       try{
     
         const res = await fetch(`/api/client/delete/${button_id}`,{
@@ -159,50 +157,50 @@ function Clients() {
 
   <div>
 
-      <div  className='flex justify-between items-center flex-wrap
-        bg-white rounded-2x p-header mb-4 my-2 rounded-lg '>
+    <div  className='flex justify-between items-center flex-wrap
+      bg-white rounded-2x p-header mb-4 my-2 rounded-lg '>
 
-        <div className='flex flex-col  text-dashbord '>
+      <div className='flex flex-col  text-dashbord '>
 
-          <span className='test-xs'>Admin</span>
-          <span className='text-2xl' >Dashbord</span>
-
-        </div>
-
-
-        <div className='flex items-center gap-1'>
-
-          <div className='flex items-center p-search-box bg-search-bar rounded-2xl  text-dashbord'>
-
-            <CiSearch className='w-6 h-6 cursor-pointer text-sm hover:trb'/>
-
-            < input className='bg-transparent p-2 outline-none' type='text' placeholder='search' value={searchItem} onChange={handleInputChange} />
-
-          </div>
-
-          <img className='w-12 h-12 cursor-pointer rounded-full' src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' alt='avater'/>
-          {/* <  CiUser  className='w-12 h-12 cursor-pointer rounded-full' /> */}
-        </div>
-
+        <span className='test-xs'>Admin</span>
+        <span className='text-2xl' >Dashbord</span>
 
       </div>
+
+
+      <div className='flex items-center gap-1'>
+
+        <div className='flex items-center p-search-box bg-search-bar rounded-2xl  text-dashbord'>
+
+          <CiSearch className='w-6 h-6 cursor-pointer text-sm hover:trb'/>
+
+          < input className='bg-transparent p-2 outline-none' type='text' placeholder='search' value={searchItem} onChange={handleInputChange} />
+
+        </div>
+
+        <img className='w-12 h-12 cursor-pointer rounded-full' src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' alt='avater'/>
+        {/* <  CiUser  className='w-12 h-12 cursor-pointer rounded-full' /> */}
+      </div>
+
+
+    </div>
 
 
 
     <div className='bg-white mt-card p-record mt-record rounded-2xl'>
 
-    <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>   
-    <EditClient onClose={handleOnClose} visible={showEditClient} client_id={client_id}/>
-    <ViewClient onClose={handleOnClose} visible={showViewClient} client_id={client_id}/>
-    <AddPayments onClose={handleOnClose} visible={showAddPayment} client_id={client_id}/>
+      <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>   
+      <EditClient onClose={handleOnClose} visible={showEditClient} client_id={client_id}/>
+      <ViewClient onClose={handleOnClose} visible={showViewClient} client_id={client_id}/>
+      <AddPayments onClose={handleOnClose} visible={showAddPayment} client_id={client_id}/>
 
-    <div className='flex justify-between'>
+      <div className='flex justify-between'>
 
-    <h3 className='text-regal-violet text-2xl p-2'> Manange Clients </h3>
+      <h3 className='text-regal-violet text-2xl p-2'> Manange Clients </h3>
 
-    <div className='flex items-center gap-1'>
+      <div className='flex items-center gap-1'>
 
-    <div className='flex items-center p-search-box bg-search-bar rounded-2xl text-dashbord'>
+      <div className='flex items-center p-search-box bg-search-bar rounded-2xl text-dashbord'>
 
     </div>
 
@@ -261,10 +259,10 @@ function Clients() {
 
                 <td className='text-green flex gap-4 items-center p-4'>
 
-                  <button className='p-2 cursor-pointer 'id={client._id} onClick={handleMakePayment}>Payment</button>
-                  <button className='p-2 cursor-pointer 'id={client._id} onClick={handleEditClient}>Edit</button>
-                  <button className='p-2 cursor-pointer 'id={client._id} onClick={handleViewClient}>View</button>
-                  <button className='p-2 cursor-pointer 'id={client._id} onClick={handleDeleteClient}>Delete</button>
+                  <button className='p-2 cursor-pointer 'id='payment' onClick={()=>handleMakePayment(client._id)}>Payment</button>
+                  <button className='p-2 cursor-pointer 'id='edit' onClick={()=>handleEditClient(client._id)}>Edit</button>
+                  <button className='p-2 cursor-pointer 'id='view' onClick={()=>handleViewClient(client._id)}>View</button>
+                  <button className='p-2 cursor-pointer 'id='delete' onClick={()=>handleDeleteClient(client._id)}>Delete</button>
                    
                 </td>
                 </tr>

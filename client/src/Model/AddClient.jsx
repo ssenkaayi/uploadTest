@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 function AddClient({visible , onClose , supplier_id }) {
 
-    if(!visible) return null;
+   
 
     const handleOnClose = ()=> onClose()
     // console.log(supplier_id)
@@ -62,6 +62,8 @@ function AddClient({visible , onClose , supplier_id }) {
   
       } 
     }
+
+    if(!visible) return null;
   return (
 
     <div className='fixed inset-0 bg-black bg-opacity-30

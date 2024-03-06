@@ -26,10 +26,13 @@ function Suppliers() {
 
     }
 
-    const handleSupplierId = (e)=>{
+    const handleSupplierId = (_id)=>{
 
-      setSupplier_id(e.target.id)
+      // console.log(_id)
+
+      setSupplier_id(_id)
       setShowAddClient(true)
+
     }
 
     const navigateToTrip = ()=>{
@@ -84,10 +87,10 @@ function Suppliers() {
         
     },[])
 
-    const handleDeteleSupplier = async(e)=>{
+    const handleDeteleSupplier = async(_id)=>{
 
-      const button_id = e.target.id
-      // console.log(button_id)
+      // const button_id = _id
+      console.log(button_id)
     
       try{
     
@@ -173,7 +176,7 @@ function Suppliers() {
                             )
                         })}
 
-                        <th className='p-4 text-left '>Action</th>
+                        <th className='p-4 text-left '>Manage Clients</th>
                     </tr>
 
                 </thead>
@@ -194,9 +197,9 @@ function Suppliers() {
                               <td className='p-4 text-left'>{supplier.issued_by}</td>
 
                               <td className='text-green flex gap-4 items-center p-4'>
-                                  <button className='p-2 cursor-pointer 'id={supplier._id} onClick={handleSupplierId} >Add</button>
+                                  <button className='p-2 cursor-pointer ' id='add'  onClick={()=>handleSupplierId(supplier._id)} >Add</button>
                                   <span className='p-2 cursor-pointer '>View</span>
-                                  <button className='p-2 cursor-pointer 'id={supplier._id} onClick={handleDeteleSupplier} >Delete</button>
+                                  <button className='p-2 cursor-pointer ' id='delete' onClick={()=>handleDeteleSupplier(supplier._id)} >Delete</button>
                               </td>
 
                             </tr>

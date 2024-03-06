@@ -6,7 +6,7 @@ import { paymentTable } from '../components/TableHeading'
 
 function ViewClient({visible , onClose , client_id}) {
 
-  if(!visible) return null;
+  
 
   const handleOnClose = ()=> onClose()
 
@@ -69,6 +69,8 @@ function ViewClient({visible , onClose , client_id}) {
 
     
 },[])
+
+if(!visible) return null;
 
 
   

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function EditClient({visible , onClose, client_id}) {
 
-  if(!visible) return null;
+  
 
   console.log(client_id)
 
@@ -23,6 +23,8 @@ function EditClient({visible , onClose, client_id}) {
       [e.target.id]:e.target.value,
     });
   };
+
+  if(!visible) return null;
   
   // max-w-lg mx-auto 
 

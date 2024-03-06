@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 function AddTrip({visible , onClose}) {
 
-  if(!visible) return null;
+ 
 
   const handleOnClose = ()=> onClose()
 
@@ -61,6 +61,7 @@ function AddTrip({visible , onClose}) {
 
     } 
   }
+  if(!visible) return null;
   return (
 
     <div className='fixed inset-0 bg-black bg-opacity-30

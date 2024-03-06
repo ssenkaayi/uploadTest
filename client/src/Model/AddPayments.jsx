@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function AddPayments({visible , onClose, client_id}) {
 
-    if(!visible) return null;
+    
 
     console.log(client_id)
 
@@ -61,6 +61,8 @@ function AddPayments({visible , onClose, client_id}) {
 
     } 
     }
+
+    if(!visible) return null;
  
   return (
 

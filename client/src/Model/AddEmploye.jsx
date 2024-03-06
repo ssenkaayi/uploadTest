@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function AddEmploye({visible , onClose}) {
 
-    if(!visible) return null;
+    
 
     const handleOnClose = ()=> onClose()
 
@@ -59,6 +59,7 @@ function AddEmploye({visible , onClose}) {
   
       } 
     }
+    if(!visible) return null;
   return (
 
     <div className='fixed inset-0 bg-black bg-opacity-30
