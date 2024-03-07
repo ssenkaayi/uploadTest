@@ -10,7 +10,7 @@ export const sidebarMenu = [
     {
 
         title:'Clients',
-        url:'/dashbord/clients',
+        url:'/dashbord/',
         icon:'fa-solid fa-circle-info'
 
     },

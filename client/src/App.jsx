@@ -30,12 +30,11 @@ export default function App() {
 
           <Route path="/dashbord/" element={<Dashbord/>} >
 
-            {/* <Route path='' element = {<Dashbord/>}/> */}
             <Route path='/dashbord/profile'  element = {<Profile/>}/>
             <Route path='/dashbord/employes' element = {<Employes/>}/>
             <Route path='/dashbord/suppliers' element = {<Suppliers/>}/>
             <Route path='/dashbord/payments' element = {<Payments/>}/>
-            <Route path='/dashbord/clients'   element = {<Clients/>}/>
+            <Route path='/dashbord/'   element = {<Clients/>}/>
             <Route path='/dashbord/trips' element = {<Trips/>}/>
             <Route path='/dashbord/settings' element = {<Settings/>}/>
             
