@@ -3,7 +3,7 @@ export const sidebarMenu = [
     {
 
         title:'Employes',
-        url:'/dashbord/employes',
+        url:'employes',
         icon:'fa-solid fa-circle-info'
 
     },
