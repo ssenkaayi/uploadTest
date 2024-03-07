@@ -125,10 +125,10 @@ function Records() {
 
     <>
 
-<div  className='flex justify-between items-center flex-wrap
+{/* <div  className='flex justify-between items-center flex-wrap
         bg-white rounded-2x p-header mb-4 my-2 rounded-lg '>
 
-      </div>
+      </div> */}
 
 
       <div className='bg-white mt-card p-record mt-record rounded-2xl'>
