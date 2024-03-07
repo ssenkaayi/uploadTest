@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter,Routes,Route } from 'react-router-dom'
 import Login from './pages/Login'
 import PrivateRoutes from './components/PrivateRoutes'
-import Dashbord from './pages/Dashbord'
+import Dashbord from './pages/LayOut'
 import Profile from './pages/Profile'
 import Employes from './pages/Employes'
 import Payments from './pages/Payments'
@@ -10,6 +10,7 @@ import Settings from './pages/Settings'
 import Trips from './pages/Trips'
 import Suppliers from './pages/Suppliers'
 import Clients from './pages/Clients'
+import LayOut from './pages/LayOut'
 
 
 
@@ -28,22 +29,22 @@ export default function App() {
 
         <Route element={<PrivateRoutes/>}>
 
-          <Route path="/dashbord/" element={<Dashbord/>} >
+          <Route path="/" element={<LayOut/>} >
 
-            <Route path='/dashbord/profile'  element = {<Profile/>}/>
-            <Route path='/dashbord/employes' element = {<Employes/>}/>
-            <Route path='/dashbord/suppliers' element = {<Suppliers/>}/>
-            <Route path='/dashbord/payments' element = {<Payments/>}/>
-            <Route path='/dashbord/'   element = {<Clients/>}/>
-            <Route path='/dashbord/trips' element = {<Trips/>}/>
-            <Route path='/dashbord/settings' element = {<Settings/>}/>
+            <Route path='/'   element = {<Clients/>}/>
+            <Route path='profile'  element = {<Profile/>}/>
+            <Route path='employes' element = {<Employes/>}/>
+            <Route path='suppliers' element = {<Suppliers/>}/>
+            <Route path='payments' element = {<Payments/>}/>
+            <Route path='trips' element = {<Trips/>}/>
+            <Route path='settings' element = {<Settings/>}/>
             
 
           </Route>
 
         </Route>
 
-        <Route path="/" element={<Login/>}/>
+        <Route path="/login" element={<Login/>}/>
 
       </Routes>
     </BrowserRouter>

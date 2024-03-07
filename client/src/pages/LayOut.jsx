@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom'
 
 
 
-function Dashbord() {
+function LayOut() {
 
   return (
     
@@ -29,4 +29,4 @@ function Dashbord() {
   )
 }
 
-export default Dashbord
+export default LayOut

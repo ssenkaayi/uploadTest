@@ -10,20 +10,20 @@ export const sidebarMenu = [
     {
 
         title:'Clients',
-        url:'/dashbord/',
+        url:'/',
         icon:'fa-solid fa-circle-info'
 
     },
     {
 
         title:'Suppliers',
-        url:'/dashbord/suppliers',
+        url:'suppliers',
         icon:'fa-solid fa-briefcase'
 
     },    {
 
         title:'Payments',
-        url:'/dashbord/payments',
+        url:'payments',
         icon:'fa-solid fa-address-book'
 
     },
@@ -31,7 +31,7 @@ export const sidebarMenu = [
     {
 
         title:'Trips',
-        url:'/dashbord/trips',
+        url:'trips',
         icon:'fa-solid fa-address-book'
 
     },

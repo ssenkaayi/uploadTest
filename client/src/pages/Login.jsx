@@ -54,7 +54,7 @@ export default function Login() {
       //if response is True, register and navigate to the sign in page
       
       dispatch(signInSuccess(data));
-      navigate('/dashbord')
+      navigate('/')
 
     }catch(error){
       dispatch(signInFailure(error.message))

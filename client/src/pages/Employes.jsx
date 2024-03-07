@@ -178,7 +178,6 @@ function Records() {
                   <tr key={index}>
                     
                     <td className='p-4 text-left'>{employe.createdAt.split("T", 1)}</td>
-
                     <td className='p-4 text-left'>{employe.firstName}</td>
                     <td className='p-4 text-left'>{employe.lastName}</td>
                     <td className='p-4 text-left'>{employe.email}</td>
