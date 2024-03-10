@@ -47,6 +47,37 @@ const clientSchema = mongoose.Schema(
         required:true
     },
 
+    payments:{
+        type:[
+            {
+                date:String,
+                reciept_number:Number,
+                charge_rate:Number,
+                charge_dollars:Number,
+                charge_ugx:Number,
+                dollar_rate:Number,
+
+            }
+        ],
+        
+    },
+
+    deliveries:{
+        type:[
+            {
+
+                date:String,
+                weight:Number,
+                delivered_by:String,
+    
+
+            }
+        ],
+        
+    },
+
+
+
 } , {timestamps:true}
 
 );

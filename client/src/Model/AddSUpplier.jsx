@@ -53,7 +53,7 @@ function AddSupplier({visible , onClose , trip_id }) {
         //if response is True, register and navigate to the sign in page
         setLoading(false);
         setError(null)
-        navigate('/dashbord/suppliers')
+        navigate('/suppliers')
         handleOnClose()
   
       }catch(error){

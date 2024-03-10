@@ -110,7 +110,7 @@ export default function Login() {
           <div className='w-full mb-6 mt-4'>
 
             <button className=' bg-regal-violet text-white p-3 rounded-lg uppercase hover:opacity-95 w-full'
-            type="submit" disabled={loading} > {loading? 'loading...':'Login'}
+            disabled={loading} > {loading? 'loading...':'Login'}
             </button>
 
           </div>

@@ -37,7 +37,7 @@ function Suppliers() {
 
     const navigateToTrip = ()=>{
       
-      navigate('/dashbord/trips')
+      navigate('/trips')
 
     }
 

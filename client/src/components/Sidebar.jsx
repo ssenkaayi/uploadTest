@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch} from 'react-redux';
 import { signOutFailure,signOutStart,signOutSuccess } from '../redux/employe/employeSlice';
 import { useNavigate } from 'react-router-dom';
+import { CiLogout } from "react-icons/ci";
 
 function Sidebar() {
 
@@ -48,7 +49,7 @@ function Sidebar() {
 
             className='flex flex-col h-menu 
             list-none p-0 relative '>
-
+{/* 
             <li 
                 className='transition-li 
                 text-sm 
@@ -58,7 +59,7 @@ function Sidebar() {
                 className=' flex items-center
                 text-sm gap-1.5' > Dashbord </Link>
 
-            </li>    
+            </li>     */}
             
             {sidebarMenu.map((item,index)=>{
 
@@ -72,7 +73,7 @@ function Sidebar() {
                         className='flex items-center
                         text-sm gap-1.5' to={item.url}>
                     
-                            <i className={item.icon}/>
+                            {item.icon}
             
                             {item.title}
         
@@ -87,8 +88,8 @@ function Sidebar() {
                 className='transition-li
                 text-sm left-0 absolute bottom-0
                 hover:bg-menu p-4 m-li rounded-lg w-full'> 
-              
-                <button className="flex items-center text-sm gap-1.5 fa-solid fa-right-to-bracket" onClick={handleSignOut}> Logout </button>
+               
+                <button className="flex items-center text-sm gap-1.5 fa-solid fa-right-to-bracket" onClick={handleSignOut}> <CiLogout />  Logout </button>
 
             </li>
 

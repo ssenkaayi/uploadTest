@@ -53,7 +53,7 @@ function AddClient({visible , onClose , supplier_id }) {
         //if response is True, register and navigate to the sign in page
         setLoading(false);
         setError(null)
-        navigate('/dashbord/clients')
+        navigate('/')
         handleOnClose()
   
       }catch(error){

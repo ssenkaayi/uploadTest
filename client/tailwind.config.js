@@ -21,7 +21,8 @@ export default {
         'sidebar':'110px',
         'hover':'240px',
         "card-w":"290px",
-        "login-w":"450px"
+        "login-w":"450px",
+        "invoice":"600px"
        
       },
       height:{

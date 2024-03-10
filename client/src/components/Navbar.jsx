@@ -1,6 +1,7 @@
 
 import React from 'react'
 import { useState } from 'react';
+import logo from '../assets/images/marislogo.jpeg'
 
 function Navbar({searchBox}) {
 
@@ -44,7 +45,7 @@ function Navbar({searchBox}) {
               
           </div> */}
 
-          <img className='w-12 h-12 cursor-pointer rounded-full' src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' alt='avater'/>
+          <img className='w-14 h-14 cursor-pointer rounded-full' src={logo} alt='avater'/>
         </div>
 
 

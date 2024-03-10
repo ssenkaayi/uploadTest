@@ -28,7 +28,7 @@ function Clients() {
     const [searchItem, setSearchItem] = useState('')
     const [filteredClients, setFilteredClients] = useState([])
     const [client_id , setClient_id] = useState(null)
-    const [limit,setLimit] = useState(7)
+    const [limit,setLimit] = useState(8)
     const [pageCount,setPageCount] = useState(1)
     const currentPage = useRef()
     
@@ -123,7 +123,7 @@ function Clients() {
 
     const navigateToSupplier = ()=>{
       
-      navigate('/dashbord/suppliers')
+      navigate('/suppliers')
 
     }
 
@@ -173,10 +173,9 @@ function Clients() {
         <div className='flex items-center gap-1'>
 
           <div className='flex items-center p-search-box bg-search-bar rounded-2xl text-dashbord'>
-
-            <CiSearch className='w-6 h-6 cursor-pointer text-sm hover:trb'/>
-
+            
             < input className='bg-transparent p-2 outline-none' type='text' placeholder='search' value={searchItem} onChange={handleInputChange} />
+            <CiSearch className='w-6 h-6 cursor-pointer text-sm hover:trb'/>
 
           </div>
           <button 

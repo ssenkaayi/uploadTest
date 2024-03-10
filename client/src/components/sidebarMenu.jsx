@@ -1,30 +1,38 @@
+import { BsPeopleFill } from "react-icons/bs";
+import { FaLuggageCart } from "react-icons/fa";
+import { FaWarehouse } from "react-icons/fa";
+import { RiSecurePaymentFill } from "react-icons/ri";
+import { MdFlight } from "react-icons/md";
+
+
+
 export const sidebarMenu = [
  
     {
 
         title:'Employes',
         url:'employes',
-        icon:'fa-solid fa-circle-info'
+        icon:<BsPeopleFill/>
 
     },
     {
 
         title:'Clients',
         url:'/',
-        icon:'fa-solid fa-circle-info'
+        icon:<FaLuggageCart/> 
 
     },
     {
 
         title:'Suppliers',
         url:'suppliers',
-        icon:'fa-solid fa-briefcase'
+        icon:<FaWarehouse/>
 
     },    {
 
         title:'Payments',
         url:'payments',
-        icon:'fa-solid fa-address-book'
+        icon:<RiSecurePaymentFill/>
 
     },
 
@@ -32,7 +40,7 @@ export const sidebarMenu = [
 
         title:'Trips',
         url:'trips',
-        icon:'fa-solid fa-address-book'
+        icon:<MdFlight/>
 
     },
 
