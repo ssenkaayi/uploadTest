@@ -64,6 +64,10 @@ export default {
       gap:{
         'body':'1rem',
         "card":"8px"
+      },
+      zIndex:{
+        'sidebar':'200',
+        'header':'999'
       }
       
   

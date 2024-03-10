@@ -10,7 +10,7 @@ import AddSupplier from '../Model/AddSUpplier'
 function Trips() {
 
     const [showAddTrip,setShowAddTrip] = useState(false)
-    const [trips , setTrips] = useState(null)
+    const [trips , setTrips] = useState([])
     const [trip_id , setTrip_id] = useState(null)
     const [showAddSupplier,setShowAddSupplier] = useState(false)
     const [loading , setLoading] = useState(false)

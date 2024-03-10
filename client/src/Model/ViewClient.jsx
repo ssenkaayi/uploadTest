@@ -174,14 +174,14 @@ function ViewClient({visible , onClose , client_id}) {
           </div>
 
           <div className='flex justify-between items-center'>
-                    
-              <button onClick={handleOnClose} className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
-              type="button"> cancel
-              </button>
+                  
+            <button onClick={handleOnClose} className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
+            type="button"> cancel
+            </button>
 
-              <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
-              > {loading? 'printing...':'print'}
-              </button>
+            <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
+            > {loading? 'printing...':'print'}
+            </button>
 
           </div>
 

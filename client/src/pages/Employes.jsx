@@ -10,7 +10,7 @@ function Records() {
 
     const [showAddEmploye,setShowAddEmploye] = useState(false)
     const [showViewClient,setShowViewClient] = useState(false)
-    const [employes , setEmployes] = useState(null)
+    const [employes , setEmployes] = useState([])
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
 

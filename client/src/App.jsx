@@ -11,6 +11,7 @@ import Trips from './pages/Trips'
 import Suppliers from './pages/Suppliers'
 import Clients from './pages/Clients'
 import LayOut from './pages/LayOut'
+import ViewClientDetails from './pages/ViewClientDetails'
 
 
 
@@ -38,6 +39,7 @@ export default function App() {
             <Route path='payments' element = {<Payments/>}/>
             <Route path='trips' element = {<Trips/>}/>
             <Route path='settings' element = {<Settings/>}/>
+            <Route path='view' element = {<ViewClientDetails/>}/>
             
 
           </Route>

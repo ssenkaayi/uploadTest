@@ -5,6 +5,7 @@ import { useDispatch} from 'react-redux';
 import { signOutFailure,signOutStart,signOutSuccess } from '../redux/employe/employeSlice';
 import { useNavigate } from 'react-router-dom';
 import { CiLogout } from "react-icons/ci";
+import logo from '../assets/images/marislogo.jpeg'
 
 function Sidebar() {
 
@@ -34,21 +35,21 @@ function Sidebar() {
         }
     }
       
+    // sidebar css overflow-hidden hover:w-hover  p-sidebar-padding fixed z-sidebar 
 
     return (
 
-    <div 
+    <div className='flex flex-col h-sidebar w-60 p-sidebar-padding  text-white transition-sidebar fixed z-sidebar bg-regal-violet '>
 
-        className='sticky sidebar flex flex-col h-sidebar text-white
-        w-hover transition-sidebar bg-regal-violet
-        p-sidebar-padding overflow-hidden  hover:w-hover'>
+        <div className='flex h-logo p-logo mb-4 my-2 '>
 
-        <div className='flex h-logo p-logo'></div>
+            {/* <img className='w-14 h-14 cursor-pointer rounded-full' src={logo} alt='avater'/> */}
+        </div>
 
         <ul  
 
             className='flex flex-col h-menu 
-            list-none p-0 relative '>
+            list-none p-0  '>
 {/* 
             <li 
                 className='transition-li 
@@ -67,11 +68,11 @@ function Sidebar() {
 
                     <li 
                     className='transition-li p-4 m-li  
-                    rounded-lg hover:bg-menu' key={index} >
+                    rounded-lg hover:bg-menu w-full' key={index} >
 
                         <Link 
                         className='flex items-center
-                        text-sm gap-1.5' to={item.url}>
+                        text-sm gap-1.5 w-full' to={item.url}>
                     
                             {item.icon}
             

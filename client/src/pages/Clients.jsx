@@ -12,6 +12,7 @@ import { useRef } from 'react'
 import {CiSearch } from 'react-icons/ci'
 import { FaUser } from 'react-icons/fa'
 import { CiUser } from "react-icons/ci";
+import { Link } from 'react-router-dom'
 
 
 
@@ -28,7 +29,7 @@ function Clients() {
     const [searchItem, setSearchItem] = useState('')
     const [filteredClients, setFilteredClients] = useState([])
     const [client_id , setClient_id] = useState(null)
-    const [limit,setLimit] = useState(8)
+    const [limit,setLimit] = useState(10)
     const [pageCount,setPageCount] = useState(1)
     const currentPage = useRef()
     
@@ -93,7 +94,8 @@ function Clients() {
       // console.log(id)
 
       setClient_id(id)
-      setShowViewClient(true)
+      navigate('/view')
+      // setShowViewClient(true)
      
     }
 
@@ -237,6 +239,18 @@ function Clients() {
                   <button className='p-2 cursor-pointer 'id='edit' onClick={()=>handleEditClient(client._id)}>Edit</button>
                   <button className='p-2 cursor-pointer 'id='view' onClick={()=>handleViewClient(client._id)}>View</button>
                   <button className='p-2 cursor-pointer 'id='delete' onClick={()=>handleDeleteClient(client._id)}>Delete</button>
+
+                  
+                  {/* <li 
+                      className='transition-li 
+                      text-sm 
+                  bg-menu p-4 m-li rounded-lg w-full'>
+
+                      <Link 
+                      className=' flex items-center
+                      text-sm gap-1.5' > Dashbord </Link>
+
+                  </li>     */}
                    
                 </td>
                 </tr>
