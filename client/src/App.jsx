@@ -39,7 +39,7 @@ export default function App() {
             <Route path='payments' element = {<Payments/>}/>
             <Route path='trips' element = {<Trips/>}/>
             <Route path='settings' element = {<Settings/>}/>
-            <Route path='view' element = {<ViewClientDetails/>}/>
+            <Route path='view/:id' element = {<ViewClientDetails/>}/>
             
 
           </Route>

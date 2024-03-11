@@ -34,7 +34,7 @@ function ViewClient({visible , onClose , client_id}) {
         setLoading(true);
         const res = await fetch(`/api/client/getClient/${client_id}`,{
           
-            method:'GET',
+          method:'GET',
         
         })
 
@@ -48,24 +48,18 @@ function ViewClient({visible , onClose , client_id}) {
         
         setError(false)
         setLoading(false)
-       
         setClientsDetails(data)
-
         // setFilteredClients(data)
-
         // console.log(data)
       }
-  
       catch(error){
         setError(error.message)
         setLoading(false)
   
+      }
     }
-  }
 
-    fetchClients()
-
-    
+    fetchClients()   
 },[])
 
 

@@ -15,7 +15,6 @@ import { CiUser } from "react-icons/ci";
 import { Link } from 'react-router-dom'
 
 
-
 function Clients() {
 
     const [showViewClient,setShowViewClient] = useState(false)
@@ -94,10 +93,12 @@ function Clients() {
       // console.log(id)
 
       setClient_id(id)
-      navigate('/view')
+      navigate(`/view/${id}`)
+
       // setShowViewClient(true)
      
     }
+    console.log(client_id)
 
     const handleEditClient = (_id)=>{
 

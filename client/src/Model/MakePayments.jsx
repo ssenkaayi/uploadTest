@@ -62,12 +62,12 @@ export default function ViewHeader() {
             
             <div className='flex justify-between'>
 
-            <h3 className='text-regal-violet text-2xl p-2'> Make Payments </h3>
+            <h3 className='text-regal-violet text-2xl p-2'> Payments </h3>
 
             <div className='flex items-center gap-4'>
 
             <button 
-                className='flex items-center p-2 bg-dashbord rounded-xl text-white'>Add Payment
+                className='flex items-center p-2 bg-dashbord rounded-xl text-white'>Make Payment
             </button>
 
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import AddEmploye from '../Model/AddEmploye'
+import AddEmploye from './AddEmploye'
 import { useState } from 'react'
 import { employeTable, paymentTable } from '../components/TableHeading'
 import { useEffect } from 'react'
@@ -59,12 +59,12 @@ export default function ViewHeader() {
             
             <div className='flex justify-between'>
 
-            <h3 className='text-regal-violet text-2xl p-2'> Make Delivery </h3>
+            <h3 className='text-regal-violet text-2xl p-2'> Delivery </h3>
 
             <div className='flex items-center gap-4'>
 
             <button 
-                className='flex items-center p-2 bg-dashbord rounded-xl text-white'>Add Delivery
+                className='flex items-center p-2 bg-dashbord rounded-xl text-white'>Make Delivery
             </button>
 
 
