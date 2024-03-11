@@ -4,6 +4,7 @@ import { tripTable } from '../components/TableHeading'
 import { useEffect } from 'react'
 import AddTrip from '../Model/AddTrip'
 import AddSupplier from '../Model/AddSUpplier'
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -15,6 +16,7 @@ function Trips() {
     const [showAddSupplier,setShowAddSupplier] = useState(false)
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
+    const navigate = useNavigate();
 
 
     const handleOnClose = ()=>{
@@ -68,11 +70,13 @@ function Trips() {
         
     },[])
 
-    const handleSkyTeamName = (_id)=>{
+    const handleSkyTeamName = (id)=>{
 
-      const btn_id = _id
+      const btn_id = id
       setTrip_id(btn_id)
-      setShowAddSupplier(true)
+      navigate(`/view_trip/${id}`)
+
+      // setShowAddSupplier(true)
 
     }
 
@@ -169,7 +173,7 @@ function Trips() {
                             <td className='flex gap-4 items-center p-4'>
 
                               <button className='p-2 cursor-pointer 'id="add" onClick={()=>handleSkyTeamName(trip._id)}>Add</button>
-                              <span className='p-2 cursor-pointer '>View</span>
+                              <button className='p-2 cursor-pointer ' id='view' onClick={()=>handleSkyTeamName(trip._id)}>View</button>
                               <button className='p-2 cursor-pointer 'id="delete" onClick={()=>handleDeteleTrip(trip._id)}>Delete</button>
 
                             </td>

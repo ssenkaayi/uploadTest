@@ -93,7 +93,7 @@ function Clients() {
       // console.log(id)
 
       setClient_id(id)
-      navigate(`/view/${id}`)
+      navigate(`/view_client/${id}`)
 
       // setShowViewClient(true)
      

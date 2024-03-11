@@ -53,3 +53,17 @@ export const  deleteTrip = async(req,res,next)=>{
 
 }
 
+
+export const getTrip = asyncHandler(async(req,res)=>{
+
+
+    const isTrip = await Trip.findById(req.params.id)
+    if(!isTrip) return next(errorHandler(400,'you are not authorise to view client data')) 
+  
+    // const {password:pass,...rest} = isEmploye._doc
+    res.status(200).send(isTrip)
+   
+})
+
+
+

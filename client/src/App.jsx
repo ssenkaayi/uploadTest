@@ -12,6 +12,8 @@ import Suppliers from './pages/Suppliers'
 import Clients from './pages/Clients'
 import LayOut from './pages/LayOut'
 import ViewClientDetails from './pages/ViewClientDetails'
+import ViewSupplierDetails from './pages/ViewSupplierDetails'
+import ViewTripDetails from './pages/ViewTripDetails'
 
 
 
@@ -39,7 +41,10 @@ export default function App() {
             <Route path='payments' element = {<Payments/>}/>
             <Route path='trips' element = {<Trips/>}/>
             <Route path='settings' element = {<Settings/>}/>
-            <Route path='view/:id' element = {<ViewClientDetails/>}/>
+            <Route path='view_client/:id' element = {<ViewClientDetails/>}/>
+            <Route path='view_supplier/:id' element = {<ViewSupplierDetails/>}/>
+            <Route path='view_trip/:id' element = {<ViewTripDetails/>}/>
+
             
 
           </Route>

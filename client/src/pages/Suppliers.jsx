@@ -26,12 +26,13 @@ function Suppliers() {
 
     }
 
-    const handleSupplierId = (_id)=>{
+    const handleSupplierId = (id)=>{
 
-      // console.log(_id)
+      console.log(id)
 
-      setSupplier_id(_id)
-      setShowAddClient(true)
+      setSupplier_id(id)
+      navigate(`/view_supplier/${id}`)
+      // setShowAddClient(true)
 
     }
 
@@ -145,8 +146,6 @@ function Suppliers() {
 
     <div className='bg-white mt-card p-record mt-record rounded-2xl'>
 
-        <AddClient onClose={handleOnClose} visible={showAddClient} supplier_id={supplier_id}/>   
-
         <div className='flex justify-between'>
 
          <h3 className='text-regal-violet text-2xl p-2'> Manange Suppliers</h3>
@@ -198,7 +197,7 @@ function Suppliers() {
 
                               <td className='text-green flex gap-4 items-center p-4'>
                                   <button className='p-2 cursor-pointer ' id='add'  onClick={()=>handleSupplierId(supplier._id)} >Add</button>
-                                  <span className='p-2 cursor-pointer '>View</span>
+                                  <button className='p-2 cursor-pointer ' id='view' onClick={()=>handleSupplierId(supplier._id)} >View</button>
                                   <button className='p-2 cursor-pointer ' id='delete' onClick={()=>handleDeteleSupplier(supplier._id)} >Delete</button>
                               </td>
 

@@ -101,5 +101,16 @@ export const  deleteSupplier = async(req,res,next)=>{
 
 }
 
+export const getSupplier = asyncHandler(async(req,res)=>{
+
+
+    const isSupplier = await Supplier.findById(req.params.id)
+    if(!isSupplier) return next(errorHandler(400,'you are not authorise to view client data')) 
+  
+    // const {password:pass,...rest} = isEmploye._doc
+    res.status(200).send(isSupplier)
+   
+})
+
 
 

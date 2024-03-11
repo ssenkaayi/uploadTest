@@ -22,23 +22,32 @@ export default function ViewClientDetails() {
   const [error,setError]= useState(null);
   const [clientsDetails,setClientsDetails]=useState([]) 
   const navigate = useNavigate()
+  const [showAddClient,setShowAddClient] = useState(false)
 
   console.log(client_id)
 
 
   const handlePrint =()=>{
       window.print()
-    }
+  }
 
-    const goBackClient = ()=>{
-      navigate(`/`)
-    }
+  const goBackClient = ()=>{
+    navigate(`/`)
+  }
+
+  const handleAddClient = ()=>{
+
+    setShowAddClient(true)
+
+  }
   
  
 
   return (
 
     <div className='bg-white mt-card p-20 mt-record rounded-2xl'>
+
+      {/* <AddClient onClose={handleOnClose} visible={showAddClient} supplier_id={supplier_id}/>    */}
 
 
 
