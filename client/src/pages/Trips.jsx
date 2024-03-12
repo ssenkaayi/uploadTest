@@ -160,7 +160,7 @@ function Trips() {
                             <td className='p-4 text-left'>{trip.createdAt.split("T", 1)}</td>
                             <td className='p-4 text-left'>{trip.name}</td>
                             <td className='p-4 text-left'>{trip.weight}</td>
-                            <td className='p-4 text-left'>{trip.supplier_name}</td>
+                            {/* <td className='p-4 text-left'>{trip.supplier_name}</td> */}
                             <td className='p-4 text-left'>{trip.number_suppliers}</td>
                             <td className='p-4 text-left'>{trip.transport}</td>
                             <td className='p-4 text-left'>{trip.tax}</td>
@@ -172,9 +172,9 @@ function Trips() {
 
                             <td className='flex gap-4 items-center p-4'>
 
-                              <button className='p-2 cursor-pointer 'id="add" onClick={()=>handleSkyTeamName(trip._id)}>Add</button>
+                              {/* <button className='p-2 cursor-pointer 'id="add" onClick={()=>handleSkyTeamName(trip._id)}>Add</button> */}
                               <button className='p-2 cursor-pointer ' id='view' onClick={()=>handleSkyTeamName(trip._id)}>View</button>
-                              <button className='p-2 cursor-pointer 'id="delete" onClick={()=>handleDeteleTrip(trip._id)}>Delete</button>
+                              {/* <button className='p-2 cursor-pointer 'id="delete" onClick={()=>handleDeteleTrip(trip._id)}>Delete</button> */}
 
                             </td>
 

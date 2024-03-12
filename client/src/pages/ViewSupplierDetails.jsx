@@ -1,116 +1,81 @@
 import React from 'react'
-import AddEmploye from '../Model/AddEmploye'
 import { useState } from 'react'
-import { employeTable, paymentTable } from '../components/TableHeading'
+import { viewSupplierDetailsTable} from '../components/TableHeading'
 import { useEffect } from 'react'
-import ClientHeader from '../Model/MakeDelivery'
-import MakePayments from '../Model/MakePayments'
-import PrintView from '../Model/PrintView'
-import InvoiceHeader from '../Model/InvoiceHeader'
 import { useParams} from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
-
-// import { clients_id } from './Clients'
-
-
 
 export default function ViewSupplierDetails() {
 
 
 
-    const params = useParams() 
-    const supplier_id = params.id
-    const [loading,setLoading]=useState(false);
-    const [error,setError]= useState(null);
-    const [clientsDetails,setClientsDetails]=useState([]) 
-    const navigate = useNavigate()
-    const [employes , setEmployes] = useState([])
+  const params = useParams() 
+  const supplier_id = params.id
+  const [loading,setLoading]=useState(false);
+  const [error,setError]= useState(null);
+  const [clients,setClients]=useState([]) 
+  const navigate = useNavigate()
+  const [supplier , setSupplier] = useState([])
     
 
-    const handlePrint =()=>{
-        window.print()
-        }
-
-        const goBackClient = ()=>{
-        navigate(`/suppliers`)
+  const handlePrint =()=>{
+    window.print()
     }
 
-    useEffect(()=>{
+    const goBackClient = ()=>{
+    navigate(`/suppliers`)
+  }
+
+  useEffect(()=>{
 
 
-        fetchClients()
-        fetchEmployes()
+    fetchClients()
+  
+  },[supplier_id])
     
-    },[supplier_id])
+  const fetchClients = async()=>{
+  
+      try{
     
-    const fetchClients = async()=>{
-    
-        try{
-      
-          setLoading(true);
-          const res = await fetch(`/api/supplier/getSupplier/${supplier_id}`,{
-            
-            method:'GET',
-          
-          })
-      
-          const data = await res.json();
+      setLoading(true);
+      const res = await fetch(`/api/supplier/getSupplier/${supplier_id}`,{
         
-          if(data.succuss===false){
-            setError(true)
-            setLoading(false)
-            return
-          }
-          
-          setError(false)
-          setLoading(false)
-          setClientsDetails(data)
-          // setFilteredClients(data)
-          console.log(data)
-        }
-        catch(error){
-          setError(error.message)
-          setLoading(false)
+        method:'GET',
       
-        }
-    }
-
-    const fetchEmployes = async()=>{
+      })
+  
+      const data = await res.json();
     
-        try{
-    
-          setLoading(true);
-          const res = await fetch('/api/employe/getEmployes',{
-            
-              method:'GET',
-          
-          })
-
-          const data = await res.json();
-          // console.log(data)
-        
-          if(data.succuss===false){
-            setError(true)
-            setLoading(false)
-            return
-          }
-          
-          setError(false)
-          setLoading(false)
-         
-          setEmployes(data)
-          // setEmployes((prev)=>prev.filter((data)))
-      
-        }
-    
-        catch(error){
-          setError(error.message)
-          setLoading(false)
-    
+      if(data.succuss===false){
+        setError(true)
+        setLoading(false)
+        return
       }
+      
+      setError(false)
+      setLoading(false)
+      setClients(data.clients)
+      setSupplier(data)
+      console.log(data)
     }
+    catch(error){
+      setError(error.message)
+      setLoading(false)
+  
+    }
+  }
+
+  const handleSupplierId = (id)=>{
+
+    navigate(`/view_client/${id}`)
+
+  }
+
+  const navigateToTrip = ()=>{
     
-    
+    navigate('/trips')
+
+  }
 
   return (
 
@@ -119,15 +84,15 @@ export default function ViewSupplierDetails() {
       <div>
 
         <div>
-            <h2 className='text-2xl gap-4 mb-4'>{clientsDetails.name}</h2>
+            <h2 className='text-2xl gap-4 mb-4'>{supplier.name}</h2>
             <p>Clients Address</p>
         </div>
 
         <div>
-            <p className='flex gap-4'><span>Invoice Number:</span><span>{clientsDetails._id}</span></p >
-            <p className='flex gap-4'><span>Invoice Date:</span><span>{clientsDetails.createdAt}</span></p >
-            <p className='flex gap-4'><span>Invoice Weight:</span><span>{clientsDetails.weight}</span></p >
-            <p className='flex gap-4'><span>Invoice Supplier:</span><span>{clientsDetails.supplier_name}</span></p >
+            <p className='flex gap-4'><span>Invoice Number:</span><span>{supplier._id}</span></p >
+            <p className='flex gap-4'><span>Invoice Date:</span><span>{supplier.createdAt}</span></p >
+            <p className='flex gap-4'><span>Invoice Weight:</span><span>{supplier.weight}</span></p >
+            <p className='flex gap-4'><span>Invoice Supplier:</span><span>{supplier.supplier_name}</span></p >
         </div>
 
 
@@ -137,79 +102,78 @@ export default function ViewSupplierDetails() {
         
         <div>
             
-            <div className='flex justify-between mb-4'>
+          <div className='flex justify-between mb-4'>
 
-            <h3 className='text-regal-violet text-2xl p-2 '> Suppliers </h3>
+            <h3 className='text-regal-violet text-2xl p-2 '> Clients </h3>
 
-            <div className='flex items-center gap-4'>
+              <div className='flex items-center gap-4'>
 
-            <button 
-                className='flex items-center p-2 bg-dashbord rounded-xl text-white'>Add Supplier
-            </button>
+              <button 
+                  className='flex items-center p-2 bg-dashbord rounded-xl text-white'>Add Client
+              </button>
+              </div>
+
+          </div>
 
 
-            </div>
-
-            </div>
-
-            <table className=' w-full border-collapse' >
-
-                <thead  className='bg-regal-violet text-white'>
-
-                    <tr>
-
-                    {paymentTable.map((item,index)=>{
-
-                        return(
-
-                            
-                        <th className='p-4 text-left ' key={index}>{item}</th>
-
-                        )
-                    })}
-
-                        <th className='p-4 text-left '>Manange Suppliers</th>
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    { employes !== null ?employes.map((employe,index)=>{ 
-
-                        return(
-                            <tr key={index}>
-                            
-                            <td className='p-4 text-left'key={index}>{employe.createdAt.split("T", 1)}</td>
-
-                            <td className='p-4 text-left'>{employe.firstName}</td>
-                            <td className='p-4 text-left'>{employe.lastName}</td>
-                            <td className='p-4 text-left'>{employe.email}</td>
-                            <td className='p-4 text-left'>{employe.phone}</td>
-                            <td className='p-4 text-left'>{employe.role}</td>
-
-                            <td className='text-green flex gap-4 items-center p-4'>
-                                <span className='p-2 cursor-pointer '>Edit</span>
-                                <span className='p-2 cursor-pointer '>View</span>
-                            </td>
-
-                            </tr>
-
-                        )
-                    }):<tr> <td className='p-4 text-left'>loading</td> </tr>}
-
-                </tbody>
-
-            </table>
         </div>
 
+        <table className=' w-full border-collapse' >
 
-    </div>
+          <thead  className='bg-regal-violet text-white'>
+
+            <tr>
+
+              {viewSupplierDetailsTable.map((item,index)=>{
+
+                  return(
+
+                  <th className='p-4 text-left ' key={index}>{item}</th>
+                  )
+              })}
+
+              <th className='p-4 text-left '>Manage Clinets</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            { clients!== null ? clients.map((client)=>{ 
+
+              return(
+
+                <tr className='items-center' key={client._id}>
+              
+                  <td className='p-4 text-left'>{client._id}</td>
+                  <td className='p-4 text-left'>{client.name}</td>
+                  <td className='p-4 text-left'>{client.weight}</td>
+                
+                  <td className='flex gap-2 items-center p-2'>
+
+                    <button className='p-2 cursor-pointer 'id="add" onClick={()=>handleSupplierId(client._id)}>View</button>
+                    <button className='p-2 cursor-pointer ' id='view' onClick={()=>handleSupplierId(client._id)}>Edit</button>
+                    <button className='p-2 cursor-pointer 'id="delete" onClick={()=>handleDeteleTrip(client._id)}>Delete</button>
+
+                  </td>
+
+                </tr>
+
+              )
+            }):<tr> <td className='p-4 text-left'>loading</td> </tr>}
+
+          </tbody>
+
+        </table>
+
+
+       </div>
 
       <div className='flex justify-between items-center p-1'>
           
           <button onClick = {goBackClient} className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
-          type="button"> Back
+          type="button"> Done
           </button>
 
           <button onClick={handlePrint} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'

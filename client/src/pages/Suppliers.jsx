@@ -42,43 +42,6 @@ function Suppliers() {
 
     }
 
-  //   const fetchSuppliers = async()=>{
-    
-  //     try{
-  
-  //       setLoading(true);
-  //       const res = await fetch('/api/supplier/getSupplier/',{  
-
-  //         method:'GET',
-        
-  //       })
-
-  //       const data = await res.json();
-  //       // console.log(data)
-      
-  //       if(data.succuss===false){
-  //         setError(true)
-  //         setLoading(false)
-  //         return
-  //       }
-        
-  //       setError(false)
-  //       setLoading(false)
-       
-  //       setSuppliers(data.result)
-  //       // console.log(suppliers)
-  //       // setEmployes((prev)=>[...prev,data]);
-    
-  //     }
-  
-  //     catch(error){
-  //       setError(error.message)
-  //       setLoading(false)
-  
-  //   }
-  // }
-
-
     useEffect(()=>{
     
       // fetchSuppliers()
