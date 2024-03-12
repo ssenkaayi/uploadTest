@@ -42,41 +42,41 @@ function Suppliers() {
 
     }
 
-    const fetchSuppliers = async()=>{
+  //   const fetchSuppliers = async()=>{
     
-      try{
+  //     try{
   
-        setLoading(true);
-        const res = await fetch('/api/supplier/getSupplier/',{  
+  //       setLoading(true);
+  //       const res = await fetch('/api/supplier/getSupplier/',{  
 
-          method:'GET',
+  //         method:'GET',
         
-        })
+  //       })
 
-        const data = await res.json();
-        // console.log(data)
+  //       const data = await res.json();
+  //       // console.log(data)
       
-        if(data.succuss===false){
-          setError(true)
-          setLoading(false)
-          return
-        }
+  //       if(data.succuss===false){
+  //         setError(true)
+  //         setLoading(false)
+  //         return
+  //       }
         
-        setError(false)
-        setLoading(false)
+  //       setError(false)
+  //       setLoading(false)
        
-        setSuppliers(data.result)
-        // console.log(suppliers)
-        // setEmployes((prev)=>[...prev,data]);
+  //       setSuppliers(data.result)
+  //       // console.log(suppliers)
+  //       // setEmployes((prev)=>[...prev,data]);
     
-      }
+  //     }
   
-      catch(error){
-        setError(error.message)
-        setLoading(false)
+  //     catch(error){
+  //       setError(error.message)
+  //       setLoading(false)
   
-    }
-  }
+  //   }
+  // }
 
 
     useEffect(()=>{
@@ -138,8 +138,6 @@ function Suppliers() {
       setPageCount(data.pageCount)
 
     }
-
- 
 
 
   return (

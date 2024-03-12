@@ -26,10 +26,8 @@ function Navbar({searchBox}) {
 
     //z-index:header fixed
     
-    <div 
-
-        className='flex justify-between items-center flex-wrap 
-        bg-white rounded-2x p-header mb-4 my-2 rounded-lg '>
+    <div className='flex justify-between items-center flex-wrap bg-white rounded-2x p-header mb-4 my-2
+     rounded-lg z-index:header fixed right-4 left-64'>
 
         <div className='flex flex-col  text-dashbord '>
         

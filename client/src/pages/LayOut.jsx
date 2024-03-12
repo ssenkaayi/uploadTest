@@ -16,28 +16,15 @@ function LayOut() {
         <Sidebar/>
       </div>
       
-      <div className='bg-base flex-1 p-4 '>
+      <div className='flex-1 p-4 right-0'>
 
-        <Navbar/>
-
-        <Outlet/>
-
-{/* 
         <div className='flex h-20 '>
 
           <Navbar/>
 
         </div>
 
-        <div className='flex'>
-
-          <Outlet/>
-
-        </div> */}
-
-        
-
-
+        <Outlet/>
 
       </div>
 

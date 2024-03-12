@@ -24,10 +24,8 @@ export default function ViewSupplierDetails() {
     const [error,setError]= useState(null);
     const [clientsDetails,setClientsDetails]=useState([]) 
     const navigate = useNavigate()
+    const [employes , setEmployes] = useState([])
     
-
-    console.log(supplier_id)
-
 
     const handlePrint =()=>{
         window.print()
@@ -41,10 +39,11 @@ export default function ViewSupplierDetails() {
 
 
         fetchClients()
+        fetchEmployes()
     
-      },[supplier_id])
+    },[supplier_id])
     
-      const fetchClients = async()=>{
+    const fetchClients = async()=>{
     
         try{
       
@@ -74,17 +73,48 @@ export default function ViewSupplierDetails() {
           setLoading(false)
       
         }
+    }
+
+    const fetchEmployes = async()=>{
+    
+        try{
+    
+          setLoading(true);
+          const res = await fetch('/api/employe/getEmployes',{
+            
+              method:'GET',
+          
+          })
+
+          const data = await res.json();
+          // console.log(data)
+        
+          if(data.succuss===false){
+            setError(true)
+            setLoading(false)
+            return
+          }
+          
+          setError(false)
+          setLoading(false)
+         
+          setEmployes(data)
+          // setEmployes((prev)=>prev.filter((data)))
+      
+        }
+    
+        catch(error){
+          setError(error.message)
+          setLoading(false)
+    
       }
+    }
     
     
 
   return (
 
     <div className='bg-white mt-card p-20 mt-record rounded-2xl'>
-
-
-
-      {/* <InvoiceHeader client_id={client_id}/> */}
 
         <div>
 
@@ -102,8 +132,79 @@ export default function ViewSupplierDetails() {
 
 
         </div>
-      <MakePayments client_id={supplier_id}/>
-      {/* <ClientHeader client_id={supplier_id}/> */}
+
+      <div className='w-full mt-record mb-record'>
+        
+        <div>
+            
+            <div className='flex justify-between'>
+
+            <h3 className='text-regal-violet text-2xl p-2'> Manage Clients </h3>
+
+            <div className='flex items-center gap-4'>
+
+            <button 
+                className='flex items-center p-2 bg-dashbord rounded-xl text-white'>Add Client
+            </button>
+
+
+            </div>
+
+            </div>
+
+            <table className=' w-full border-collapse' >
+
+                <thead  className='bg-regal-violet text-white'>
+
+                    <tr>
+
+                    {paymentTable.map((item,index)=>{
+
+                        return(
+
+                            
+                        <th className='p-4 text-left ' key={index}>{item}</th>
+
+                        )
+                    })}
+
+                        <th className='p-4 text-left '>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    { employes !== null ?employes.map((employe,index)=>{ 
+
+                        return(
+                            <tr key={index}>
+                            
+                            <td className='p-4 text-left'key={index}>{employe.createdAt.split("T", 1)}</td>
+
+                            <td className='p-4 text-left'>{employe.firstName}</td>
+                            <td className='p-4 text-left'>{employe.lastName}</td>
+                            <td className='p-4 text-left'>{employe.email}</td>
+                            <td className='p-4 text-left'>{employe.phone}</td>
+                            <td className='p-4 text-left'>{employe.role}</td>
+
+                            <td className='text-green flex gap-4 items-center p-4'>
+                                <span className='p-2 cursor-pointer '>Edit</span>
+                                <span className='p-2 cursor-pointer '>View</span>
+                            </td>
+
+                            </tr>
+
+                        )
+                    }):<tr> <td className='p-4 text-left'>loading</td> </tr>}
+
+                </tbody>
+
+            </table>
+        </div>
+
+
+    </div>
 
       <div className='flex justify-between items-center p-1'>
           
@@ -117,10 +218,6 @@ export default function ViewSupplierDetails() {
 
       </div>
  
-        {/* <PrintView/> */}
-
-    
-    
     </div>
 
 

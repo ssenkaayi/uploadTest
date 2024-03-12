@@ -162,7 +162,7 @@ function Clients() {
 
   <div>
 
-    <div className='bg-white mt-card p-record mt-record rounded-2xl'>
+    <div className='bg-white mt-card p-record mt-record rounded-2xl right-4'>
 
       <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>   
       <EditClient onClose={handleOnClose} visible={showEditClient} client_id={client_id}/>
