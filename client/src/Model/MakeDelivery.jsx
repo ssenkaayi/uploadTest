@@ -57,9 +57,9 @@ export default function ViewHeader() {
         
         <div>
             
-            <div className='flex justify-between'>
+            <div className='flex justify-between mb-4'>
 
-            <h3 className='text-regal-violet text-2xl p-2'> Delivery </h3>
+            <h3 className='text-regal-violet text-2xl p-2 '> Delivery </h3>
 
             <div className='flex items-center gap-4'>
 

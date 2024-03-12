@@ -116,35 +116,35 @@ export default function ViewSupplierDetails() {
 
     <div className='bg-white mt-card p-20 mt-record rounded-2xl'>
 
+      <div>
+
         <div>
-
-            <div>
-                <h2 className='text-2xl gap-4 mb-4'>{clientsDetails.name}</h2>
-                <p>Clients Address</p>
-            </div>
-
-            <div>
-                <p className='flex gap-4'><span>Invoice Number:</span><span>{clientsDetails._id}</span></p >
-                <p className='flex gap-4'><span>Invoice Date:</span><span>{clientsDetails.createdAt}</span></p >
-                <p className='flex gap-4'><span>Invoice Weight:</span><span>{clientsDetails.weight}</span></p >
-                <p className='flex gap-4'><span>Invoice Supplier:</span><span>{clientsDetails.supplier_name}</span></p >
-            </div>
-
-
+            <h2 className='text-2xl gap-4 mb-4'>{clientsDetails.name}</h2>
+            <p>Clients Address</p>
         </div>
+
+        <div>
+            <p className='flex gap-4'><span>Invoice Number:</span><span>{clientsDetails._id}</span></p >
+            <p className='flex gap-4'><span>Invoice Date:</span><span>{clientsDetails.createdAt}</span></p >
+            <p className='flex gap-4'><span>Invoice Weight:</span><span>{clientsDetails.weight}</span></p >
+            <p className='flex gap-4'><span>Invoice Supplier:</span><span>{clientsDetails.supplier_name}</span></p >
+        </div>
+
+
+      </div>
 
       <div className='w-full mt-record mb-record'>
         
         <div>
             
-            <div className='flex justify-between'>
+            <div className='flex justify-between mb-4'>
 
-            <h3 className='text-regal-violet text-2xl p-2'> Manage Clients </h3>
+            <h3 className='text-regal-violet text-2xl p-2 '> Suppliers </h3>
 
             <div className='flex items-center gap-4'>
 
             <button 
-                className='flex items-center p-2 bg-dashbord rounded-xl text-white'>Add Client
+                className='flex items-center p-2 bg-dashbord rounded-xl text-white'>Add Supplier
             </button>
 
 
@@ -168,7 +168,7 @@ export default function ViewSupplierDetails() {
                         )
                     })}
 
-                        <th className='p-4 text-left '>Action</th>
+                        <th className='p-4 text-left '>Manange Suppliers</th>
                     </tr>
 
                 </thead>

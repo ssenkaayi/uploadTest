@@ -1,6 +1,7 @@
 import { tripValidation  } from '../validation.js'
 import asyncHandler from 'express-async-handler'
 import Trip from '../model/tripModel.js';
+import Supplier from '../model/supplierModel.js';
 
 
 export const createTrip = asyncHandler(async(req,res)=>{
@@ -59,11 +60,27 @@ export const getTrip = asyncHandler(async(req,res)=>{
 
     const isTrip = await Trip.findById(req.params.id)
     if(!isTrip) return next(errorHandler(400,'you are not authorise to view client data')) 
+
+    // const isSupplier = await Supplier.find({'trip._id':req.params.id},)
+    // if(!isSupplier) return next(errorHandler(400,'you are not authorise to view client data')) 
   
     // const {password:pass,...rest} = isEmploye._doc
     res.status(200).send(isTrip)
    
 })
+
+// export const getSupplier = asyncHandler(async(req,res)=>{
+
+
+//     const tripExist = await Trip.findById(req.params.id)
+//     if(!tripExist) return next(errorHandler(401,'you can only view your own listing'))
+
+//     const isSupplier = await Supplier.find({'trip._id':req.params.id},)
+//     // if(!isSupplier) return next(errorHandler(400,'you are not authorise to view client data')) 
+  
+//     res.status(200).send(isSupplier)
+   
+// })
 
 
 

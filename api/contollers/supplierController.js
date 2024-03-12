@@ -104,13 +104,16 @@ export const  deleteSupplier = async(req,res,next)=>{
 export const getSupplier = asyncHandler(async(req,res)=>{
 
 
+    // const tripExist = await Trip.findById(req.params.id)
+    // if(!tripExist) return next(errorHandler(401,'you can only view your own listing'))
+
     const isSupplier = await Supplier.findById(req.params.id)
     if(!isSupplier) return next(errorHandler(400,'you are not authorise to view client data')) 
   
-    // const {password:pass,...rest} = isEmploye._doc
     res.status(200).send(isSupplier)
    
 })
+
 
 
 

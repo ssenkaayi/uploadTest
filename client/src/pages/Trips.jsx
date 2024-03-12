@@ -144,7 +144,7 @@ function Trips() {
                             )
                         })}
 
-                        <th className='p-4 text-left '>Manage Suppliers In Trip</th>
+                        <th className='p-4 text-left '>Manage Trips</th>
                     </tr>
 
                 </thead>
