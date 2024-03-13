@@ -17,20 +17,20 @@ import { Link } from 'react-router-dom'
 
 function Clients() {
 
-    const [showViewClient,setShowViewClient] = useState(false)
-    const [showEditClient,setShowEditClient] = useState(false)
-    const [showAddEmploye,setShowAddEmploye] = useState(false)
-    const [showAddPayment,setshowAddPayment] = useState(false)
-    const [clients , setClients] = useState([])
-    const [loading , setLoading] = useState(false)
-    const [error , setError] = useState(false)
-    const navigate = useNavigate()
-    const [searchItem, setSearchItem] = useState('')
-    const [filteredClients, setFilteredClients] = useState([])
-    const [client_id , setClient_id] = useState(null)
-    const [limit,setLimit] = useState(10)
-    const [pageCount,setPageCount] = useState(1)
-    const currentPage = useRef()
+  const [showViewClient,setShowViewClient] = useState(false)
+  const [showEditClient,setShowEditClient] = useState(false)
+  const [showAddEmploye,setShowAddEmploye] = useState(false)
+  const [showAddPayment,setshowAddPayment] = useState(false)
+  const [clients , setClients] = useState([])
+  const [loading , setLoading] = useState(false)
+  const [error , setError] = useState(false)
+  const navigate = useNavigate()
+  const [searchItem, setSearchItem] = useState('')
+  const [filteredClients, setFilteredClients] = useState([])
+  const [client_id , setClient_id] = useState(null)
+  const [limit,setLimit] = useState(10)
+  const [pageCount,setPageCount] = useState(1)
+  const currentPage = useRef()
     
     useEffect(()=>{
 

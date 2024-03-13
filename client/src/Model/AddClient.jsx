@@ -31,6 +31,7 @@ function AddClient({visible , onClose , supplier_id }) {
       
       setLoading(true);
       e.preventDefault();
+      
       try{
         //making a request to the server
         const res = await fetch(`/api/client/create/${supplier_id}`,{
