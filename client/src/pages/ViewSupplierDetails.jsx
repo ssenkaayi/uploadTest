@@ -4,10 +4,10 @@ import { viewSupplierDetailsTable} from '../components/TableHeading'
 import { useEffect } from 'react'
 import { useParams} from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
+import EditClient from '../Model/EditClient'
+import AddClient from '../Model/AddClient'
 
 export default function ViewSupplierDetails() {
-
-
 
   const params = useParams() 
   const supplier_id = params.id
@@ -16,6 +16,10 @@ export default function ViewSupplierDetails() {
   const [clients,setClients]=useState([]) 
   const navigate = useNavigate()
   const [supplier , setSupplier] = useState([])
+  const [trip , setTrip] = useState({})
+  const [showAddClient,setShowAddClient] = useState(false)
+  const [showEditClient,setShowEditClient] = useState(false)
+  const [client_id, setClient_id] = useState('')
     
 
   const handlePrint =()=>{
@@ -23,7 +27,7 @@ export default function ViewSupplierDetails() {
     }
 
     const goBackClient = ()=>{
-    navigate(`/suppliers`)
+    navigate(`/view_trip/${trip._id}`)
   }
 
   useEffect(()=>{
@@ -56,7 +60,8 @@ export default function ViewSupplierDetails() {
       setLoading(false)
       setClients(data.clients)
       setSupplier(data)
-      console.log(data)
+      setTrip(data.trip)
+      // console.log(data)
     }
     catch(error){
       setError(error.message)
@@ -65,9 +70,25 @@ export default function ViewSupplierDetails() {
     }
   }
 
-  const handleSupplierId = (id)=>{
+  const handleViewClient = (id)=>{
 
     navigate(`/view_client/${id}`)
+
+  }
+
+  const handleEditClient = (id)=>{
+    setClient_id(id)
+    setShowEditClient(true)
+
+  }
+
+  const handleAddClient = ()=>{
+    setShowAddClient(true)
+  }
+
+  const handleOnClose = ()=>{
+      
+    setShowAddClient(false)
 
   }
 
@@ -80,6 +101,9 @@ export default function ViewSupplierDetails() {
   return (
 
     <div className='bg-white mt-card p-20 mt-record rounded-2xl'>
+
+      {/* <EditClient onClose={handleOnClose} visible={showEditClient} client_id={client_id}/> */}
+      <AddClient onClose={handleOnClose} visible={showAddClient} supplier_id={supplier_id}/>
 
       <div>
 
@@ -109,7 +133,7 @@ export default function ViewSupplierDetails() {
               <div className='flex items-center gap-4'>
 
               <button 
-                  className='flex items-center p-2 bg-dashbord rounded-xl text-white'>Add Client
+                onClick={handleAddClient}  className='flex items-center p-2 bg-dashbord rounded-xl text-white'>Add Client
               </button>
               </div>
 
@@ -152,8 +176,8 @@ export default function ViewSupplierDetails() {
                 
                   <td className='flex gap-2 items-center p-2'>
 
-                    <button className='p-2 cursor-pointer 'id="add" onClick={()=>handleSupplierId(client._id)}>View</button>
-                    <button className='p-2 cursor-pointer ' id='view' onClick={()=>handleSupplierId(client._id)}>Edit</button>
+                    <button className='p-2 cursor-pointer 'id="add" onClick={()=>handleViewClient(client._id)}>View</button>
+                    <button className='p-2 cursor-pointer ' id='view' onClick={()=>handleEditClient(client._id)}>Edit</button>
                     <button className='p-2 cursor-pointer 'id="delete" onClick={()=>handleDeteleTrip(client._id)}>Delete</button>
 
                   </td>

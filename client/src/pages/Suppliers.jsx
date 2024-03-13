@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import AddClient from '../Model/AddClient'
+
 import { useNavigate } from 'react-router-dom';
 import { supplierTable } from '../components/TableHeading'
 import ReactPaginate from 'react-paginate';

@@ -9,6 +9,8 @@ import PrintView from '../Model/PrintView'
 import InvoiceHeader from '../Model/InvoiceHeader'
 import { useParams} from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
+import AddSupplier from '../Model/AddSUpplier'
+
 
 
 
@@ -17,16 +19,13 @@ import { useNavigate } from 'react-router-dom';
 export default function ViewTripDetails() {
 
   const params = useParams() 
-//   const client_id = params.id
-  const supplier_id = params.id
+  const trip_id = params.id
   const [loading,setLoading]=useState(false);
   const [error,setError]= useState(null);
   const [clientsDetails,setClientsDetails]=useState([]) 
   const navigate = useNavigate()
   const [suppliers , setSuppliers] = useState([])
-  // const [trip_id , setTrip_id] = useState('')
-
-//   console.log(client_id)
+  const [showAddSupplier,setShowAddSupplier] = useState(false)
 
 
   const handlePrint =()=>{
@@ -43,14 +42,14 @@ export default function ViewTripDetails() {
 
         fetchClients()
     
-    },[supplier_id])
+    },[trip_id])
     
     const fetchClients = async()=>{
   
       try{
     
         setLoading(true);
-        const res = await fetch(`/api/trip/getTrip/${supplier_id}`,{
+        const res = await fetch(`/api/trip/getTrip/${trip_id}`,{
           
           method:'GET',
         
@@ -68,7 +67,7 @@ export default function ViewTripDetails() {
         setLoading(false)
         setClientsDetails(data)
         setSuppliers(data.suppliers)
-        console.log(data.suppliers)
+        // console.log(data.suppliers)
       }
       catch(error){
         setError(error.message)
@@ -85,10 +84,22 @@ export default function ViewTripDetails() {
       // setShowAddSupplier(true)
 
     }
+
+    const handleAddSupplier = ()=>{
+      setShowAddSupplier(true)
+    }
+
+    const handleOnClose = ()=>{
+      
+      setShowAddSupplier(false)
+  
+    }
   
   return (
 
     <div className='bg-white mt-card p-20 mt-record rounded-2xl'>
+
+      <AddSupplier  onClose={handleOnClose}  visible={showAddSupplier} trip_id={trip_id} /> 
 
       <div>
 
@@ -118,7 +129,7 @@ export default function ViewTripDetails() {
             <div className='flex items-center gap-4  mb-4'>
 
               <button 
-                  className='flex items-center p-2 bg-dashbord rounded-xl text-white'>Add Supplier
+                onClick={handleAddSupplier}  className='flex items-center p-2 bg-dashbord rounded-xl text-white'>Add Supplier
               </button>
 
 

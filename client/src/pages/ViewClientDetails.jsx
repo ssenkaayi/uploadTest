@@ -24,7 +24,7 @@ export default function ViewClientDetails() {
   const navigate = useNavigate()
   const [showAddClient,setShowAddClient] = useState(false)
 
-  console.log(client_id)
+  // console.log(client_id)
 
 
   const handlePrint =()=>{
