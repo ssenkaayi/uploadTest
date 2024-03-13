@@ -133,8 +133,8 @@ export default function Search() {
 
                 <td className='text-green flex gap-4 items-center p-4'>
 
-                  <button className='p-2 cursor-pointer 'id='payment' onClick={()=>handleMakePayment(client._id)}>Payment</button>
-                  <button className='p-2 cursor-pointer 'id='edit' onClick={()=>handleEditClient(client._id)}>Edit</button>
+                  {/* <button className='p-2 cursor-pointer 'id='payment' onClick={()=>handleMakePayment(client._id)}>Payment</button> */}
+                  {/* <button className='p-2 cursor-pointer 'id='edit' onClick={()=>handleEditClient(client._id)}>Edit</button> */}
                   <button className='p-2 cursor-pointer 'id='view' onClick={()=>handleViewClient(client._id)}>View</button>
                   <button className='p-2 cursor-pointer 'id='delete' onClick={()=>handleDeleteClient(client._id)}>Delete</button>
 
@@ -153,7 +153,7 @@ export default function Search() {
                 </td>
                 </tr>
             )
-        }):<tr> <td className='p-4 text-left'>search not found</td> </tr>}
+        }):<tr> <td className='p-4 text-left'>{error}</td> </tr>}
 
     </tbody>
 
