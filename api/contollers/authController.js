@@ -44,9 +44,9 @@ export const registerEmploye = asyncHandler(async(req,res)=>{
 const generateToken = (id)=>{
 
     return Jwt.sign({_id:id},process.env.JWT_SECRET,{
-        // expiresIn: "10h" // it will be expired after 10 hours
+        expiresIn: "6h" // it will be expired after 10 hours
         //expiresIn: "20d" // it will be expired after 20 days
-        expiresIn: 120 // it will be expired after 120ms
+        // expiresIn: 120 // it will be expired after 120ms
         // expiresIn: "120s" // it will be expired after 120s
  })
 }
