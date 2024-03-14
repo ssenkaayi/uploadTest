@@ -196,7 +196,7 @@ export default function ViewTripDetails() {
       <div className='flex justify-between items-center p-1'>
           
         <button onClick = {goBackClient} className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
-        type="button"> Back
+        type="button"> Done
         </button>
 
         <button onClick={handlePrint} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'

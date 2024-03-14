@@ -1,7 +1,7 @@
 import React from 'react'
 import AddEmploye from './AddEmploye'
 import { useState } from 'react'
-import { employeTable, paymentTable } from '../components/TableHeading'
+import {  deliveryTable } from '../components/TableHeading'
 import { useEffect } from 'react'
 
 export default function ViewHeader() {
@@ -78,7 +78,7 @@ export default function ViewHeader() {
 
                     <tr>
 
-                    {paymentTable.map((item,index)=>{
+                    {deliveryTable.map((item,index)=>{
 
                         return(
 
@@ -105,9 +105,9 @@ export default function ViewHeader() {
                             <td className='p-4 text-left'>{employe.firstName}</td>
                             <td className='p-4 text-left'>{employe.lastName}</td>
                             <td className='p-4 text-left'>{employe.email}</td>
-                            <td className='p-4 text-left'>{employe.phone}</td>
+                            {/* <td className='p-4 text-left'>{employe.phone}</td> */}
                             {/* <td className='p-4 text-left'>{employe.address}</td> */}
-                            <td className='p-4 text-left'>{employe.role}</td>
+                            {/* <td className='p-4 text-left'>{employe.role}</td> */}
 
                             <td className='text-green flex gap-4 items-center p-4'>
                                 <span className='p-2 cursor-pointer '>Edit</span>

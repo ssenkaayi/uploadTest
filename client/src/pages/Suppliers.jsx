@@ -15,7 +15,7 @@ function Suppliers() {
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
     const navigate = useNavigate();
-    const [limit,setLimit] = useState(7)
+    const [limit,setLimit] = useState(8)
     const [pageCount,setPageCount] = useState(1)
     const currentPage = useRef()
 
@@ -149,9 +149,9 @@ function Suppliers() {
                             <tr key={index}>
                             
                               <td className='p-4 text-left'>{supplier.createdAt.split("T", 1)}</td>
-                              <td className='p-4 text-left'>{supplier.trip_name}</td>
+                              <td className='p-4 text-left'>{supplier.trip.name}</td>
                               <td className='p-4 text-left'>{supplier.name}</td>
-                              <td className='p-4 text-left'>{supplier.client_name}</td>
+                              {/* <td className='p-4 text-left'>{supplier.client_name}</td> */}
                               <td className='p-4 text-left'>{supplier.weight}</td>
                               <td className='p-4 text-left'>{supplier.number_clients}</td>
                               <td className='p-4 text-left'>{supplier.issued_by}</td>

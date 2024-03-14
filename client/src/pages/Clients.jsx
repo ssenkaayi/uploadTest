@@ -28,7 +28,7 @@ function Clients() {
   const [searchItem, setSearchItem] = useState('')
   const [filteredClients, setFilteredClients] = useState([])
   const [client_id , setClient_id] = useState(null)
-  const [limit,setLimit] = useState(9)
+  const [limit,setLimit] = useState(8)
   const [pageCount,setPageCount] = useState(1)
   const currentPage = useRef()
     
