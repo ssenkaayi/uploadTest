@@ -43,7 +43,12 @@ export const registerEmploye = asyncHandler(async(req,res)=>{
 
 const generateToken = (id)=>{
 
-    return Jwt.sign({_id:id},process.env.JWT_SECRET,)
+    return Jwt.sign({_id:id},process.env.JWT_SECRET,{
+        // expiresIn: "10h" // it will be expired after 10 hours
+        //expiresIn: "20d" // it will be expired after 20 days
+        expiresIn: 120 // it will be expired after 120ms
+        // expiresIn: "120s" // it will be expired after 120s
+ })
 }
 
 export const loginEmploye = asyncHandler(async(req,res,next)=>{
@@ -69,9 +74,6 @@ export const loginEmploye = asyncHandler(async(req,res,next)=>{
         const {password:pass,...rest} = isEmploye._doc
         res.cookie('access_token',token,{httpOnly:true}).status(200).json(rest)
 
- 
-    
-    
       }catch(error){
         next(error)
     }
