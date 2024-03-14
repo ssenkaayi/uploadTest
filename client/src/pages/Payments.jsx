@@ -141,7 +141,7 @@ function Payments() {
                             <td className='p-4 text-left'key={index}>{employe.createdAt.split("T", 1)}</td>
 
                             <td className='p-4 text-left'>{employe.firstName}</td>
-                            <td className='p-4 text-left'>{employe.lastName}</td>
+                            {/* <td className='p-4 text-left'>{employe.lastName}</td> */}
                             <td className='p-4 text-left'>{employe.email}</td>
                             <td className='p-4 text-left'>{employe.phone}</td>
                             <td className='p-4 text-left'>{employe.address}</td>

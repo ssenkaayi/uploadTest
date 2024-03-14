@@ -167,17 +167,6 @@ export default function Search() {
                   {/* <button className='p-2 cursor-pointer 'id='delete' onClick={()=>handleDeleteClient(client._id)}>Delete</button> */}
 
                   
-                  {/* <li 
-                      className='transition-li 
-                      text-sm 
-                  bg-menu p-4 m-li rounded-lg w-full'>
-
-                      <Link 
-                      className=' flex items-center
-                      text-sm gap-1.5' > Dashbord </Link>
-
-                  </li>     */}
-                  
                 </td>
                 </tr>
             )
