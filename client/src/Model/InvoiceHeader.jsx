@@ -9,7 +9,8 @@ export default function InvoiceHeader({client_id}) {
 
   const [loading,setLoading]=useState(false);
   const [error,setError]= useState(null);
-  const [clientsDetails,setClientsDetails]=useState([]) 
+  const [clientsDetails,setClientsDetails]=useState({}) 
+  const [supplier,setSupplier] = useState({})
   const [showEditClient,setShowEditClient] = useState(false)
   const navigate = useNavigate();
   
@@ -44,7 +45,7 @@ export default function InvoiceHeader({client_id}) {
       setLoading(false)
       setClientsDetails(data)
       // setFilteredClients(data)
-      // console.log(data)
+      console.log(data.supplier)
     }
     catch(error){
       setError(error.message)
@@ -125,22 +126,29 @@ export default function InvoiceHeader({client_id}) {
 
         <div className='flex flex-col'>
 
-          <p>  Number: </p >
-          <p>  Date:   </p >
-          <p>  Weight: </p >
-          <p>  Supplier: </p >
-          {/* <p> Clients Address: </p> */}
+          <p>  Id </p >
+          <p>  Date   </p >
+          <p>  Weight </p >
+          <p>  Supplier </p >
+          <p>  Trip </p>
 
         </div>
 
  
 
         <div className='flex flex-col'>
+           {clientsDetails.createdAt!==undefined?
+           <div>
+            <p>{clientsDetails._id}</p>
+            <p>{clientsDetails.createdAt.split("T", 1)}</p>
+            <p>{clientsDetails.weight}Kg</p>
+            <p>{clientsDetails.supplier.name}</p>
+            {/* <p>{clientsDetails.trip.name}</p> */}
+            {/* <p>{clientsDetails.supplier_name}</p> */}
+          </div>
+          :''
 
-          <p>{clientsDetails._id}</p>
-          <p>{clientsDetails.createdAt}</p>
-          <p>{clientsDetails.weight}Kg</p>
-          <p>{clientsDetails.supplier_name}</p>
+           }
 
         </div>
         
