@@ -51,6 +51,12 @@ export default function Login() {
         return
       }
 
+      if(data.data === 'jwt expired'){
+        alert('token expired login again')
+        window.localStorage.clear()
+        window.location.href = './login'
+      }
+
       //if response is True, register and navigate to the sign in page
       
       dispatch(signInSuccess(data));

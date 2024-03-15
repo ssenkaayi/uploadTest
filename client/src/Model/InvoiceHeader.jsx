@@ -1,13 +1,15 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
-import handleViewClient from '../pages/Clients'
+import EditClient from '../Model/EditClient'
+// import handleViewClient from '../pages/Clients'
 
 export default function InvoiceHeader({client_id}) {
 
   const [loading,setLoading]=useState(false);
   const [error,setError]= useState(null);
   const [clientsDetails,setClientsDetails]=useState([]) 
+  const [showEditClient,setShowEditClient] = useState(false)
 
   useEffect(()=>{
 
@@ -48,19 +50,63 @@ export default function InvoiceHeader({client_id}) {
     }
   }
 
-  return (
-    <div>
+  const handleEditUser =()=>{
 
-      <div>
-          <h2 className='text-2xl gap-4 mb-4'>{clientsDetails.name}</h2>
-          <p>Clients Address</p>
+    setShowEditClient(true)
+  
+  }
+
+  const handleOnClose = ()=>{
+      
+    setShowEditClient(false)
+
+  }
+
+
+  return (
+    <div className=''>
+      {/* <ViewClient onClose={handleOnClose} visible={showViewClient} client_id={client_id}/> */}
+      <EditClient onClose={handleOnClose} visible={showEditClient} client_id={client_id}/>
+
+      <div className='flex justify-between'>
+
+        <span className='text-2xl gap-2 mb-2'>{clientsDetails.name}'s invoice </span>
+        <span onClick={handleEditUser} className='cursor-pointer  gap-2  mb-2'>Edit</span>
+
       </div>
 
-      <div>
-          <p className='flex gap-4'><span>Invoice Number:</span><span>{clientsDetails._id}</span></p >
-          <p className='flex gap-4'><span>Invoice Date:</span><span>{clientsDetails.createdAt}</span></p >
-          <p className='flex gap-4'><span>Invoice Weight:</span><span>{clientsDetails.weight}</span></p >
-          <p className='flex gap-4'><span>Invoice Supplier:</span><span>{clientsDetails.supplier_name}</span></p >
+      <div className='flex'>
+
+
+        <h2 className=' gap-2 mb-2 justify-center'> <strong>From: Maris Cargo Limited</strong></h2>
+  
+      </div>
+
+ 
+
+      <div className='flex gap-4'>
+
+        <div className='flex flex-col'>
+
+          <p>  Number: </p >
+          <p>  Date:   </p >
+          <p>  Weight: </p >
+          <p>  Supplier: </p >
+          {/* <p> Clients Address: </p> */}
+
+        </div>
+
+ 
+
+        <div className='flex flex-col'>
+
+          <p>{clientsDetails._id}</p>
+          <p>{clientsDetails.createdAt}</p>
+          <p>{clientsDetails.weight}Kg</p>
+          <p>{clientsDetails.supplier_name}</p>
+
+        </div>
+        
       </div>
 
 
