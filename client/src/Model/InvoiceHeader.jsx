@@ -95,6 +95,7 @@ export default function InvoiceHeader({client_id}) {
 
 
   return (
+
     <div className=''>
       {/* <ViewClient onClose={handleOnClose} visible={showViewClient} client_id={client_id}/> */}
       <EditClient onClose={handleOnClose} visible={showEditClient} client_id={client_id}/>
@@ -145,16 +146,10 @@ export default function InvoiceHeader({client_id}) {
             <p>{clientsDetails.supplier.name}</p>
             {/* <p>{clientsDetails.trip.name}</p> */}
             {/* <p>{clientsDetails.supplier_name}</p> */}
-          </div>
-          :''
-
-           }
+          </div>:''}
 
         </div>
-        
       </div>
-
-
     </div>
   )
 }

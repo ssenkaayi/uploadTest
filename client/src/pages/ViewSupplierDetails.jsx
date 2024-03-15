@@ -15,7 +15,7 @@ export default function ViewSupplierDetails() {
   const [error,setError]= useState(null);
   const [clients,setClients]=useState([]) 
   const navigate = useNavigate()
-  const [supplier , setSupplier] = useState([])
+  const [supplier , setSupplier] = useState({})
   const [trip , setTrip] = useState({})
   const [showAddClient,setShowAddClient] = useState(false)
   const [showEditClient,setShowEditClient] = useState(false)
@@ -98,6 +98,14 @@ export default function ViewSupplierDetails() {
 
   }
 
+  const handleEditSupplier = ()=>{
+
+  }
+
+  const handleDeleteSupplier = ()=>{
+    
+  }
+
   return (
 
     <div className='bg-white mt-card p-20 mt-record rounded-2xl'>
@@ -105,7 +113,7 @@ export default function ViewSupplierDetails() {
       {/* <EditClient onClose={handleOnClose} visible={showEditClient} client_id={client_id}/> */}
       <AddClient onClose={handleOnClose} visible={showAddClient} supplier_id={supplier_id}/>
 
-      <div>
+      {/* <div>
 
         <div>
             <h2 className='text-2xl gap-4 mb-4'>{supplier.name}</h2>
@@ -120,7 +128,61 @@ export default function ViewSupplierDetails() {
         </div>
 
 
+      </div> */}
+
+      <div className=''>
+      {/* <ViewClient onClose={handleOnClose} visible={showViewClient} client_id={client_id}/> */}
+      <EditClient onClose={handleOnClose} visible={showEditClient} client_id={client_id}/>
+
+      <div className='flex justify-between'>
+
+        <span className='text-2xl gap-2 mb-2'>{supplier.name}'s invoice </span>
+
+        <div className='flex gap-4 '>
+
+          <button onClick={handleEditSupplier} className='cursor-pointer  gap-2  mb-2'>Edit</button>
+          <button onClick={handleDeleteSupplier} className='cursor-pointer  gap-2  mb-2'>Delete</button>
+
+        </div>
+        
+
       </div>
+
+      <div className='flex'>
+
+
+        <h2 className=' gap-2 mb-2 justify-center'> <strong>From: Maris Cargo Limited</strong></h2>
+  
+      </div>
+
+ 
+
+      <div className='flex gap-4'>
+
+        <div className='flex flex-col'>
+
+          <p>  Id </p >
+          <p>  Date   </p >
+          <p>  Weight </p >
+          {/* <p>  Supplier </p > */}
+          <p>  Trip </p>
+
+        </div>
+
+ 
+
+        <div className='flex flex-col'>
+           {supplier.createdAt!==undefined?
+           <div>
+            <p>{supplier._id}</p>
+            <p>{supplier.createdAt.split("T", 1)}</p>
+            <p>{supplier.weight}Kg</p>
+            <p>{supplier.trip.name}</p>
+          </div>:''}
+
+        </div>
+      </div>
+    </div>
 
       <div className='w-full mt-record mb-record'>
         
