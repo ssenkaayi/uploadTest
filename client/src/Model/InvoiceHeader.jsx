@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import EditClient from '../Model/EditClient'
+import { useNavigate } from 'react-router-dom';
 // import handleViewClient from '../pages/Clients'
 
 export default function InvoiceHeader({client_id}) {
@@ -10,6 +11,8 @@ export default function InvoiceHeader({client_id}) {
   const [error,setError]= useState(null);
   const [clientsDetails,setClientsDetails]=useState([]) 
   const [showEditClient,setShowEditClient] = useState(false)
+  const navigate = useNavigate();
+  
 
   useEffect(()=>{
 
@@ -62,6 +65,33 @@ export default function InvoiceHeader({client_id}) {
 
   }
 
+  const handleDeleteClient = async()=>{
+
+
+    try{
+  
+      const res = await fetch(`/api/client/delete/${client_id}`,{
+        method:"DELETE",
+      })
+  
+      const data = await res.json();
+  
+      // console.log(data)
+  
+      if(data.success===false){
+        console.log(data.message)
+        setError(data.message)
+        setLoading(false)
+      }
+  
+      // setFilteredClients((prev)=>prev.filter((client)=>client._id!==button_id))
+      navigate('/')
+  
+    }catch(error){
+      console.log(error)
+    }
+  }
+
 
   return (
     <div className=''>
@@ -71,7 +101,14 @@ export default function InvoiceHeader({client_id}) {
       <div className='flex justify-between'>
 
         <span className='text-2xl gap-2 mb-2'>{clientsDetails.name}'s invoice </span>
-        <span onClick={handleEditUser} className='cursor-pointer  gap-2  mb-2'>Edit</span>
+
+        <div className='flex gap-4 '>
+
+          <button onClick={handleEditUser} className='cursor-pointer  gap-2  mb-2'>Edit</button>
+          <button onClick={handleDeleteClient} className='cursor-pointer  gap-2  mb-2'>Delete</button>
+
+        </div>
+        
 
       </div>
 

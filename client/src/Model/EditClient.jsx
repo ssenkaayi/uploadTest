@@ -46,13 +46,8 @@ function EditClient({visible , onClose, client_id}) {
 
                 <div className='flex flex-col gap-4 w-80'>
 
-                  <label className='text-1xl font-semibold'>firstname</label>
-                  <input type="text" placeholder="Enter email" id='firstName' className='border p-3 rounded-lg'
-                  required onChange={handleChange}
-                  />
-
-                  <label className='text-1xl font-semibold'>lastname</label>
-                  <input type="text" placeholder="Enter Password" id='lastName' 
+                  <label className='text-1xl font-semibold'>name</label>
+                  <input type="text" placeholder="Enter Password" id='name' 
                   className='border p-3 rounded-lg' required onChange={handleChange}
                   />
 
