@@ -45,7 +45,7 @@ export default function InvoiceHeader({client_id}) {
       setLoading(false)
       setClientsDetails(data)
       // setFilteredClients(data)
-      console.log(data.supplier)
+      // console.log(data.supplier)
     }
     catch(error){
       setError(error.message)

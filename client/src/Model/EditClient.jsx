@@ -12,19 +12,33 @@ function EditClient({visible , onClose, client_id}) {
   const handleOnClose = ()=> onClose()
 
   
-  const [formData,setFormData]=useState({});
+  const [formData,setFormData]=useState({
+    name:'',
+    weight:0,
+    supplier:{name:''}
+  });
+
+
+
   const [loading,setLoading]=useState(false);
   const [error,setError]= useState(null);
-  const [supplierName,setSupplierName] = useState('')
-  
-  // const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleChange = (e)=>{
-    setFormData({
-      ...formData,
-      [e.target.id]:e.target.value,
-    });
+
+    if(e.target.type === 'number' || e.target.type === 'text'){
+      setFormData({...formData,
+      [e.target.id]:e.target.value })
+    }
+
+    // setFormData({
+    //   ...formData,
+    //   [e.target.id]:e.target.value,
+    // });
+   
   };
+
+  console.log(formData)
 
   useEffect(()=>{
 
@@ -56,7 +70,6 @@ function EditClient({visible , onClose, client_id}) {
       setLoading(false)
       // console.log(data)
       setFormData(data)
-      setSupplierName(data.supplier.name)
     }
     catch(error){
       setError(error.message)
@@ -65,10 +78,42 @@ function EditClient({visible , onClose, client_id}) {
     }
   }
 
-  
-  
-  // max-w-lg mx-auto 
+  const handleSubmit = async(e)=>{
 
+    e.preventDefault();
+
+    try{
+        setLoading(true)
+        setError(false)
+
+        const res =  await fetch(`/listing/update/${client_id}`,{
+            method:'post',
+            headers:{
+                'Content-Type' : 'application/json',
+            },
+            body:JSON.stringify({...formData,})
+        });
+
+        const data = await res.json()
+        setLoading(false);
+        
+
+        if(data.success === false){
+
+            setError(data.message);
+         
+        }
+
+       
+
+    }catch(error){
+        setError(error.message);
+        setLoading(false);
+
+    }
+
+    navigate(`/view_client/${client_id}`)
+}
 
   return (
 
@@ -79,7 +124,7 @@ function EditClient({visible , onClose, client_id}) {
 
             <h3 className='text-4xl text-center gap-4 mb-4'>Edit Clients Details</h3>
 
-            <form className='flex gap-8 flex-col' >
+            <form className='flex gap-8 flex-col' onSubmit={handleSubmit}>
 
               <div className='flex gap-8' >
 
@@ -100,7 +145,7 @@ function EditClient({visible , onClose, client_id}) {
 
 
                   <label className='text-1xl font-semibold'> supplier</label>
-                  <input type="text" placeholder="Enter Password" id='supplier' value={supplierName}  
+                  <input type="text" placeholder="Enter Password" id='supplier' value={formData.supplier.name}  
                   className='border p-3 rounded-lg' required onChange={handleChange}
                   />
 
