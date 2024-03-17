@@ -102,7 +102,7 @@ export default function InvoiceHeader({client_id}) {
 
       <div className='flex justify-between'>
 
-        <span className='text-2xl gap-2 mb-2'>{clientsDetails.name}'s invoice </span>
+        <span className='text-2xl gap-2 mb-2'>clients's invoice </span>
 
         <div className='flex gap-4 '>
 
@@ -129,6 +129,7 @@ export default function InvoiceHeader({client_id}) {
 
           <p>  Id </p >
           <p>  Date   </p >
+          <p>  name </p >
           <p>  Weight </p >
           <p>  Supplier </p >
           <p>  Trip </p>
@@ -142,6 +143,7 @@ export default function InvoiceHeader({client_id}) {
            <div>
             <p>{clientsDetails._id}</p>
             <p>{clientsDetails.createdAt.split("T", 1)}</p>
+            <p>{clientsDetails.name}</p>
             <p>{clientsDetails.weight}Kg</p>
             <p>{clientsDetails.supplier.name}</p>
             {/* <p>{clientsDetails.trip.name}</p> */}
