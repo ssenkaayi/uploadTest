@@ -44,18 +44,12 @@ export const createClient = asyncHandler(async(req,res,next)=>{
     await Supplier.findByIdAndUpdate({_id:supplier_id},{$set:{number_clients:arr.length,
     weight:new_supplier_weight,}},{new:true})
 
-    // console.log(updatedSupplierWeight)
-    // const trip = await Trip.findOne({'suppliers._id':supplier_id})
-    // if(!trip) return res.status(400).send('supplier with id doesnt exist')
-    // console.log(trip)
-
     const supplier_trip = await Trip.findOneAndUpdate({'suppliers._id':supplier_id},
     {$set:{'suppliers.$':{name:supplier.name,_id:supplier_id,weight:new_supplier_weight}}},{new:true})
     if(!supplier_trip) res.status(400).json({"message":"failed to update supplier trip"})
     // console.log(supplier_trip.suppliers)
 
     //updating trip weight
-
 
     console.log(supplier_trip.suppliers.length)
     let new_trip_weight = 0;
@@ -161,7 +155,8 @@ export const  deleteClient = async(req,res,next)=>{
        await Supplier.findByIdAndUpdate({_id:supplier_id},{$set:{number_clients:arr.length,
         weight:new_supplier_weight,}},{new:true})
     
-       const supplier_trip = await Trip.findOneAndUpdate({'suppliers._id':supplier_id},{$set:{'suppliers.$':{name:supplier.name,_id:supplier_id,weight:new_supplier_weight}}},{new:true})
+       const supplier_trip = await Trip.findOneAndUpdate({'suppliers._id':supplier_id},
+       {$set:{'suppliers.$':{name:supplier.name,_id:supplier_id,weight:new_supplier_weight}}},{new:true})
        if(!supplier_trip) res.status(400).json({"message":"failed to update supplier trip"})
     //    console.log(supplier_trip)
     
@@ -210,5 +205,71 @@ export const searchClient = async(req,res,next)=>{
     }catch(error){
         next(error)
     }
+
+}
+
+export const updateClient = async(req,res,next)=>{
+
+    console.log(req.body)
+
+    const client = await Client.findById(req.params.id)
+    if(!client) next(errorHandler(402,"client with id is not found"))
+
+    const client_id = req.params.id
+    const supplier_id = client.supplier._id
+    
+    const supplier = await Supplier.findById(supplier_id)
+    if(!supplier) next(errorHandler(402,"supplier with this id doesnt exist"))
+
+    const trip_id = supplier.trip._id
+
+    const trip = await Trip.findById(trip_id)
+    if(!trip) next(errorHandler(402,"trip with with this id doesn't exist "))
+
+    try{
+
+        const updateClient = await Client.findOneAndUpdate({_id:client_id},{$set:{name:req.body.name,weight:req.body.weight}},{new:true})
+        if(!updateClient) next(errorHandler(402,"updating client failed"))
+        // console.log(updateClient)
+
+        const updateSupplier = await Supplier.findOneAndUpdate({'clients._id':client_id},{$set:{"client.$":{name:req.body.name,weight:req.body.weight}}})
+        if(!updateSupplier) next(errorHandler(402,"updating clients document in the supplier document failed"))
+        // console.log(updateSupplier)
+
+        const arr = updateSupplier.clients
+        let new_supplier_weight = 0;
+        for (let i = 0; i < arr.length; i++) {
+         new_supplier_weight += arr[i].weight;
+        }
+
+        await Supplier.findByIdAndUpdate({_id:supplier_id},{$set:{number_clients:arr.length,
+            weight:new_supplier_weight,}},{new:true})
+        
+           const supplier_trip = await Trip.findOneAndUpdate({'suppliers._id':supplier_id},
+           {$set:{'suppliers.$':{name:supplier.name,_id:supplier_id,weight:new_supplier_weight}}},{new:true})
+           if(!supplier_trip) res.status(400).json({"message":"failed to update supplier "})
+        //    console.log(supplier_trip)
+        
+        //updating trip weight
+    
+        // const  = updatedSupplier.client_weight
+        let new_trip_weight = 0;
+        for (let i = 0; i < supplier_trip.suppliers.length; i++) {
+            new_trip_weight += supplier_trip.suppliers[i].weight;
+        }
+        // console.log(new_trip_weight)
+        // console.log(supplier_trip)
+        const trip = await Trip.findByIdAndUpdate({_id:trip_id},{$set:{weight:new_trip_weight}},{new:true})
+        // console.log(trip)
+        if(!trip) return res.status(400).json({"message":"trip with id failed to update"})
+    
+        // sending response to the client
+        res.status(200).json(updateClient)
+
+    }catch(error){
+
+        next(error)
+    }
+
 
 }

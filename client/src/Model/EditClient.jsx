@@ -38,7 +38,7 @@ function EditClient({visible , onClose, client_id}) {
    
   };
 
-  console.log(formData)
+  // console.log(formData)
 
   useEffect(()=>{
 
@@ -86,12 +86,12 @@ function EditClient({visible , onClose, client_id}) {
         setLoading(true)
         setError(false)
 
-        const res =  await fetch(`/listing/update/${client_id}`,{
-            method:'post',
+        const res =  await fetch(`/api/client/updateClient/${client_id}`,{
+            method:'put',
             headers:{
                 'Content-Type' : 'application/json',
             },
-            body:JSON.stringify({...formData,})
+            body:JSON.stringify(formData)
         });
 
         const data = await res.json()
@@ -104,7 +104,12 @@ function EditClient({visible , onClose, client_id}) {
          
         }
 
-       
+        //if response is True, register and navigate to the sign in page
+        setLoading(false);
+        setError(null)
+        // navigate('/')
+        navigate(`/view_client/${client_id}`)
+        handleOnClose()
 
     }catch(error){
         setError(error.message);
