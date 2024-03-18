@@ -239,16 +239,16 @@ export const updateClient = async(req,res,next)=>{
         const updateSupplier = await Supplier.findOneAndUpdate({'clients._id':client_id},
         {$set:{'clients.$':{name:req.body.name,weight:req.body.weight,_id:req.body._id}}},{new:true})
         if(!updateSupplier) next(errorHandler(402,"updating clients document in the supplier document failed"))
-        console.log(updateSupplier)
+        // console.log(updateSupplier)
 
         const arr = updateSupplier.clients
         let new_supplier_weight = 0;
         for (let i = 0; i < arr.length; i++) {
          new_supplier_weight += arr[i].weight;
         }
-        console.log(new_supplier_weight)
+        // console.log(new_supplier_weight)
 
-        await Supplier.findByIdAndUpdate({_id:supplier_id},{$set:{weight:new_supplier_weight,}},{new:true})
+        await Supplier.findByIdAndUpdate({_id:supplier_id},{$set:{weight:new_supplier_weight,number_clients:arr.length}},{new:true})
         
            const supplier_trip = await Trip.findOneAndUpdate({'suppliers._id':supplier_id},
            {$set:{'suppliers.$':{name:supplier.name,_id:supplier_id,weight:new_supplier_weight}}},{new:true})
