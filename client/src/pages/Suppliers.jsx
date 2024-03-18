@@ -157,9 +157,9 @@ function Suppliers() {
                               <td className='p-4 text-left'>{supplier.issued_by}</td>
 
                               <td className='text-green flex gap-4 items-center p-4'>
-                                  <button className='p-2 cursor-pointer ' id='add'  onClick={()=>handleSupplierId(supplier._id)} >Add</button>
+                                  {/* <button className='p-2 cursor-pointer ' id='add'  onClick={()=>handleSupplierId(supplier._id)} >Add</button> */}
                                   <button className='p-2 cursor-pointer ' id='view' onClick={()=>handleSupplierId(supplier._id)} >View</button>
-                                  <button className='p-2 cursor-pointer ' id='delete' onClick={()=>handleDeteleSupplier(supplier._id)} >Delete</button>
+                                  {/* <button className='p-2 cursor-pointer ' id='delete' onClick={()=>handleDeteleSupplier(supplier._id)} >Delete</button> */}
                               </td>
 
                             </tr>

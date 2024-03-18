@@ -233,11 +233,14 @@ export const updateClient = async(req,res,next)=>{
             number_pieces:req.body.number_pieces}},{new:true})
         if(!updateClient) next(errorHandler(402,"updating client failed"))
         // console.log(updateClient)
+ 
+        // const updateSupplier = await Supplier.findOne({'clients._id':client_id})
+        // if(!updateSupplier) next(errorHandler(401,'client in supplier not found'))
 
         const updateSupplier = await Supplier.findOneAndUpdate({'clients._id':client_id},
-        {$set:{"clients.$":{name:req.body.name,weight:req.body.weight,_id:req.body._id,}}},{new:true})
+        {$set:{'clients.$':{name:req.body.name,weight:req.body.weight,_id:req.body._id}}},{new:true})
         if(!updateSupplier) next(errorHandler(402,"updating clients document in the supplier document failed"))
-        // console.log(updateSupplier)
+        console.log(updateSupplier)
 
         const arr = updateSupplier.clients
         let new_supplier_weight = 0;

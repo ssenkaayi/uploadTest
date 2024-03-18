@@ -1,24 +1,16 @@
 import React from 'react'
 import AddEmploye from '../Model/AddEmploye'
 import { useState } from 'react'
-import { employeTable, paymentTable } from '../components/TableHeading'
+import {  deliveryTable } from '../components/TableHeading'
 import { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 
+export default function Delivery() {
 
-function Payments() {
-
-    const [showAddEmploye,setShowAddEmploye] = useState(false)
     const [employes , setEmployes] = useState([])
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
-
-
-    const handleOnClose = ()=>{
-      
-      setShowAddEmploye(false)
-
-    }
-
+    const client_id = params.id
 
     useEffect(()=>{
 
@@ -62,55 +54,25 @@ function Payments() {
         
     },[])
 
-    const handleDeteleEmploye = async(id)=>{
-
-      const button_id = id
-      // console.log(button_id)
-    
-      try{
-    
-        const res = await fetch(`/api/employe/deleteEmploye/${button_id}`,{
-          method:"DELETE",
-        })
-    
-        const data = await res.json();
-    
-        console.log(data)
-    
-        if(data.success===false){
-          console.log(data.message)
-        }
-    
-        setEmployes((prev)=>prev.filter((employes)=>employes._id!==button_id))
-    
-      }catch(error){
-        console.log(error)
-      }
-
-
-    }
-
-    //bg-white mt-card p-record mt-record rounded-2xl
-
 
   return (
+        
+        <div>
+            
+            <div className='flex justify-between mb-4'>
 
-    <div className=' mt-record '>
+            <h3 className='text-regal-violet text-2xl p-2 '> Delivery </h3>
 
-        <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>   
+            <div className='flex items-center gap-4'>
 
-        <div className='flex justify-between'>
+            <button 
+                className='flex items-center p-2 bg-dashbord rounded-xl text-white'>Make Delivery
+            </button>
 
-         <h3 className='text-regal-violet text-2xl p-2'> Manange Payments </h3>
 
-         <button onClick={()=>setShowAddEmploye(true)} 
-          className='flex items-center p-search-box bg-dashbord rounded-xl text-white '>Add Payment</button>
+            </div>
 
-        </div>
-
-       
-
-        <div className=' w-full mt-record'>
+            </div>
 
             <table className=' w-full border-collapse' >
 
@@ -118,15 +80,15 @@ function Payments() {
 
                     <tr>
 
-                      {paymentTable.map((item,index)=>{
+                    {deliveryTable.map((item,index)=>{
 
-                          return(
+                        return(
 
-                              
-                          <th className='p-4 text-left ' key={index}>{item}</th>
+                            
+                        <th className='p-4 text-left ' key={index}>{item}</th>
 
-                          )
-                      })}
+                        )
+                    })}
 
                         <th className='p-4 text-left '>Action</th>
                     </tr>
@@ -134,7 +96,7 @@ function Payments() {
                 </thead>
 
                 <tbody>
-                
+
                     { employes !== null ?employes.map((employe,index)=>{ 
 
                         return(
@@ -143,16 +105,16 @@ function Payments() {
                             <td className='p-4 text-left'key={index}>{employe.createdAt.split("T", 1)}</td>
 
                             <td className='p-4 text-left'>{employe.firstName}</td>
-                            {/* <td className='p-4 text-left'>{employe.lastName}</td> */}
+                            <td className='p-4 text-left'>{employe.lastName}</td>
                             <td className='p-4 text-left'>{employe.email}</td>
-                            <td className='p-4 text-left'>{employe.phone}</td>
-                            <td className='p-4 text-left'>{employe.address}</td>
-                            <td className='p-4 text-left'>{employe.role}</td>
+                            {/* <td className='p-4 text-left'>{employe.phone}</td> */}
+                            {/* <td className='p-4 text-left'>{employe.address}</td> */}
+                            {/* <td className='p-4 text-left'>{employe.role}</td> */}
 
                             <td className='text-green flex gap-4 items-center p-4'>
                                 <span className='p-2 cursor-pointer '>Edit</span>
                                 <span className='p-2 cursor-pointer '>View</span>
-                                <button className='p-2 cursor-pointer 'id='delete' onClick={()=>handleDeteleEmploye(employe._id)}>Delete</button>
+                                {/* <button className='p-2 cursor-pointer 'id='delete' onClick={()=>handleDeteleEmploye(employe._id)}>Delete</button> */}
                             </td>
 
                             </tr>
@@ -163,14 +125,14 @@ function Payments() {
                 </tbody>
 
             </table>
-
         </div>
 
 
 
-    </div>
+    
+    
+
+
 
   )
 }
-
-export default Payments

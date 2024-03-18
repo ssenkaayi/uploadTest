@@ -71,7 +71,7 @@ function AddSupplier({visible , onClose , trip_id }) {
         
         <div className=' bg-white flex flex-col font-primay p-20  max-w-lg mx-auto  bg-whit gap-4 rounded'>  
 
-            {/* <h3>Create Employe</h3> */}
+            <h3>Add new supplier</h3>
 
             <form className='flex flex-col w-80' onSubmit={handleSubmit}>
 
