@@ -3,7 +3,7 @@ import AddEmploye from '../Model/AddEmploye'
 import { useState } from 'react'
 import {  deliveryTable } from '../components/TableHeading'
 import { useEffect } from 'react'
-import AddPayments from '../Model/AddPayments'
+import AddPayment from '../Model/AddPayment'
 import { useParams } from 'react-router-dom'
 
 export default function ShowDeliveries() {
@@ -145,7 +145,7 @@ export default function ShowDeliveries() {
 
             </table>
 
-            <AddPayments onClose={handleOnClose} visible={showAddPaymets} client_id={client_id} />
+            <AddPayment onClose={handleOnClose} visible={showAddPaymets} client_id={client_id} />
             {/* // */}
         </div>
 

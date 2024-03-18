@@ -6,7 +6,7 @@ import { clientTable } from '../components/TableHeading'
 import { useNavigate } from 'react-router-dom';
 import ViewClient from '../Model/ViewClient'
 import EditClient from '../Model/EditClient'
-import AddPayments from '../Model/AddPayments'
+import AddPayments from '../Model/AddPayment'
 import ReactPaginate from 'react-paginate';
 import { useRef } from 'react'
 import {CiSearch } from 'react-icons/ci'
@@ -246,7 +246,7 @@ function Clients() {
                   {/* <button className='p-2 cursor-pointer 'id='payment' onClick={()=>handleMakePayment(client._id)}>Payment</button> */}
                   {/* <button className='p-2 cursor-pointer 'id='edit' onClick={()=>handleEditClient(client._id)}>Edit</button> */}
                   <button className='p-2 cursor-pointer 'id='view' onClick={()=>handleViewClient(client._id)}>View</button>
-                  {/* <button className='p-2 cursor-pointer 'id='delete' onClick={()=>handleDeleteClient(client._id)}>Delete</button> */}
+                  <button className='p-2 cursor-pointer 'id='delete' onClick={()=>handleDeleteClient(client._id)}>Delete</button>
  
                 </td>
                 </tr>

@@ -210,7 +210,7 @@ export const searchClient = async(req,res,next)=>{
 
 export const updateClient = async(req,res,next)=>{
 
-    console.log(req.body)
+    // console.log(req.body)
 
     const client = await Client.findById(req.params.id)
     if(!client) next(errorHandler(402,"client with id is not found"))
@@ -228,10 +228,7 @@ export const updateClient = async(req,res,next)=>{
 
     try{
 
-        const updateClient = await Client.findOneAndUpdate({_id:client_id},{$set:{name:req.body.name,weight:req.body.weight,
-            description:req.body.description,
-            number_pieces:req.body.number_pieces}},{new:true})
-        if(!updateClient) next(errorHandler(402,"updating client failed"))
+
         // console.log(updateClient)
  
         // const updateSupplier = await Supplier.findOne({'clients._id':client_id})
@@ -240,7 +237,7 @@ export const updateClient = async(req,res,next)=>{
         const updateSupplier = await Supplier.findOneAndUpdate({'clients._id':client_id},
         {$set:{'clients.$':{name:req.body.name,weight:req.body.weight,_id:req.body._id}}},{new:true})
         if(!updateSupplier) next(errorHandler(402,"updating clients document in the supplier document failed"))
-        console.log(updateSupplier)
+        console.log(req.body)
 
         const arr = updateSupplier.clients
         let new_supplier_weight = 0;
@@ -270,6 +267,9 @@ export const updateClient = async(req,res,next)=>{
         if(!trip) return res.status(400).json({"message":"trip with id failed to update"})
     
         // sending response to the client
+        const updateClient = await Client.findOneAndUpdate({_id:client_id},{$set:{name:req.body.name,weight:req.body.weight,
+        description:req.body.description,number_pieces:req.body.number_pieces}},{new:true})
+        if(!updateClient) next(errorHandler(402,"updating client failed"))
         res.status(200).json(updateClient)
 
     }catch(error){

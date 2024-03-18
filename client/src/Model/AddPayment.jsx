@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function AddPayments({visible , onClose, client_id}) {
+function AddPayment({visible , onClose, client_id}) {
 
     
 
@@ -122,4 +122,4 @@ function AddPayments({visible , onClose, client_id}) {
   )
 }
 
-export default AddPayments
+export default AddPayment
