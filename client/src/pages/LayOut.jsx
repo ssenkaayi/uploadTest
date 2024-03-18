@@ -16,9 +16,9 @@ function LayOut() {
         <Sidebar/>
       </div>
       
-      <div className='flex-1 p-4 right-0 gap-4'>
+      <div className='flex-1 p-4 right-0'>
 
-        <div className='flex h-20 mb-4'>
+        <div className='flex h-20'>
 
           <Navbar/>
 
@@ -27,9 +27,6 @@ function LayOut() {
         <Outlet/>
 
       </div>
-
-      
-
 
     </div>
    

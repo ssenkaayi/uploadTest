@@ -72,8 +72,8 @@ export const getClients = async(req,res,next)=>{
 
     try{
 
-        const clients = await Client.find()
-        if(clients==undefined) return res.status(400).send('no packages for clients')
+        const clients = await Client.find().sort({createdAt:-1})
+        if(clients===undefined) return res.status(400).send('no packages for clients')
 
         const page  = parseInt (req.query.page)
         const limit = parseInt (req.query.limit)
@@ -228,11 +228,14 @@ export const updateClient = async(req,res,next)=>{
 
     try{
 
-        const updateClient = await Client.findOneAndUpdate({_id:client_id},{$set:{name:req.body.name,weight:req.body.weight}},{new:true})
+        const updateClient = await Client.findOneAndUpdate({_id:client_id},{$set:{name:req.body.name,weight:req.body.weight,
+            description:req.body.description,
+            number_pieces:req.body.number_pieces}},{new:true})
         if(!updateClient) next(errorHandler(402,"updating client failed"))
         // console.log(updateClient)
 
-        const updateSupplier = await Supplier.findOneAndUpdate({'clients._id':client_id},{$set:{"clients.$":{name:req.body.name,weight:req.body.weight,_id:req.body._id}}},{new:true})
+        const updateSupplier = await Supplier.findOneAndUpdate({'clients._id':client_id},
+        {$set:{"clients.$":{name:req.body.name,weight:req.body.weight,_id:req.body._id,}}},{new:true})
         if(!updateSupplier) next(errorHandler(402,"updating clients document in the supplier document failed"))
         // console.log(updateSupplier)
 
@@ -241,7 +244,7 @@ export const updateClient = async(req,res,next)=>{
         for (let i = 0; i < arr.length; i++) {
          new_supplier_weight += arr[i].weight;
         }
-        console.log(new_supplier_weight)
+        // console.log(new_supplier_weight)
 
         await Supplier.findByIdAndUpdate({_id:supplier_id},{$set:{weight:new_supplier_weight,}},{new:true})
         

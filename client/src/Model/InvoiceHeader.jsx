@@ -132,7 +132,8 @@ export default function InvoiceHeader({client_id}) {
           <p>  name </p >
           <p>  Weight </p >
           <p>  Supplier </p >
-          <p>  Trip </p>
+          <p>  Description </p>
+          <p>  Number of pieces </p>
 
         </div>
 
@@ -146,8 +147,8 @@ export default function InvoiceHeader({client_id}) {
             <p>{clientsDetails.name}</p>
             <p>{clientsDetails.weight}Kg</p>
             <p>{clientsDetails.supplier.name}</p>
-            {/* <p>{clientsDetails.trip.name}</p> */}
-            {/* <p>{clientsDetails.supplier_name}</p> */}
+            <p>{clientsDetails.description}</p>
+            <p>{clientsDetails.number_pieces}</p>
           </div>:''}
 
         </div>

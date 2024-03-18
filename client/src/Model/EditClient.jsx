@@ -15,10 +15,9 @@ function EditClient({visible , onClose, client_id}) {
   const [formData,setFormData]=useState({
     name:'',
     weight:0,
-    supplier:{name:''}
+    description:'',
+    number_pieces:0
   });
-
-
 
   const [loading,setLoading]=useState(false);
   const [error,setError]= useState(null);
@@ -30,11 +29,6 @@ function EditClient({visible , onClose, client_id}) {
       setFormData({...formData,
       [e.target.id]:e.target.value })
     }
-
-    // setFormData({
-    //   ...formData,
-    //   [e.target.id]:e.target.value,
-    // });
    
   };
 
@@ -148,12 +142,15 @@ function EditClient({visible , onClose, client_id}) {
                   className='border p-3 rounded-lg' required onChange={handleChange}
                   />
 
-
-                  <label className='text-1xl font-semibold'> supplier</label>
-                  <input type="text" placeholder="Enter Password" id='supplier' value={formData.supplier.name}  
+                  <label className='text-1xl font-semibold'> description</label>
+                  <input type="text" placeholder="description" id='description' value={formData.description} 
                   className='border p-3 rounded-lg' required onChange={handleChange}
                   />
 
+                  <label className='text-1xl font-semibold'> number_pieces</label>
+                  <input type="text" placeholder="number_pieces" id='number_pieces' value={formData.number_pieces} 
+                  className='border p-3 rounded-lg' required onChange={handleChange}
+                  />
 
                 </div>
 

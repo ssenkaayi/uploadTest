@@ -175,9 +175,9 @@ function Clients() {
       <ViewClient onClose={handleOnClose} visible={showViewClient} client_id={client_id}/>
       <AddPayments onClose={handleOnClose} visible={showAddPayment} client_id={client_id}/>
 
-      <div className='flex justify-between'>
+      <div className='flex justify-between text-regal-violet'>
 
-        <h3 className='text-regal-violet text-2xl p-2'> Manange Clients </h3>
+        <h3 className=' text-2xl p-2'> Manange Clients </h3>
 
         <div className='flex items-center gap-4'>
 {/* 
