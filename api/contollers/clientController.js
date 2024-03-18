@@ -229,22 +229,24 @@ export const updateClient = async(req,res,next)=>{
     try{
 
 
-        // console.log(updateClient)
+      
  
         // const updateSupplier = await Supplier.findOne({'clients._id':client_id})
+        // console.log(updateSupplier)
         // if(!updateSupplier) next(errorHandler(401,'client in supplier not found'))
+        
 
         const updateSupplier = await Supplier.findOneAndUpdate({'clients._id':client_id},
         {$set:{'clients.$':{name:req.body.name,weight:req.body.weight,_id:req.body._id}}},{new:true})
         if(!updateSupplier) next(errorHandler(402,"updating clients document in the supplier document failed"))
-        console.log(req.body)
+        console.log(updateSupplier)
 
         const arr = updateSupplier.clients
         let new_supplier_weight = 0;
         for (let i = 0; i < arr.length; i++) {
          new_supplier_weight += arr[i].weight;
         }
-        // console.log(new_supplier_weight)
+        console.log(new_supplier_weight)
 
         await Supplier.findByIdAndUpdate({_id:supplier_id},{$set:{weight:new_supplier_weight,}},{new:true})
         
