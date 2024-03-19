@@ -5,6 +5,7 @@ import {  deliveryTable } from '../components/TableHeading'
 import { useEffect } from 'react'
 import AddPayment from '../Model/AddPayment'
 import { useParams } from 'react-router-dom'
+import AddDelivery from '../Model/AddDelivery'
 
 export default function ShowDeliveries() {
 
@@ -145,7 +146,7 @@ export default function ShowDeliveries() {
 
             </table>
 
-            <AddPayment onClose={handleOnClose} visible={showAddPaymets} client_id={client_id} />
+            <AddDelivery onClose={handleOnClose} visible={showAddPaymets} client_id={client_id} />
             {/* // */}
         </div>
 

@@ -72,7 +72,7 @@ export const getClients = async(req,res,next)=>{
 
     try{
 
-        const clients = await Client.find().sort({createdAt:-1})
+        const clients = await Client.find().sort({createdAt:-1}).limit(24)
         if(clients===undefined) return res.status(400).send('no packages for clients')
 
         const page  = parseInt (req.query.page)

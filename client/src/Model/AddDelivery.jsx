@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function AddPayment({visible , onClose, client_id}) {
+function AddDelivery({visible , onClose, client_id}) {
 
     
 
@@ -71,7 +71,7 @@ function AddPayment({visible , onClose, client_id}) {
         
         <div className=' bg-white flex flex-col font-primay p-20  mx-auto  bg-whit gap-4 rounded'>  
 
-            <h3 className='text-4xl text-center gap-4 mb-4'>Make Payment</h3>
+            <h3 className='text-4xl text-center gap-4 mb-4'>Make Delivery</h3>
 
             <form className='flex gap-8 flex-col'onSubmit={handleSubmit} >
 
@@ -81,31 +81,31 @@ function AddPayment({visible , onClose, client_id}) {
 
                 <div className='flex flex-col gap-4 w-80'>
 
-                  <label className='text-1xl font-semibold'>Reciept No</label>
-                  <input type="text" placeholder="reciept no" id='reciept_no' className='border p-3 rounded-lg'
+                  <label className='text-1xl font-semibold'>Weight Delivered</label>
+                  <input type="text" placeholder="weight delivered" id='weight_delivered' className='border p-3 rounded-lg'
                   required onChange={handleChange}
                   />
 
-                  <label className='text-1xl font-semibold'>Kg Rate</label>
-                  <input type="text" placeholder="kg rate" id='kg_rate' className='border p-3 rounded-lg'
+                  <label className='text-1xl font-semibold'>Delivered By</label>
+                  <input type="text" placeholder="delivered by" id='delivered_by' className='border p-3 rounded-lg'
                   required onChange={handleChange}
                   />
 
                 </div>
 
-                <div className='flex flex-col gap-4 w-80'>
+                {/* <div className='flex flex-col gap-4 w-80'>
 
-                  <label className='text-1xl font-semibold'>Amount In Dollars</label>
-                  <input type="text" placeholder="amount in dollars" id='amount' 
+                  <label className='text-1xl font-semibold'>amount</label>
+                  <input type="text" placeholder="Enter Password" id='amount' 
                   className='border p-3 rounded-lg' required onChange={handleChange}
                   />
 
                   <label className='text-1xl font-semibold'>Dollar Rate</label>
-                  <input type="text" placeholder="dollar rate" id='dollar_rate' className='border p-3 rounded-lg'
+                  <input type="text" placeholder="Enter email" id='reciept_no' className='border p-3 rounded-lg'
                   required onChange={handleChange}
                   />
 
-                </div>
+                </div> */}
 
               </div>
 
@@ -132,4 +132,4 @@ function AddPayment({visible , onClose, client_id}) {
   )
 }
 
-export default AddPayment
+export default AddDelivery
