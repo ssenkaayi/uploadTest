@@ -19,8 +19,8 @@ const tripSchema = mongoose.Schema(
     suppliers:[
 
         {
-            name:String,
-            weight:Number
+            // name:String,
+            // weight:Number
         }
     ]   
     ,
