@@ -36,7 +36,7 @@ export const createClient = asyncHandler(async(req,res,next)=>{
 
    //updating supplier weight
     const arr = updatedSupplier.clients
-    let new_supplier_weight = 0;
+    let new_supplier_weight = 0.0;
     for (let i = 0; i < arr.length; i++) {
         new_supplier_weight += arr[i].weight;
     }
@@ -52,7 +52,7 @@ export const createClient = asyncHandler(async(req,res,next)=>{
     //updating trip weight
 
     console.log(supplier_trip.suppliers.length)
-    let new_trip_weight = 0;
+    let new_trip_weight = 0.0;
     for (let i = 0; i < supplier_trip.suppliers.length; i++) {
      new_trip_weight += supplier_trip.suppliers[i].weight;
     }
@@ -146,7 +146,7 @@ export const  deleteClient = async(req,res,next)=>{
         
         //updating supplier weight
        const arr = updatedSupplier.clients
-       let new_supplier_weight = 0;
+       let new_supplier_weight = 0.0;
        for (let i = 0; i < arr.length; i++) {
         new_supplier_weight += arr[i].weight;
        }
@@ -163,7 +163,7 @@ export const  deleteClient = async(req,res,next)=>{
         //updating trip weight
     
         // const  = updatedSupplier.client_weight
-        let new_trip_weight = 0;
+        let new_trip_weight = 0.0;
         for (let i = 0; i < supplier_trip.suppliers.length; i++) {
          new_trip_weight += supplier_trip.suppliers[i].weight;
         }
@@ -242,7 +242,7 @@ export const updateClient = async(req,res,next)=>{
         // console.log(updateSupplier)
 
         const arr = updateSupplier.clients
-        let new_supplier_weight = 0;
+        let new_supplier_weight = 0.0;
         for (let i = 0; i < arr.length; i++) {
          new_supplier_weight += arr[i].weight;
         }
