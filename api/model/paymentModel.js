@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 
 const paymentSchema = mongoose.Schema(
     
- {  recieptNo:{
+ {  
+    recieptNo:{
 
         type:String,
         required:true,

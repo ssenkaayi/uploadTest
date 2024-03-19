@@ -7,6 +7,7 @@ function Card() {
     <div>
 
         <div 
+        
             className='bg-card li rounded-xl p-4 
             flex flex-col justify-between h-card-h w-card-w'>
 

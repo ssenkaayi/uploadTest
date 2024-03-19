@@ -50,12 +50,12 @@ const clientSchema = mongoose.Schema(
     payments:{
         type:[
             {
-                date:String,
-                reciept_number:Number,
-                charge_rate:Number,
-                charge_dollars:Number,
-                charge_ugx:Number,
-                dollar_rate:Number,
+                // date:String,
+                // reciept_number:Number,
+                // charge_rate:Number,
+                // charge_dollars:Number,
+                // charge_ugx:Number,
+                // dollar_rate:Number,
 
             }
         ],
@@ -66,9 +66,9 @@ const clientSchema = mongoose.Schema(
         type:[
             {
 
-                date:String,
-                weight:Number,
-                delivered_by:String,
+                // date:String,
+                // weight:Number,
+                // delivered_by:String,
     
 
             }
