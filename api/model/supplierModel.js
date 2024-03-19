@@ -25,8 +25,8 @@ const supplierSchema = mongoose.Schema(
     clients:[
 
         {
-            // name:String,
-            // weight:Number,
+            name:String,
+            weight:Number,
             
         }
     ]
