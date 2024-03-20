@@ -6,63 +6,66 @@ function AddDelivery({visible , onClose, client_id}) {
 
     
 
-    // console.log(client_id)
+  // console.log(client_id)
 
-    const handleOnClose = ()=> onClose()
+  const handleOnClose = ()=> onClose()
 
 
-    const[formData,setFormData]=useState({});
-    const[loading,setLoading]=useState(false);
-    const[error,setError]= useState(null);
+  const[formData,setFormData]=useState({});
+  const[loading,setLoading]=useState(false);
+  const[error,setError]= useState(null);
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const handleChange = (e)=>{
-    setFormData({
-        ...formData,
-        [e.target.id]:e.target.value,
-    });
-    };
+  const handleChange = (e)=>{
+  setFormData({
+      ...formData,
+      [e.target.id]:e.target.value,
+  });
 
-    //linking our api to send req to the server
-    const handleSubmit = async(e)=>{
+  console.log(formData)
+  };
 
-    setLoading(true);
-    e.preventDefault();
+  //linking our api to send req to the server
+  const handleSubmit = async(e)=>{
 
-    try{
-        //making a request to the server
-        const res = await fetch(`/api/payment/create`,{
-        method:'POSt',
-        headers:{'content-type':'application/json',},
-        body:JSON.stringify({...formData,client_id:client_id})
-        }
-        );
-        //getting response from the server
-        const data =  await res.json();
-        console.log(data)
+  setLoading(true);
+  e.preventDefault();
 
-        //if response is false, show the error message to the client
-        if(data.success===false){
-        setLoading(false);
-        setError(data.message);
-        return
-        }
+  try{
+      //making a request to the server
+      const res = await fetch(`/api/delivery/create`,{
+      method:'POSt',
+      headers:{'content-type':'application/json',},
+      body:JSON.stringify(formData)
+      }
+      );
+      //getting response from the server
+      const data =  await res.json();
+      console.log(data)
 
-        // //if response is True, register and navigate to the sign in page
-        setLoading(false);
-        setError(null)
-        // navigate('/dashbord/employes')
-        // handleOnClose()
+      //if response is false, show the error message to the client
+      if(data.success===false){
+      setLoading(false);
+      setError(data.message);
+      return
+      }
 
-    }catch(error){
-        setLoading(false);
-        setError(error.message);
+      // //if response is True, register and navigate to the sign in page
+      setLoading(false);
+      setError(null)
+      // navigate('/dashbord/employes')
+      // handleOnClose()
 
-    } 
-    }
+  }catch(error){
+      setLoading(false);
+      setError(error.message);
 
-    if(!visible) return null;
+  } 
+  }
+
+
+  if(!visible) return null;
  
   return (
 

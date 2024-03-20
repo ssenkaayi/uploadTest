@@ -9,7 +9,7 @@ export const clientTable = ['Date','Supplier ','Client','Weight','Num Pieces','p
 
 export const tripTable =    ['Date','Trip Name','Weight','NO suppliers','Transport','Tax','Trip payment','Market fees','Issued by']
 
-export const paymentTable = ['Date','Kg Rate','Dollar Rate','Ugx','Dollar','Issued by']
+export const paymentTable = ['Date','Kg Rate','Dollar Rate','Ugx','Dollar','Total paid','Balance','Issued by']
 
 export const deliveryTable = ['Date','Weight Delivered','Delivered By','Remaining Weight']
 

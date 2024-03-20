@@ -2,16 +2,18 @@
 import asyncHandler from 'express-async-handler'
 import Supplier from '../model/supplierModel.js';
 import Client from '../model/clientModel.js';
+import Delivery from '../model/deliveryModel.js';
 
 
-export const createPayment = asyncHandler(async(req,res,next)=>{
+export const createDelivery = asyncHandler(async(req,res,next)=>{
 
-    // const client = await Client.findById(req.body.client_id)
-    // if(!client) return res.status(400).send('client doesnt exist')
-    // console.log(client)
+    // const delivery = await Delivery.findById(req.body.client_id)
+    // if(!delivery) return res.status(400).send('client doesnt exist')
+    
+    console.log(req.body)
 
-    // const client_name = Client.name
-    // const client_weight = Client.weight
+    // const client_name = Delivery.name
+    // const client_weight = Delivery.weight
     // const client_payment_status = client.total_payments
 
 

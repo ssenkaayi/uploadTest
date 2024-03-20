@@ -194,7 +194,17 @@ export const searchClient = async(req,res,next)=>{
         const search = await Client.find(
             {
                 "$or" : [
-                    {name:{$regex:req.params.key , $options:'i'}}
+                    {
+                        name:{$regex:req.params.key , $options:'i'}
+                        // createdAt:{$regex:req.params.key}
+        
+                    },
+                    {
+                        supplier:{$regex:req.params.key , $options:'i'}
+                        // createdAt:{$regex:req.params.key}
+        
+                    },
+    
 
                 ]
             }

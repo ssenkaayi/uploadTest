@@ -8,6 +8,7 @@ import tripRoute from './routes/tripRoute.js'
 import supplierRoute from './routes/supplierRoute.js'
 import clientRoute from './routes/clientRoute.js'
 import paymentRoute from './routes/paymentRoute.js'
+import deliveryRoute from './routes/deliveryRoute.js'
 import { errorHandler } from './errorHandler.js'
 import cookieParser from 'cookie-parser';
 import path from 'path'
@@ -50,6 +51,7 @@ server.use('/api/trip',tripRoute)
 server.use('/api/supplier',supplierRoute)
 server.use('/api/client',clientRoute)
 server.use('/api/payment',paymentRoute)
+server.use('/api/delivery',deliveryRoute)
 server.use(bodyParser.json())
 
 

@@ -35,7 +35,7 @@ function AddPayment({visible , onClose, client_id}) {
         const res = await fetch(`/api/payment/create`,{
         method:'POSt',
         headers:{'content-type':'application/json',},
-        body:JSON.stringify({...formData,client_id:client_id})
+        body:JSON.stringify(formData)
         }
         );
         //getting response from the server
