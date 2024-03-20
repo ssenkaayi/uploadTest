@@ -189,10 +189,12 @@ export const searchClient = async(req,res,next)=>{
 
     try{
 
+        // we use options:'i' method to remove search sensitivity
+
         const search = await Client.find(
             {
                 "$or" : [
-                    {name:{$regex:req.params.key}}
+                    {name:{$regex:req.params.key , $options:'i'}}
 
                 ]
             }
