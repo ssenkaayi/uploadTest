@@ -42,7 +42,7 @@ function AddDelivery({visible , onClose, client_id}) {
       );
       //getting response from the server
       const data =  await res.json();
-      console.log(data)
+      // console.log(data)
 
       //if response is false, show the error message to the client
       if(data.success===false){
@@ -54,8 +54,8 @@ function AddDelivery({visible , onClose, client_id}) {
       // //if response is True, register and navigate to the sign in page
       setLoading(false);
       setError(null)
-      // navigate('/dashbord/employes')
-      // handleOnClose()
+      navigate('/')
+      handleOnClose()
 
   }catch(error){
       setLoading(false);
