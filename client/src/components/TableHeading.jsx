@@ -11,7 +11,7 @@ export const tripTable =    ['Date','Trip Name','Weight','NO suppliers','Transpo
 
 export const paymentTable = ['Date','Kg Rate','Dollar Rate','Ugx','Dollar','Total paid','Balance','Issued by']
 
-export const deliveryTable = ['Date','Weight Delivered','Delivered By','Remaining Weight']
+export const deliveryTable = ['Date','Weight Delivered','Pieces Delivered','Remaining Weight','Remaining Pieces','Delivered By']
 
 export const viewTripDetailsTable = ['Supplier ID','Supplier name','Weight']
 

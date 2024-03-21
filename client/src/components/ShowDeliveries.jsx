@@ -127,8 +127,8 @@ export default function ShowDeliveries() {
                             <td className='p-4 text-left'>{employe.firstName}</td>
                             <td className='p-4 text-left'>{employe.lastName}</td>
                             <td className='p-4 text-left'>{employe.email}</td>
-                            {/* <td className='p-4 text-left'>{employe.phone}</td> */}
-                            {/* <td className='p-4 text-left'>{employe.address}</td> */}
+                            <td className='p-4 text-left'>{employe.phone}</td>
+                            <td className='p-4 text-left'>{employe.address}</td>
                             {/* <td className='p-4 text-left'>{employe.role}</td> */}
 
                             <td className='text-green flex gap-4 items-center p-4'>

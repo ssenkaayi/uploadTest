@@ -49,13 +49,16 @@ const clientSchema = mongoose.Schema(
 
     payments:{
         type:[
+
             {
                 date:String,
                 reciept_number:Number,
-                charge_rate:Number,
-                charge_dollars:Number,
-                charge_ugx:Number,
+                kg_rate:Number,
                 dollar_rate:Number,
+                amount_ugx:Number,
+                amount_dollar:Number,
+                total_amount:Number,
+                balance:Number
 
             }
         ],
@@ -64,13 +67,14 @@ const clientSchema = mongoose.Schema(
 
     deliveries:{
         type:[
+
             {
 
                 date:String,
                 weight:Number,
-                delivered_by:String,
+                delivered_by:Number,
+                remaining_weight:Number
     
-
             }
         ],
         

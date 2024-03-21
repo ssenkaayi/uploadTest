@@ -3,21 +3,32 @@ import asyncHandler from 'express-async-handler'
 import Supplier from '../model/supplierModel.js';
 import Client from '../model/clientModel.js';
 import Delivery from '../model/deliveryModel.js';
+import { error } from '@hapi/joi/lib/annotate.js';
+import errorHandler from '../errorHandler.js';
 
 
 export const createDelivery = asyncHandler(async(req,res,next)=>{
 
-    // const delivery = await Delivery.findById(req.body.client_id)
-    // if(!delivery) return res.status(400).send('client doesnt exist')
+    const clientExists = await Client.findById(req.params.id)
+    if(!clientExists) return next(errorHandler(400,'client doesnt exist'))
+
+    console.log(clientExists)
+    // console.log(req.body)
+
+    const remaining_weight = clientExists.weight - req.body.weight_delivered
+    const remaining_pieces = clientExists.number_pieces - req.body.pecies_delivered
+    const pieces_delivered = req.body.pecies_delivered
+    const weight_delivered = req.body.weight_delivered
+    const delivered_by = req.body.delivered_by
     
-    console.log(req.body)
-
-    // const client_name = Delivery.name
-    // const client_weight = Delivery.weight
-    // const client_payment_status = client.total_payments
 
 
-    res.status(200).send(req.body)
+    const delivery = await Delivery.create({remaining_weight,remaining_pieces,pieces_delivered,weight_delivered,delivered_by,
+    client:{_id:clientExists._id,name:clientExists.name},})
+    
+    // console.log(delivery)
+
+    res.status(200).send(delivery)
    
 })
 
@@ -58,7 +69,7 @@ export const  deleteClient = async(req,res,next)=>{
     if(!client) return res.status(400).send('client not found')
 
     try{
-        console.log(client)
+        // console.log(client)
         const _id = client._id
         console.log(_id)
         const supplier_id = client.supplier_id

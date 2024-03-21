@@ -5,7 +5,7 @@ import { createDelivery } from '../contollers/deliveryController.js'
 
 const route = express.Router()
 
-route.post('/create',createDelivery)
+route.post('/create/:id',createDelivery)
 // route.get('/getDelivey',getClients)
 // route.get('/getClient/:id',getClient)
 // route.delete('/delete/:id',deleteClient)

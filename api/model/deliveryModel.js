@@ -1,37 +1,36 @@
-import mongoose from "mongoose";
+import mongoose, { isValidObjectId } from "mongoose";
 
 const deliverySchema = mongoose.Schema(
     
  { 
-     weight:{
+     weight_delivered:{
 
         type:Number,
-        required:true
+        // required:true
     },
-    balance:{
+    remaining_weight:{
 
         type:Number,
-        required:true
+        // required:true
     },
-    delivered:{
-
-        type:Number,
-        required:true
-    },
-    name:{
+    delivered_by:{
 
         type:String,
-        required:true
+        // required:true
     },
-    number_pieces:{
+    client:{
+
+       type:{}
+    },
+    pieces_delivered:{
 
         type:Number,
-        required:true
+        // 
     },
-    issuedBy:{
+    remaining_pieces:{
 
-        type:String,
-        required:true,
+        type:Number,
+        // required:true,
     },
 
 } , {timestamps:true}

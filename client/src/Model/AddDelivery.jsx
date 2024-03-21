@@ -23,7 +23,7 @@ function AddDelivery({visible , onClose, client_id}) {
       [e.target.id]:e.target.value,
   });
 
-  console.log(formData)
+  // console.log(formData)
   };
 
   //linking our api to send req to the server
@@ -34,7 +34,7 @@ function AddDelivery({visible , onClose, client_id}) {
 
   try{
       //making a request to the server
-      const res = await fetch(`/api/delivery/create`,{
+      const res = await fetch(`/api/delivery/create/${client_id}`,{
       method:'POSt',
       headers:{'content-type':'application/json',},
       body:JSON.stringify(formData)
@@ -86,6 +86,11 @@ function AddDelivery({visible , onClose, client_id}) {
 
                   <label className='text-1xl font-semibold'>Weight Delivered</label>
                   <input type="text" placeholder="weight delivered" id='weight_delivered' className='border p-3 rounded-lg'
+                  required onChange={handleChange}
+                  />
+
+                  <label className='text-1xl font-semibold'>Pecies Delivered</label>
+                  <input type="text" placeholder="pecies delivered" id='pecies_delivered' className='border p-3 rounded-lg'
                   required onChange={handleChange}
                   />
 
