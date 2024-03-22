@@ -12,10 +12,6 @@ export const createDelivery = asyncHandler(async(req,res,next)=>{
     const clientExists = await Client.findById(req.params.id)
     if(!clientExists) return next(errorHandler(400,'client doesnt exist'))
 
-    // console.log(clientExists)
-    // console.log(req.body.weight_delivered)
-    // console.log(req.body.pecies_delivered)
-
     const arr = clientExists.deliveries
     let totalWeightDelivered = 0
     let totalPiecesDelivered = 0
@@ -27,18 +23,11 @@ export const createDelivery = asyncHandler(async(req,res,next)=>{
 
     }
 
-    console.log(totalPiecesDelivered)
-    console.log(totalWeightDelivered)
-
-
     const remaining_weight = clientExists.weight - (totalWeightDelivered + Number(req.body.weight_delivered))
     const remaining_pieces = clientExists.number_pieces - (totalPiecesDelivered + Number(req.body.pecies_delivered))
     const pieces_delivered = req.body.pecies_delivered
     const weight_delivered = req.body.weight_delivered
     const delivered_by = req.body.delivered_by
-
-    // console.log(clientExists.weight)
-    // console.log(clientExists.number_pieces)
     
     const delivery = await Delivery.create({remaining_weight,remaining_pieces,pieces_delivered,weight_delivered,delivered_by,
     client:{_id:clientExists._id,name:clientExists.name},})
@@ -47,9 +36,6 @@ export const createDelivery = asyncHandler(async(req,res,next)=>{
 
     const addDelivery = await Client.findByIdAndUpdate({_id:req.params.id},{$push:{deliveries:{date,remaining_weight,remaining_pieces,pieces_delivered,
     weight_delivered,delivered_by}}},{new:true})
-
-
-
 
     // console.log(addDelivery)
 

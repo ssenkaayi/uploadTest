@@ -30,7 +30,7 @@ function AddPayment({visible , onClose, client_id}) {
 
   try{
     //making a request to the server
-    const res = await fetch(`/api/payment/create`,{
+    const res = await fetch(`/api/payment/create/${client_id}`,{
     method:'POSt',
     headers:{'content-type':'application/json',},
     body:JSON.stringify(formData)
@@ -50,8 +50,8 @@ function AddPayment({visible , onClose, client_id}) {
     // //if response is True, register and navigate to the sign in page
     setLoading(false);
     setError(null)
-    // navigate('/dashbord/employes')
-    // handleOnClose()
+    navigate('/')
+    handleOnClose()
 
   }catch(error){
     setLoading(false);
@@ -93,15 +93,17 @@ function AddPayment({visible , onClose, client_id}) {
 
                 <div className='flex flex-col gap-4 w-80'>
 
+                  <label className='text-1xl font-semibold'>Dollar Rate</label>
+                  <input type="text" placeholder="dollar rate" id='dollar_rate' className='border p-3 rounded-lg'
+                  required onChange={handleChange}
+                  />
+
                   <label className='text-1xl font-semibold'>Amount In Dollars</label>
                   <input type="text" placeholder="amount in dollars" id='amount' 
                   className='border p-3 rounded-lg' required onChange={handleChange}
                   />
 
-                  <label className='text-1xl font-semibold'>Dollar Rate</label>
-                  <input type="text" placeholder="dollar rate" id='dollar_rate' className='border p-3 rounded-lg'
-                  required onChange={handleChange}
-                  />
+
 
                 </div>
 

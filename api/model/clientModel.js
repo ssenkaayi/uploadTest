@@ -56,7 +56,7 @@ const clientSchema = mongoose.Schema(
                 kg_rate:Number,
                 dollar_rate:Number,
                 amount_ugx:Number,
-                amount_dollar:Number,
+                amount_dollars:Number,
                 total_amount:Number,
                 balance:Number
 

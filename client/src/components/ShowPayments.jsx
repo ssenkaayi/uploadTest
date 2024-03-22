@@ -8,7 +8,7 @@ import AddPayment from '../Model/AddPayment'
 
 export default function ShowPayments() {
 
-    const [employes , setEmployes] = useState([])
+    const [payments , setPayments] = useState([])
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
     const [showAddPayments,setShowAddPayments] = useState(false)
@@ -23,7 +23,7 @@ export default function ShowPayments() {
           try{
       
             setLoading(true);
-            const res = await fetch('/api/employe/getEmployes',{
+            const res = await fetch(`/api/client/getClient/${client_id}`,{
               
                 method:'GET',
             
@@ -41,8 +41,8 @@ export default function ShowPayments() {
             setError(false)
             setLoading(false)
            
-            setEmployes(data)
-            console.log(data)
+            setPayments(data.payments)
+            // console.log(data)
             // setEmployes((prev)=>prev.filter((data)))
         
           }
@@ -117,20 +117,20 @@ export default function ShowPayments() {
 
                 <tbody>
 
-                    { employes !== null ?employes.map((employe,index)=>{ 
+                    { payments !== null ?payments.map((payment,index)=>{ 
 
                         return(
                             <tr key={index}>
                             
-                            <td className='p-4 text-left'key={index}>{employe.createdAt.split("T", 1)}</td>
+                            <td className='p-4 text-left'key={index}>{payment.date.split("T", 1)}</td>
 
-                            <td className='p-4 text-left'>{employe.firstName}</td>
-                            <td className='p-4 text-left'>{employe.lastName}</td>
-                            <td className='p-4 text-left'>{employe.email}</td>
-                            <td className='p-4 text-left'>{employe.phone}</td>
-                            <td className='p-4 text-left'>{employe.role}</td>
-                            <td className='p-4 text-left'>{employe.role}</td>
-                            <td className='p-4 text-left'>{employe.role}</td>
+                            <td className='p-4 text-left'>{payment.kg_rate}</td>
+                            <td className='p-4 text-left'>{payment.dollar_rate}</td>
+                            <td className='p-4 text-left'>{payment.amount_ugx}</td>
+                            <td className='p-4 text-left'>{payment.amount_dollars}</td>
+                            <td className='p-4 text-left'>{payment.total_amount}</td>
+                            <td className='p-4 text-left'>{payment.balance}</td>
+                            <td className='p-4 text-left'>{payment.balance}</td>
 
                             <td className='text-green flex gap-4 items-center p-4'>
                                 <span className='p-2 cursor-pointer '>Edit</span>

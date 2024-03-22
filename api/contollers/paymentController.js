@@ -2,20 +2,58 @@
 import asyncHandler from 'express-async-handler'
 import Supplier from '../model/supplierModel.js';
 import Client from '../model/clientModel.js';
+import Payment from '../model/paymentModel.js';
 
 
 export const createPayment = asyncHandler(async(req,res,next)=>{
 
-    // const client = await Client.findById(req.body.client_id)
-    // if(!client) return res.status(400).send('client doesnt exist')
-    // console.log(client)
+    const clientExists = await Client.findById(req.params.id)
+    if(!clientExists) return next(errorHandler(400,'client doesnt exist'))
 
-    // const client_name = Client.name
-    // const client_weight = Client.weight
-    // const client_payment_status = client.total_payments
+    const arr = clientExists.payments
+    let totalAmountPaid = 0
+
+    for (let i = 0; i < arr.length; i++) {
+
+        totalAmountPaid += (arr[i].amount_dollars )
+
+    }
 
 
-    res.status(200).send(req.body)
+  
+    const kg_rate = Number(req.body.kg_rate)
+    const amount_dollars = Number(req.body.amount)
+    const total_payment = clientExists.weight * kg_rate
+    const total_amount = (totalAmountPaid + amount_dollars)
+    const balance = Number(total_payment - total_amount)
+    const amount_ugx = Number(req.body.dollar_rate) * Number(req.body.amount)
+   
+    
+    const reciept_number = req.body.reciept_no
+    const dollar_rate = Number(req.body.dollar_rate)
+
+    // date:Date,
+    // reciept_number:String,
+    // kg_rate:Number,
+    // dollar_rate:Number,
+    // amount_ugx:Number,
+    // amount_dollars:Number,
+    // total_amount:Number,
+    // balance:Number
+    
+    const payment = await Payment.create({total_amount,balance,amount_dollars,amount_ugx,kg_rate,reciept_number,
+    client:{_id:clientExists._id,name:clientExists.name},dollar_rate})
+
+    console.log(payment)
+
+    const date = payment.createdAt
+
+    const addDelivery = await Client.findByIdAndUpdate({_id:req.params.id},{$push:{payments:{date,total_amount,balance,amount_dollars,amount_ugx,
+    kg_rate,reciept_number,dollar_rate}}},{new:true})
+
+    console.log(addDelivery)
+
+    res.status(200).send(addDelivery)
    
 })
 

@@ -4,46 +4,45 @@ import mongoose from "mongoose";
 const paymentSchema = mongoose.Schema(
     
  {  
-    recieptNo:{
+    reciept_number:{
 
         type:String,
         required:true,
         unique : true,
     },
-    amount:{
+    amount_dollars:{
 
         type:Number,
         required:true
         },
-    total:{
+    kg_rate:{
 
         type:Number,
         required:true
-        }, 
-    status:{
-
-        type:String,
-        required:true
         },
-    supplierName:{
+    dollar_rate:{
 
-        type:String,
-        required:true
-        },
-    clientName:{
-
-        type:String,
-        required:true
-        },    
-    weight:{
+            type:Number,
+            required:true
+            },  
+    total_amount:{
 
         type:Number,
-        required:true,
-    },
+        required:true
+        },
+    balance:{
+
+            type:Number,
+            required:true
+            },
+        client:{
+
+            type:{}
+            },
     issuedName:{
 
         type:String,
-        required:true
+        // required:true
     },
 
 
