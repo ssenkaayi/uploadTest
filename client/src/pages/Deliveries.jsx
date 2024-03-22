@@ -19,14 +19,14 @@ export default function Delivery() {
           try{
       
             setLoading(true);
-            const res = await fetch('/api/employe/getEmployes',{
+            const res = await fetch(`/api/client/getClient/${client_id}`,{
               
                 method:'GET',
             
             })
 
             const data = await res.json();
-            // console.log(data)
+            console.log(data)
           
             if(data.succuss===false){
               setError(true)
@@ -126,12 +126,6 @@ export default function Delivery() {
 
             </table>
         </div>
-
-
-
-    
-    
-
 
 
   )
