@@ -51,8 +51,8 @@ const clientSchema = mongoose.Schema(
         type:[
 
             {
-                date:String,
-                reciept_number:Number,
+                date:Date,
+                reciept_number:String,
                 kg_rate:Number,
                 dollar_rate:Number,
                 amount_ugx:Number,
@@ -70,10 +70,13 @@ const clientSchema = mongoose.Schema(
 
             {
 
-                date:String,
-                weight:Number,
-                delivered_by:Number,
-                remaining_weight:Number
+                date:Date,
+                weight_delivered:Number,
+                pieces_delivered:Number,
+                remaining_weight:Number,
+                remaining_pieces:Number,
+                delivered_by:String,
+                // remaining_weight:Number
     
             }
         ],

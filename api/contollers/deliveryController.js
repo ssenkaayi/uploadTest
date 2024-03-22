@@ -3,7 +3,7 @@ import asyncHandler from 'express-async-handler'
 import Supplier from '../model/supplierModel.js';
 import Client from '../model/clientModel.js';
 import Delivery from '../model/deliveryModel.js';
-import { error } from '@hapi/joi/lib/annotate.js';
+// import { error } from '@hapi/joi/lib/annotate.js';
 import errorHandler from '../errorHandler.js';
 
 
@@ -65,13 +65,12 @@ export const getClient = asyncHandler(async(req,res)=>{
 export const  deleteClient = async(req,res,next)=>{
 
 
-    const client = await Client.findById(req.params.id)
-    if(!client) return res.status(400).send('client not found')
+    const delivery = await Delivery.findById(req.params.id)
+    if(!delivery) return res.status(400).send('client not found')
 
     try{
         // console.log(client)
-        const _id = client._id
-        console.log(_id)
+        const _id = delivery._id
         const supplier_id = client.supplier_id
         // console.log(supplier_id)
 
