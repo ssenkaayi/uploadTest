@@ -204,6 +204,14 @@ export const searchClient = async(req,res,next)=>{
                         // createdAt:{$regex:req.params.key}
         
                     },
+                    {
+
+                        createdAt: {
+                            $gt: req.params.key,
+                        }
+
+                    }
+
     
 
                 ]
@@ -291,5 +299,33 @@ export const updateClient = async(req,res,next)=>{
         next(error)
     }
 
+
+}
+
+export const aggregatedClients = async(req,res,next)=>{
+
+    try{
+
+        // we use options:'i' method to remove search sensitivity
+
+        const aggregated_clients = await Client.aggregate(
+            [          
+                // {$match:{createdAt:req.params.date}},
+
+
+                {
+                    '$match' : { 'createdAt' : { '$gt' : req.params.date } }
+                }
+        ]
+ 
+        ).sort({createdAt:-1})
+
+        res.status(200).json(aggregated_clients)
+      
+        
+
+    }catch(error){
+        next(error)
+    }
 
 }
