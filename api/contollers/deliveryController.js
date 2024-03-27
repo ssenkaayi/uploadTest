@@ -22,6 +22,8 @@ export const createDelivery = asyncHandler(async(req,res,next)=>{
         totalPiecesDelivered += (arr[i].pieces_delivered )
 
     }
+    const available_weight = (clientExists.weight - (totalWeightDelivered)).toFixed(2)
+    if(available_weight < req.body.weight) return next(errorHandler(400,'weight to be delivered cannot exist the available weight'))
 
     const remaining_weight = (clientExists.weight - (totalWeightDelivered + Number(req.body.weight_delivered))).toFixed(2)
     const remaining_pieces = (clientExists.number_pieces - (totalPiecesDelivered + Number(req.body.pecies_delivered))).toFixed(2)

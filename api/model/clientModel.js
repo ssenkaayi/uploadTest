@@ -36,10 +36,16 @@ const clientSchema = mongoose.Schema(
 
     supplier:{
 
-        trip_name:String, 
-        supplier_name:String,
+        type:{}
         
     },
+
+    trip:{
+        
+        type:{}
+        
+    },
+
 
     total_payments:{
 

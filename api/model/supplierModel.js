@@ -14,8 +14,7 @@ const supplierSchema = mongoose.Schema(
 
     trip:{
 
-        name:String,
-        // required:true
+        type:{name:{type:String,unique: true},}
     },
 
     clients:[
