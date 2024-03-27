@@ -1,5 +1,5 @@
 import express from 'express'
-import { createSupplier, deleteSupplier, getSuppliers, getSupplier } from '../contollers/supplierController.js'
+import { createSupplier, deleteSupplier, getSuppliers, getSupplier,} from '../contollers/supplierController.js'
 
 const route = express.Router()
 

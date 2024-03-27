@@ -115,5 +115,23 @@ export const getSupplier = asyncHandler(async(req,res)=>{
 })
 
 
+export const createNewSupplier = asyncHandler(async(req,res,next)=>{
+
+    const create_supplier = await Trip.findOneAndUpdate({_id:req.params.id},{$push:{suppliers:req.body}},{new:true})
+    if(!create_supplier) return next(errorHandler(400,'error creating supplier, trip with id is not found'))
+
+    const number_suppliers = create_supplier.suppliers.length
+
+    const update_supplier = await Trip.findOneAndUpdate({_id:req.params.id},{$set:{number_suppliers}},{new:true})
+    if(!update_supplier) return next(errorHandler(400,'error updating number of suppliers, trip with id is not found'))
+
+
+    console.log(number_suppliers)
+
+    res.status(200).send(create_supplier)
+
+})
+
+
 
 

@@ -27,7 +27,7 @@ export const createClient = asyncHandler(async(req,res,next)=>{
 
     //creating new client
     
-    const create_client = await Client.create({...req.body,supplier:{_id:supplier._id,name:supplier.name}})
+    const create_client = await Client.create({...req.body,supplier:{_id:supplier._id,supplier_name:supplier.name,trip_name:supplier.trip.name}})
    
     //updating supplier number of clients
 
@@ -129,7 +129,7 @@ export const  deleteClient = async(req,res,next)=>{
 
         const client = await Client.findById(req.params.id)
         if(!client) return res.status(400).json({"message":'client with id doesnt exist'})
-        const client_id = client._id
+        // const client_id = client._id
         // console.log(client)
         const supplier_id = client.supplier._id
  
@@ -195,24 +195,19 @@ export const searchClient = async(req,res,next)=>{
             {
                 "$or" : [
                     {
-                        name:{$regex:req.params.key , $options:'i'}
+                        // name:{$regex:req.params.key , $options:'i'},
+                        createdAt: {$gt: req.params.key},
+                        // supplier:{$regex:req.params.key , $options:'i'}
                         // createdAt:{$regex:req.params.key}
         
                     },
                     {
-                        supplier:{$regex:req.params.key , $options:'i'}
+                        name:{$regex:req.params.key , $options:'i'},
+                        // createdAt: {$gt: req.params.key},
+                        // supplier:{$regex:req.params.key , $options:'i'}
                         // createdAt:{$regex:req.params.key}
         
                     },
-                    {
-
-                        createdAt: {
-                            $gt: req.params.key,
-                        }
-
-                    }
-
-    
 
                 ]
             }
@@ -308,24 +303,25 @@ export const aggregatedClients = async(req,res,next)=>{
 
         // we use options:'i' method to remove search sensitivity
 
-        const aggregated_clients = await Client.aggregate(
-            [          
-                // {$match:{createdAt:req.params.date}},
+        const aggregated_clients = await Client.find(
+            {
+                "$or" : [
+                    {
+                      
+                        createdAt: {$gt: req.params.key}
+                
+                    },
 
-
-                {
-                    '$match' : { 'createdAt' : { '$gt' : req.params.date } }
-                }
-        ]
- 
-        ).sort({createdAt:-1})
+                ]
+            }
+        ) 
+        // .sort({createdAt:-1})
 
         res.status(200).json(aggregated_clients)
-      
         
-
     }catch(error){
         next(error)
     }
 
 }
+

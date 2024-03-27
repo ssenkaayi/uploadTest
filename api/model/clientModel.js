@@ -4,38 +4,49 @@ import mongoose from "mongoose";
 const clientSchema = mongoose.Schema(
     
  {  
-    weight:{
-
-        type:Number,
-        required:true
-
-        },
-    number_pieces:{
-
-        type:Number,
-        required:true,
-
-    },
+    
+    
     name:{
 
         type:String,
         required:true
     },
-    supplier:{
 
-        type:{},
+    weight:{
+
+        type:Number,
+        default:0,
         required:true
+
+    },
+
+    number_pieces:{
+
+        type:Number,
+        default:0,
+        required:true,
+
     },
 
     description:{
+        
         type:String,
         required:true
     },
+
+    supplier:{
+
+        trip_name:String, 
+        supplier_name:String,
+        
+    },
+
     total_payments:{
 
         type:Number,
         default:0
     },
+
     store_status:{
 
         type:Number,
@@ -48,17 +59,18 @@ const clientSchema = mongoose.Schema(
     },
 
     payments:{
+
         type:[
 
             {
                 date:Date,
                 reciept_number:String,
-                kg_rate:Number,
-                dollar_rate:Number,
-                amount_ugx:Number,
-                amount_dollars:Number,
-                total_amount:Number,
-                balance:Number
+                kg_rate:{ type:Number,default:0},
+                dollar_rate:{ type:Number,default:0},
+                amount_ugx:{ type:Number,default:0},
+                amount_dollars:{ type:Number,default:0},
+                total_amount:{ type:Number,default:0},
+                balance:{ type:Number,default:0}
 
             }
         ],
@@ -71,10 +83,10 @@ const clientSchema = mongoose.Schema(
             {
 
                 date:Date,
-                weight_delivered:Number,
-                pieces_delivered:Number,
-                remaining_weight:Number,
-                remaining_pieces:Number,
+                weight_delivered:{ type:Number,default:0},
+                pieces_delivered:{ type:Number,default:0},
+                remaining_weight:{ type:Number,default:0},
+                remaining_pieces:{ type:Number,default:0},
                 delivered_by:String,
                 // remaining_weight:Number
     
@@ -82,8 +94,6 @@ const clientSchema = mongoose.Schema(
         ],
         
     },
-
-
 
 } , {timestamps:true}
 

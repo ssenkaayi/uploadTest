@@ -1,9 +1,10 @@
 
 import express from 'express'
-import { createClient , getClients ,deleteClient ,getClient,searchClient,updateClient, aggregatedClients} from '../contollers/clientController.js'
+import { createClient , getClients ,deleteClient ,getClient,searchClient,updateClient, aggregatedClients,} from '../contollers/clientController.js'
 
 
 const route = express.Router()
+
 
 route.post('/create/:id',createClient)
 route.put('/updateClient/:id',updateClient)

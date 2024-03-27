@@ -4,17 +4,6 @@ import mongoose from "mongoose";
 const supplierSchema = mongoose.Schema(
     
  {  
-    trip:{
-
-        type:{},
-        required:true
-    },
-    weight:{
-
-        type:Number,
-        default:0
-
-        },
     name:
     {
 
@@ -22,26 +11,42 @@ const supplierSchema = mongoose.Schema(
         required:true,
         
     },
+
+    trip:{
+
+        name:String,
+        required:true
+    },
+
     clients:[
 
         {
             name:String,
-            weight:Number,
+            weight:{type:Number,default:0},
             
         }
-    ]
-      
-    ,
+    ],
+
+    weight:{
+
+        type:Number,
+        default:0
+
+    },
+
     number_clients:{
 
         type:Number,
         default:0
     },
+
     issued_by:{
 
         type:String,
         required:true
     },
+
+
 
 } , {timestamps:true}
 
