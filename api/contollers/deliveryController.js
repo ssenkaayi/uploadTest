@@ -23,8 +23,8 @@ export const createDelivery = asyncHandler(async(req,res,next)=>{
 
     }
 
-    const remaining_weight = clientExists.weight - (totalWeightDelivered + Number(req.body.weight_delivered))
-    const remaining_pieces = clientExists.number_pieces - (totalPiecesDelivered + Number(req.body.pecies_delivered))
+    const remaining_weight = (clientExists.weight - (totalWeightDelivered + Number(req.body.weight_delivered))).toFixed(2)
+    const remaining_pieces = (clientExists.number_pieces - (totalPiecesDelivered + Number(req.body.pecies_delivered))).toFixed(2)
     const pieces_delivered = req.body.pecies_delivered
     const weight_delivered = req.body.weight_delivered
     const delivered_by = req.body.delivered_by
@@ -82,7 +82,7 @@ export const  deleteClient = async(req,res,next)=>{
     try{
         // console.log(client)
         const _id = delivery._id
-        const supplier_id = client.supplier_id
+        // const supplier_id = client.supplier_id
         // console.log(supplier_id)
 
         const supplier = await Supplier.findById(supplier_id)
