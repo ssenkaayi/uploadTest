@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter,Routes,Route } from 'react-router-dom'
 import Login from './pages/Login'
 import PrivateRoutes from './components/PrivateRoutes'
-import Dashbord from './pages/LayOut'
+// import Dashbord from './pages/LayOut'
 import Profile from './pages/Profile'
 import Employes from './pages/Employes'
 import Payments from './pages/Payments'
@@ -15,6 +15,8 @@ import ViewClientDetails from './pages/ViewClientDetails'
 import ViewSupplierDetails from './pages/ViewSupplierDetails'
 import ViewTripDetails from './pages/ViewTripDetails'
 import Search from './pages/Search'
+// import Deliveries from './pages/Deliveries'
+
 
 
 
@@ -40,15 +42,13 @@ export default function App() {
             <Route path='employes' element = {<Employes/>}/>
             <Route path='suppliers' element = {<Suppliers/>}/>
             <Route path='payments' element = {<Payments/>}/>
+            {/* <Route path='deliveries' element = {<Deliveries/>}/> */}
             <Route path='trips' element = {<Trips/>}/>
             <Route path='settings' element = {<Settings/>}/>
             <Route path='view_client/:id' element = {<ViewClientDetails/>}/>
             <Route path='view_supplier/:id' element = {<ViewSupplierDetails/>}/>
             <Route path='view_trip/:id' element = {<ViewTripDetails/>}/>
             <Route path='search' element = {<Search/>}/>
-
-
-            
 
           </Route>
 

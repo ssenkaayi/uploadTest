@@ -28,13 +28,22 @@ export const sidebarMenu = [
         url:'suppliers',
         icon:<FaWarehouse/>
 
-    },    {
+    },
+    {
 
         title:'Payments',
         url:'payments',
         icon:<RiSecurePaymentFill/>
 
     },
+
+    // {
+
+    //     title:'Deliveries',
+    //     url:'deliveries',
+    //     icon:<RiSecurePaymentFill/>
+
+    // },
 
     {
 

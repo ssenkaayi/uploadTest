@@ -14,35 +14,35 @@ const paymentSchema = mongoose.Schema(
 
         type:Number,
         required:true
-        },
+    },
     kg_rate:{
 
         type:Number,
         required:true
-        },
+    },
     dollar_rate:{
 
-            type:Number,
-            required:true
-            },  
+        type:Number,
+        required:true
+    },  
     total_amount:{
 
         type:Number,
         required:true
-        },
+    },
     balance:{
 
-            type:Number,
-            required:true
-            },
-        client:{
+        type:Number,
+        required:true
+    },
+    client:{
 
-            type:{}
-            },
+        type:{}
+    },
     issuedName:{
 
         type:String,
-        // required:true
+        required:true
     },
 
 
