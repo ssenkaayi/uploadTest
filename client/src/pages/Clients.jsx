@@ -232,7 +232,7 @@ function Clients() {
                 
                 <td className=''>{client.createdAt.split("T", 1)}</td>
                 
-                <td className=''>{client.supplier.name}</td>
+                <td className=''>{client.supplier.supplier_name}</td>
                 <td className=''>{client.name}</td>
                 <td className=''>{client.weight}</td>
                 <td className=''>{client.number_pieces}</td>

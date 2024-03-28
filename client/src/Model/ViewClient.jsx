@@ -104,7 +104,7 @@ function ViewClient({visible , onClose , client_id}) {
               <p className='flex gap-4'><span>Invoice Number:</span><span>{clientsDetails._id}</span></p >
               <p className='flex gap-4'><span>Invoice Date:</span><span>{clientsDetails.createdAt}</span></p >
               <p className='flex gap-4'><span>Invoice Weight:</span><span>{clientsDetails.weight}</span></p >
-              <p className='flex gap-4'><span>Invoice Supplier:</span><span>{clientsDetails.supplier_name}</span></p >
+              <p className='flex gap-4'><span>Invoice Supplier:</span><span>{clientsDetails.supplier.name}</span></p >
           </div>
 
           <div>
