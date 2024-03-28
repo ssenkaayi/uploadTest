@@ -23,7 +23,13 @@ export const createDelivery = asyncHandler(async(req,res,next)=>{
 
     }
     const available_weight = (clientExists.weight - (totalWeightDelivered)).toFixed(2)
-    if(available_weight < req.body.weight) return next(errorHandler(400,'weight to be delivered cannot exist the available weight'))
+    const available_number_pieces = (clientExists.number_pieces - (totalPiecesDelivered)).toFixed(2)
+
+    // console.log(available_number_pieces)
+    // console.log(req.body.pecies_delivered)
+
+    if(available_weight < req.body.weight_delivered) return next(errorHandler(400,`weight to be delivered cannot execeed ${available_weight}`))
+    if(available_number_pieces < req.body.pecies_delivered) return next(errorHandler(400,`number of pieces to be delivered cannot execeed ${available_number_pieces}`))
 
     const remaining_weight = (clientExists.weight - (totalWeightDelivered + Number(req.body.weight_delivered))).toFixed(2)
     const remaining_pieces = (clientExists.number_pieces - (totalPiecesDelivered + Number(req.body.pecies_delivered))).toFixed(2)
