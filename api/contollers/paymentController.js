@@ -3,6 +3,7 @@ import asyncHandler from 'express-async-handler'
 import Supplier from '../model/supplierModel.js';
 import Client from '../model/clientModel.js';
 import Payment from '../model/paymentModel.js';
+import errorHandler from '../errorHandler.js';
 
 
 export const createPayment = asyncHandler(async(req,res,next)=>{
@@ -10,6 +11,7 @@ export const createPayment = asyncHandler(async(req,res,next)=>{
     const clientExists = await Client.findById(req.params.id)
     if(!clientExists) return next(errorHandler(400,'client doesnt exist'))
 
+    const amount_dollars = Number(req.body.amount)
     const arr = clientExists.payments
     let totalAmountPaid = 0
 
@@ -19,21 +21,20 @@ export const createPayment = asyncHandler(async(req,res,next)=>{
 
     }
 
-
-  
-    const kg_rate = Number (req.body.kg_rate)
-    const amount_dollars = Number(req.body.amount)
     const total_payment = (Number(clientExists.weight) * (req.body.kg_rate)).toFixed(2)
     const total_amount = (totalAmountPaid + amount_dollars).toFixed(2)
+    const available_total_payment = (total_payment - (totalAmountPaid)).toFixed(2)
+    const kg_rate = Number (req.body.kg_rate)
+
     const balance = (total_payment-total_amount ).toFixed(2)
     const amount_ugx = Number(req.body.dollar_rate) * Number(req.body.amount).toFixed(2)
-
-    // parseFloat(number).toPrecision(12)
-   
-    
     const reciept_number = req.body.reciept_no
     const dollar_rate = Number(req.body.dollar_rate)
 
+
+    if(available_total_payment < req.body.amount) return next(errorHandler(400,`amount to be paid cannot execeed ${available_total_payment}`))
+    console.log(available_total_payment)
+    console.log(total_amount)
     
     const payment = await Payment.create({total_amount,balance,amount_dollars,amount_ugx,kg_rate,reciept_number,
     client:{_id:clientExists._id,name:clientExists.name},dollar_rate})
