@@ -37,7 +37,7 @@ function AddDelivery({visible , onClose, client_id}) {
       const res = await fetch(`/api/delivery/create/${client_id}`,{
       method:'POSt',
       headers:{'content-type':'application/json',},
-      body:JSON.stringify(formData)
+      body:JSON.stringify({...formData,issued_by:currentEmploye.firstName,})
       }
       );
       //getting response from the server

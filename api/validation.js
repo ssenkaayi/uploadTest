@@ -46,7 +46,6 @@ export const luggageValidation = (data)=>{
 
     const schema = Joi.object({
 
-       
         trip_id:Joi.string().min(4).required(),
         weight:Joi.number().min(1).required(),
         numberLuggages:Joi.number().min(1).required(),

@@ -150,7 +150,7 @@ export default function Search() {
                 <tr key={index} className='p-4 text-center'>
                 
                 <td >{client.createdAt.split("T", 1)}</td>
-                <td >{client.supplier.name}</td>
+                <td >{client.supplier.supplier_name}</td>
                 <td >{client.name}</td>
                 <td >{client.weight}</td>
                 <td >{client.number_pieces}</td>

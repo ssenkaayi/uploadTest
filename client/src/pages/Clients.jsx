@@ -10,10 +10,6 @@ import AddPayments from '../Model/AddPayment'
 import ReactPaginate from 'react-paginate';
 import { useRef } from 'react'
 import {CiSearch } from 'react-icons/ci'
-import { FaUser } from 'react-icons/fa'
-import { CiUser } from "react-icons/ci";
-import { Link } from 'react-router-dom'
-
 
 function Clients() {
 

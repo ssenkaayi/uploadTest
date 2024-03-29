@@ -22,7 +22,33 @@ export const getTrips = async(req,res,next)=>{
         const trips = await Trip.find()
         if(trips==undefined) return res.status(400).send('no trips found')
 
-        res.status(200).json(trips)
+        const page  = parseInt (req.query.page)
+        const limit = parseInt (req.query.limit)
+
+        const startIndex = (page - 1) * limit
+        const lastIndex  = (page) * limit
+
+        const results = {}
+        results.totalTrips = trips.length
+        results.pageCount = Math.ceil(trips.length/limit)
+
+        if(lastIndex < trips.length){
+            results.next = {
+                page: page + 1
+
+            }
+        }
+
+        if(startIndex > 0){
+            results.prev = {
+                page: page - 1
+                
+            }
+        }
+        
+        results.result = trips.slice(startIndex,lastIndex)
+
+        res.status(200).json(results)
        
 
     }catch(error){

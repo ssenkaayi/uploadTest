@@ -60,10 +60,10 @@ export const getPayments = async(req,res,next)=>{
 
     try{
 
-        const client = await Payment.find()
-        if(client==undefined) return res.status(400).send('no packages for clients')
+        const payments = await Payment.find()
+        if(payments==undefined) return res.status(400).send('no packages for clients')
 
-        res.status(200).json(client)
+        res.status(200).json(payments)
        
 
     }catch(error){

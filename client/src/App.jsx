@@ -15,7 +15,7 @@ import ViewClientDetails from './pages/ViewClientDetails'
 import ViewSupplierDetails from './pages/ViewSupplierDetails'
 import ViewTripDetails from './pages/ViewTripDetails'
 import Search from './pages/Search'
-// import Deliveries from './pages/Deliveries'
+import Deliveries from './pages/Deliveries'
 
 
 
@@ -42,7 +42,7 @@ export default function App() {
             <Route path='employes' element = {<Employes/>}/>
             <Route path='suppliers' element = {<Suppliers/>}/>
             <Route path='payments' element = {<Payments/>}/>
-            {/* <Route path='deliveries' element = {<Deliveries/>}/> */}
+            <Route path='deliveries' element = {<Deliveries/>}/>
             <Route path='trips' element = {<Trips/>}/>
             <Route path='settings' element = {<Settings/>}/>
             <Route path='view_client/:id' element = {<ViewClientDetails/>}/>

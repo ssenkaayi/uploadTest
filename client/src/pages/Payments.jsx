@@ -27,14 +27,14 @@ function Payments() {
           try{
       
             setLoading(true);
-            const res = await fetch('/api/employe/getEmployes',{
+            const res = await fetch('/api/payment/getPayments',{
               
                 method:'GET',
             
             })
 
             const data = await res.json();
-            // console.log(data)
+            console.log(data)
           
             if(data.succuss===false){
               setError(true)
@@ -95,7 +95,7 @@ function Payments() {
 
   return (
 
-    <div className=' mt-record '>
+    <div  className='bg-white mt-card p-4 mt-record rounded-2xl'>
 
         <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>   
 
@@ -142,12 +142,14 @@ function Payments() {
                             
                             <td className='p-4 text-left'key={index}>{employe.createdAt.split("T", 1)}</td>
 
-                            <td className='p-4 text-left'>{employe.firstName}</td>
+                            <td className='p-4 text-left'>{employe.kg_rate}</td>
                             {/* <td className='p-4 text-left'>{employe.lastName}</td> */}
-                            <td className='p-4 text-left'>{employe.email}</td>
-                            <td className='p-4 text-left'>{employe.phone}</td>
-                            <td className='p-4 text-left'>{employe.address}</td>
-                            <td className='p-4 text-left'>{employe.role}</td>
+                            <td className='p-4 text-left'>{employe.dollar_rate}</td>
+                            <td className='p-4 text-left'>{employe.reciept_number}</td>
+                            <td className='p-4 text-left'>{employe.amount_dollars}</td>
+                            <td className='p-4 text-left'>{employe.total_amount}</td>
+                            <td className='p-4 text-left'>{employe.balance}</td>
+                            <td className='p-4 text-left'>{employe.total_amount}</td>
 
                             <td className='text-green flex gap-4 items-center p-4'>
                                 <span className='p-2 cursor-pointer '>Edit</span>

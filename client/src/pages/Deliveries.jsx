@@ -7,26 +7,27 @@ import { useParams } from 'react-router-dom'
 
 export default function Delivery() {
 
-    const [employes , setEmployes] = useState([])
+    const [deliveries , setDeliveries] = useState([])
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
+    const params = useParams()
     const client_id = params.id
 
     useEffect(()=>{
 
-        const fetchEmployes = async()=>{
+        const fetchDeliveries = async()=>{
     
           try{
       
             setLoading(true);
-            const res = await fetch(`/api/client/getClient/${client_id}`,{
+            const res = await fetch(`/api/delivery/getDelivery`,{
               
                 method:'GET',
             
             })
 
             const data = await res.json();
-            console.log(data)
+            // console.log(data)
           
             if(data.succuss===false){
               setError(true)
@@ -36,8 +37,7 @@ export default function Delivery() {
             
             setError(false)
             setLoading(false)
-           
-            setEmployes(data)
+            setDeliveries(data)
             // setEmployes((prev)=>prev.filter((data)))
         
           }
@@ -49,7 +49,7 @@ export default function Delivery() {
         }
       }
     
-        fetchEmployes()
+        fetchDeliveries()
     
         
     },[])
@@ -57,7 +57,7 @@ export default function Delivery() {
 
   return (
         
-        <div>
+        <div className='bg-white mt-card p-4 mt-record rounded-2xl' >
             
             <div className='flex justify-between mb-4'>
 
@@ -97,18 +97,18 @@ export default function Delivery() {
 
                 <tbody>
 
-                    { employes !== null ?employes.map((employe,index)=>{ 
+                    { deliveries !== null ? deliveries.map((employe,index)=>{ 
 
                         return(
                             <tr key={index}>
                             
                             <td className='p-4 text-left'key={index}>{employe.createdAt.split("T", 1)}</td>
 
-                            <td className='p-4 text-left'>{employe.firstName}</td>
-                            <td className='p-4 text-left'>{employe.lastName}</td>
-                            <td className='p-4 text-left'>{employe.email}</td>
-                            {/* <td className='p-4 text-left'>{employe.phone}</td> */}
-                            {/* <td className='p-4 text-left'>{employe.address}</td> */}
+                            <td className='p-4 text-left'>{employe.weight_delivered}</td>
+                            <td className='p-4 text-left'>{employe.pieces_delivered}</td>
+                            <td className='p-4 text-left'>{employe.remaining_weight}</td>
+                            <td className='p-4 text-left'>{employe.remaining_pieces}</td>
+                            <td className='p-4 text-left'>{employe.delivered_by}</td>
                             {/* <td className='p-4 text-left'>{employe.role}</td> */}
 
                             <td className='text-green flex gap-4 items-center p-4'>
@@ -120,6 +120,7 @@ export default function Delivery() {
                             </tr>
 
                         )
+
                     }):<tr> <td className='p-4 text-left'>loading</td> </tr>}
 
                 </tbody>

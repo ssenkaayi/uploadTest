@@ -5,6 +5,8 @@ import { useEffect } from 'react'
 import AddTrip from '../Model/AddTrip'
 import AddSupplier from '../Model/AddSUpplier'
 import { useNavigate } from 'react-router-dom';
+import { useRef } from 'react'
+import ReactPaginate from 'react-paginate';
 
 
 
@@ -16,6 +18,9 @@ function Trips() {
     const [showAddSupplier,setShowAddSupplier] = useState(false)
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
+    const [limit,setLimit] = useState(8)
+    const [pageCount,setPageCount] = useState(1)
+    const currentPage = useRef()
     const navigate = useNavigate();
 
 
@@ -26,49 +31,68 @@ function Trips() {
 
     }
 
-
     useEffect(()=>{
+
+
+      currentPage.current = 1
+      getPagenatedTrips()
 
         const fetchTrips = async()=>{
     
-          try{
-      
-            setLoading(true);
-            const res = await fetch('/api/trip/getTrips',{
-              
-                method:'GET',
-            
-            })
 
-            const data = await res.json();
-            // console.log(data)
-          
-            if(data.succuss===false){
-              setError(true)
-              setLoading(false)
-              return
-            }
-            
-            setError(false)
-            setLoading(false)
-           
-            setTrips(data)
-            // setTrips((prev)=>[...prev,data])
-            // console.log(trips)
-        
-          }
-      
-          catch(error){
-            setError(error.message)
-            setLoading(false)
-      
-        }
       }
-    
-      fetchTrips()
     
         
     },[])
+
+    const getPagenatedTrips =async()=>{
+
+
+      try{
+      
+        setLoading(true);
+
+      const res = await fetch(`/api/trip/getTrips?page=${currentPage.current}&limit=${limit}`,{
+              
+        method:'GET',
+    
+     })
+
+     const data = await res.json();
+
+     if(data.succuss===false){
+      setError(true)
+      setLoading(false)
+      return
+    }
+
+    setError(false)
+    setLoading(false)
+    
+
+    setPageCount(data.pageCount)
+    setTrips(data.result)
+    setFilteredClients(data.result)
+
+    
+      }
+  
+      catch(error){
+        setError(error.message)
+        setLoading(false)
+  
+    }
+
+
+    }
+
+
+    const handlePageClick = (e)=>{
+      // console.log(e)
+      currentPage.current = (e.selected+1)
+      getPagenatedClients()
+  
+    }
 
     const handleSkyTeamName = (id)=>{
 
@@ -186,6 +210,19 @@ function Trips() {
                 </tbody>
 
             </table>
+
+            <ReactPaginate className="flex gap-4"
+
+              breakLabel="..."
+              nextLabel="next >"
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={5}
+              pageCount={pageCount}
+              previousLabel="< previous"
+              renderOnZeroPageCount={null}
+
+
+/>
 
         </div>
 

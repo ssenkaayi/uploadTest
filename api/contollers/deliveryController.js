@@ -30,13 +30,16 @@ export const createDelivery = asyncHandler(async(req,res,next)=>{
 
     if(available_weight < req.body.weight_delivered) return next(errorHandler(400,`weight to be delivered cannot execeed ${available_weight}`))
     if(available_number_pieces < req.body.pecies_delivered) return
-     next(errorHandler(400,`number of pieces to be delivered cannot execeed ${available_number_pieces}`))
+    next(errorHandler(400,`number of pieces to be delivered cannot execeed ${available_number_pieces}`))
+    
 
     const remaining_weight = (clientExists.weight - (totalWeightDelivered + Number(req.body.weight_delivered))).toFixed(2)
     const remaining_pieces = (clientExists.number_pieces - (totalPiecesDelivered + Number(req.body.pecies_delivered))).toFixed(2)
     const pieces_delivered = req.body.pecies_delivered
     const weight_delivered = req.body.weight_delivered
     const delivered_by = req.body.delivered_by
+
+    if(remaining_pieces === 0 && remaining_weight > 0) return next(errorHandler(400,'weight cannot exisist with zero number of pieces'))
     
     const delivery = await Delivery.create({remaining_weight,remaining_pieces,pieces_delivered,weight_delivered,delivered_by,
     client:{_id:clientExists._id,name:clientExists.name},})
@@ -53,14 +56,14 @@ export const createDelivery = asyncHandler(async(req,res,next)=>{
 })
 
 
-export const getPayments = async(req,res,next)=>{
+export const getDeliveries = async(req,res,next)=>{
 
     try{
 
-        const client = await Payment.find()
-        if(client==undefined) return res.status(400).send('no packages for clients')
+        const delivery_exists = await Delivery.find()
+        if(delivery_exists==undefined) return res.status(400).send('no packages for clients')
 
-        res.status(200).json(client)
+        res.status(200).json(delivery_exists)
        
 
     }catch(error){
@@ -71,16 +74,17 @@ export const getPayments = async(req,res,next)=>{
 
 }
 
-export const getClient = asyncHandler(async(req,res)=>{
+export const getDelivey = asyncHandler(async(req,res)=>{
 
 
-    const isClient = await Client.findById(req.params.id)
-    if(!isClient) return res.status(400).send('you are not authorise to view client data')
+    const delivery_exists = await Delivery.findById(req.params.id)
+    if(!delivery_exists) return res.status(400).send('you are not authorise to view client data')
   
     // const {password:pass,...rest} = isEmploye._doc
-    res.status(200).send(isClient)
+    res.status(200).send(delivery_exists)
    
 })
+
 
 export const  deleteClient = async(req,res,next)=>{
 

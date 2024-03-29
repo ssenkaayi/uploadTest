@@ -37,13 +37,13 @@ export const sidebarMenu = [
 
     },
 
-    // {
+    {
 
-    //     title:'Deliveries',
-    //     url:'deliveries',
-    //     icon:<RiSecurePaymentFill/>
+        title:'Deliveries',
+        url:'deliveries',
+        icon:<RiSecurePaymentFill/>
 
-    // },
+    },
 
     {
 
