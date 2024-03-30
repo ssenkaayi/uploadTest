@@ -19,7 +19,7 @@ export const createTrip = asyncHandler(async(req,res)=>{
 export const getTrips = async(req,res,next)=>{
     try{
 
-        const trips = await Trip.find()
+        const trips = await Trip.find().sort({createdAt:-1}).limit(24)
         if(trips==undefined) return res.status(400).send('no trips found')
 
         const page  = parseInt (req.query.page)

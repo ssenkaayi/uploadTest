@@ -23,7 +23,6 @@ function Trips() {
     const currentPage = useRef()
     const navigate = useNavigate();
 
-
     const handleOnClose = ()=>{
 
       setShowAddTrip(false)
@@ -33,17 +32,18 @@ function Trips() {
 
     useEffect(()=>{
 
-
       currentPage.current = 1
       getPagenatedTrips()
-
-        const fetchTrips = async()=>{
-    
-
-      }
-    
-        
+     
     },[])
+
+    const handlePageClick = (e)=>{
+
+      // console.log(e.selected+1)
+      currentPage.current = (e.selected+1)
+      getPagenatedTrips()
+  
+    }
 
     const getPagenatedTrips =async()=>{
 
@@ -69,30 +69,21 @@ function Trips() {
     setError(false)
     setLoading(false)
     
-
     setPageCount(data.pageCount)
     setTrips(data.result)
     setFilteredClients(data.result)
 
-    
-      }
-  
+    }
+
       catch(error){
+        
         setError(error.message)
         setLoading(false)
-  
+    
+      }
     }
 
 
-    }
-
-
-    const handlePageClick = (e)=>{
-      // console.log(e)
-      currentPage.current = (e.selected+1)
-      getPagenatedClients()
-  
-    }
 
     const handleSkyTeamName = (id)=>{
 
@@ -103,8 +94,6 @@ function Trips() {
       // setShowAddSupplier(true)
 
     }
-
-
 
     const handleDeteleTrip = async(_id)=>{
 
@@ -119,7 +108,6 @@ function Trips() {
     
         const data = await res.json();
   
-    
         if(data.success===false){
           console.log(data.message)
         }
@@ -130,8 +118,6 @@ function Trips() {
 
         console.log(error)
       }
-
-
     }
 
   return (
@@ -192,8 +178,6 @@ function Trips() {
                             <td className='p-4 text-left'>{trip.market_fees}</td>
                             <td className='p-4 text-left'>{trip.issued_by}</td>
 
-
-
                             <td className='flex gap-4 items-center p-4'>
 
                               {/* <button className='p-2 cursor-pointer 'id="add" onClick={()=>handleSkyTeamName(trip._id)}>Add</button> */}
@@ -220,14 +204,9 @@ function Trips() {
               pageCount={pageCount}
               previousLabel="< previous"
               renderOnZeroPageCount={null}
-
-
-/>
+            />
 
         </div>
-
-
-
     </div>
 
   )

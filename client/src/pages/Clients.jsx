@@ -32,9 +32,7 @@ function Clients() {
 
       currentPage.current = 1
       getPagenatedClients()
-      
     
-        
     },[])
 
   const handlePageClick = (e)=>{
@@ -44,19 +42,19 @@ function Clients() {
 
   }
 
-   const getPagenatedClients =async()=>{
+  const getPagenatedClients =async()=>{
 
     const res = await fetch(`/api/client/getClients?page=${currentPage.current}&limit=${limit}`,{
           
       method:'GET',
   
-  })
-
-  const handleSearch = async()=>{
-    const res = await fetch(`/api/client/searchClient/?page=${key}`,{
-      method:'GET'
     })
-  }
+
+    const handleSearch = async()=>{
+      const res = await fetch(`/api/client/searchClient/?page=${key}`,{
+        method:'GET'
+      })
+    }
 
     const data = await res.json();
 
@@ -64,97 +62,97 @@ function Clients() {
     setClients(data.result)
     setFilteredClients(data.result)
 
-   }
+  }
 
-    const handleInputChange = (e) => { 
+  const handleInputChange = (e) => { 
 
-      // console.log(e)
+    // console.log(e)
 
-      const searchTerm = e.target.value;
-      setSearchItem(searchTerm)
+    const searchTerm = e.target.value;
+    setSearchItem(searchTerm)
 
-      // // filter the items using the apiUsers state
-      const filteredItems = clients.filter((client) =>
-      client.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+    // // filter the items using the apiUsers state
+    const filteredItems = clients.filter((client) =>
+    client.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
-      setFilteredClients(filteredItems);
-      // console.log(filteredClients)
-
-      
-    }
-
-    const handleViewClient = (id)=>{
-
-      // console.log(id)
-
-      setClient_id(id)
-      navigate(`/view_client/${id}`)
-
-      // setShowViewClient(true)
-     
-    }
-    console.log(client_id)
-
-    const handleEditClient = (_id)=>{
-
-      setClient_id(_id)
-      setShowEditClient(true)
-      // setShowEditClient(true)
-    }
-
-    const handleMakePayment =(_id)=>{
-
-      setClient_id(_id)
-      setshowAddPayment(true)
-
-    }
-
-
-    const handleOnClose = ()=>{
-      
-      setShowAddEmploye(false)
-      setShowViewClient(false)
-      setShowEditClient(false)
-      setshowAddPayment(false)
-
-    }
-
-    const navigateToSupplier = ()=>{
-      
-      navigate('/suppliers')
-
-    }
-
-    const handleDeleteClient = async(_id)=>{
-
-      const button_id =_id
-      try{
+    setFilteredClients(filteredItems);
+    // console.log(filteredClients)
     
-        const res = await fetch(`/api/client/delete/${button_id}`,{
-          method:"DELETE",
-        })
+  }
+
+  const handleViewClient = (id)=>{
+
+    // console.log(id)
+
+    setClient_id(id)
+    navigate(`/view_client/${id}`)
+
+    // setShowViewClient(true)
     
-        const data = await res.json();
+  }
+
+  console.log(client_id)
+
+  const handleEditClient = (_id)=>{
+
+    setClient_id(_id)
+    setShowEditClient(true)
+    // setShowEditClient(true)
+  }
+
+  const handleMakePayment =(_id)=>{
+
+    setClient_id(_id)
+    setshowAddPayment(true)
+
+  }
+
+
+  const handleOnClose = ()=>{
     
-        // console.log(data)
+    setShowAddEmploye(false)
+    setShowViewClient(false)
+    setShowEditClient(false)
+    setshowAddPayment(false)
+
+  }
+
+  const navigateToSupplier = ()=>{
     
-        if(data.success===false){
-          console.log(data.message)
-          setError(data.message)
-          setLoading(false)
-        }
-    
-        setFilteredClients((prev)=>prev.filter((client)=>client._id!==button_id))
-    
-      }catch(error){
-        console.log(error)
+    navigate('/suppliers')
+
+  }
+
+  const handleDeleteClient = async(_id)=>{
+
+    const button_id =_id
+    try{
+  
+      const res = await fetch(`/api/client/delete/${button_id}`,{
+        method:"DELETE",
+      })
+  
+      const data = await res.json();
+  
+      // console.log(data)
+  
+      if(data.success===false){
+        console.log(data.message)
+        setError(data.message)
+        setLoading(false)
       }
+  
+      setFilteredClients((prev)=>prev.filter((client)=>client._id!==button_id))
+  
+    }catch(error){
+      console.log(error)
     }
+  }
 
-    const handleSearch = ()=>{
-      navigate('/search')
-    }
+  const handleSearch = ()=>{
+    navigate('/search')
+  }
 
 
   return (

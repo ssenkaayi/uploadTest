@@ -39,7 +39,7 @@ export const createSupplier = asyncHandler(async(req,res,next)=>{
 export const getSuppliers = async(req,res,next)=>{
     try{
 
-        const suppliers = await Supplier.find()
+        const suppliers = await Supplier.find().sort({createdAt:-1}).limit(24)
         if(suppliers==undefined) return res.status(400).send('no trips found')
         
         const page  = parseInt (req.query.page)
