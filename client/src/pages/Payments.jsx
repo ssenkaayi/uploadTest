@@ -4,6 +4,8 @@ import { useState } from 'react'
 import { employeTable, paymentTable } from '../components/TableHeading'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import ReactPaginate from 'react-paginate';
+import { useRef } from 'react'
 
 
 function Payments() {
@@ -13,6 +15,9 @@ function Payments() {
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
     const navigate = useNavigate()
+    const [limit,setLimit] = useState(9)
+    const [pageCount,setPageCount] = useState(1)
+    const currentPage = useRef()
 
 
     const handleOnClose = ()=>{
@@ -24,45 +29,54 @@ function Payments() {
 
     useEffect(()=>{
 
-        const fetchEmployes = async()=>{
-    
-          try{
-      
-            setLoading(true);
-            const res = await fetch('/api/payment/getPayments',{
-              
-                method:'GET',
-            
-            })
 
-            const data = await res.json();
-            console.log(data)
-          
-            if(data.succuss===false){
-              setError(true)
-              setLoading(false)
-              return
-            }
-            
-            setError(false)
-            setLoading(false)
-           
-            setPayments(data)
-            // setEmployes((prev)=>prev.filter((data)))
-        
-          }
-      
-          catch(error){
-            setError(error.message)
-            setLoading(false)
-      
-        }
-      }
-    
-        fetchEmployes()
+      currentPage.current = 1
+      fetchEmployes()
     
         
     },[])
+
+    const handlePageClick = (e)=>{
+      // console.log(e)
+      currentPage.current = (e.selected+1)
+      fetchEmployes()
+  
+    }
+
+    const fetchEmployes = async()=>{
+    
+      try{
+  
+        setLoading(true);
+        const res = await fetch(`/api/payment/getPayments?page=${currentPage.current}&limit=${limit}`,{
+          
+            method:'GET',
+        
+        })
+
+        const data = await res.json();
+        // console.log(data)
+      
+        if(data.succuss===false){
+          setError(true)
+          setLoading(false)
+          return
+        }
+        
+        setError(false)
+        setLoading(false)
+        setPageCount(data.pageCount)
+        setPayments(data.result)
+        // setEmployes((prev)=>prev.filter((data)))
+    
+      }
+  
+      catch(error){
+        setError(error.message)
+        setLoading(false)
+  
+    }
+  }
 
     const handleDeteleEmploye = async(id)=>{
 
@@ -103,7 +117,7 @@ function Payments() {
 
   return (
 
-    <div  className='bg-white mt-card p-4 mt-record rounded-2xl'>
+    <div  className='bg-white mt-card p-record mt-record rounded-2xl'>
 
         <AddEmploye onClose={handleOnClose} visible={showAddEmploye}/>   
 
@@ -174,6 +188,17 @@ function Payments() {
                 </tbody>
 
             </table>
+
+            <ReactPaginate className="flex gap-4"
+
+              breakLabel="..."
+              nextLabel="next >"
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={5}
+              pageCount={pageCount}
+              previousLabel="< previous"
+              renderOnZeroPageCount={null}
+            />
 
         </div>
 

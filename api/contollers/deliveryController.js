@@ -60,11 +60,36 @@ export const getDeliveries = async(req,res,next)=>{
 
     try{
 
-        const delivery_exists = await Delivery.find()
-        if(delivery_exists==undefined) return res.status(400).send('no packages for clients')
+        const deliveries = await Delivery.find().sort({createdAt:-1}).limit(24)
+        if(deliveries===undefined) return res.status(400).send('no packages for clients')
 
-        res.status(200).json(delivery_exists)
-       
+        const page  = parseInt (req.query.page)
+        const limit = parseInt (req.query.limit)
+
+        const startIndex = (page - 1) * limit
+        const lastIndex  = (page) * limit
+
+        const results = {}
+        results.totalDeliveries = deliveries.length
+        results.pageCount = Math.ceil(deliveries.length/limit)
+
+        if(lastIndex < deliveries.length){
+            results.next = {
+                page: page + 1
+
+            }
+        }
+
+        if(startIndex > 0){
+            results.prev = {
+                page: page - 1
+                
+            }
+        }
+        
+        results.result = deliveries.slice(startIndex,lastIndex)
+
+        res.status(200).json(results)
 
     }catch(error){
 

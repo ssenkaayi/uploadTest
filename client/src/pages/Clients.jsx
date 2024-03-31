@@ -50,12 +50,6 @@ function Clients() {
   
     })
 
-    const handleSearch = async()=>{
-      const res = await fetch(`/api/client/searchClient/?page=${key}`,{
-        method:'GET'
-      })
-    }
-
     const data = await res.json();
 
     setPageCount(data.pageCount)

@@ -1,10 +1,11 @@
 import React from 'react'
-import AddEmploye from '../Model/AddEmploye'
 import { useState } from 'react'
 import {  deliveryTable } from '../components/TableHeading'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import ReactPaginate from 'react-paginate';
+import { useRef } from 'react'
 
 export default function Delivery() {
 
@@ -14,47 +15,57 @@ export default function Delivery() {
     const params = useParams()
     const client_id = params.id
     const navigate = useNavigate()
+    const [limit,setLimit] = useState(8)
+    const [pageCount,setPageCount] = useState(1)
+    const currentPage = useRef()
 
     useEffect(()=>{
-
-        const fetchDeliveries = async()=>{
-    
-          try{
-      
-            setLoading(true);
-            const res = await fetch(`/api/delivery/getDelivery`,{
-              
-                method:'GET',
-            
-            })
-
-            const data = await res.json();
-            // console.log(data)
-          
-            if(data.succuss===false){
-              setError(true)
-              setLoading(false)
-              return
-            }
-            
-            setError(false)
-            setLoading(false)
-            setDeliveries(data)
-            // setEmployes((prev)=>prev.filter((data)))
-        
-          }
-      
-          catch(error){
-            setError(error.message)
-            setLoading(false)
-      
-        }
-      }
-    
+        currentPage.current = 1
         fetchDeliveries()
-    
         
     },[])
+
+    const handlePageClick = (e)=>{
+        // console.log(e)
+        currentPage.current = (e.selected+1)
+        fetchDeliveries()
+    
+      }
+
+    const fetchDeliveries = async()=>{
+    
+        try{
+    
+          setLoading(true);
+          const res = await fetch(`/api/delivery/getDelivery?page=${currentPage.current}&limit=${limit}`,{
+            
+              method:'GET',
+          
+          })
+
+          const data = await res.json();
+          console.log(data)
+        
+          if(data.succuss===false){
+            setError(true)
+            setLoading(false)
+            return
+          }
+          
+          setError(false)
+          setLoading(false)
+          setPageCount(data.pageCount)
+          setDeliveries(data.result)
+          // setEmployes((prev)=>prev.filter((data)))
+      
+        }
+    
+        catch(error){
+          setError(error.message)
+          setLoading(false)
+    
+      }
+    }
 
     const navigateToClient =()=>{
 
@@ -65,7 +76,7 @@ export default function Delivery() {
 
   return (
         
-        <div className='bg-white mt-card p-4 mt-record rounded-2xl' >
+        <div className='bg-white mt-card p-record mt-record rounded-2xl' >
             
             <div className='flex justify-between mb-4'>
 
@@ -73,9 +84,9 @@ export default function Delivery() {
 
             <div className='flex items-center gap-4'>
 
-            <button 
-                className='flex items-center p-2 bg-dashbord rounded-xl text-white'onClick={navigateToClient}>Make Delivery
-            </button>
+                <button 
+                    className='flex items-center p-2 bg-dashbord rounded-xl text-white'onClick={navigateToClient}>Make Delivery
+                </button>
 
 
             </div>
@@ -134,6 +145,17 @@ export default function Delivery() {
                 </tbody>
 
             </table>
+
+            <ReactPaginate className="flex gap-4"
+
+                breakLabel="..."
+                nextLabel="next >"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={5}
+                pageCount={pageCount}
+                previousLabel="< previous"
+                renderOnZeroPageCount={null}
+            />
         </div>
 
 
