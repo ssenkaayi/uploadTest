@@ -3,14 +3,16 @@ import AddEmploye from '../Model/AddEmploye'
 import { useState } from 'react'
 import { employeTable, paymentTable } from '../components/TableHeading'
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 function Payments() {
 
     const [showAddEmploye,setShowAddEmploye] = useState(false)
-    const [employes , setEmployes] = useState([])
+    const [payments , setPayments] = useState([])
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
+    const navigate = useNavigate()
 
 
     const handleOnClose = ()=>{
@@ -45,7 +47,7 @@ function Payments() {
             setError(false)
             setLoading(false)
            
-            setEmployes(data)
+            setPayments(data)
             // setEmployes((prev)=>prev.filter((data)))
         
           }
@@ -90,6 +92,12 @@ function Payments() {
 
     }
 
+    const navigateToClient =()=>{
+
+      navigate('/')
+
+    }
+
     //bg-white mt-card p-record mt-record rounded-2xl
 
 
@@ -101,10 +109,12 @@ function Payments() {
 
         <div className='flex justify-between'>
 
-         <h3 className='text-regal-violet text-2xl p-2'> Manange Payments </h3>
+          <h3 className='text-regal-violet text-2xl p-2'> Manange Payments </h3>
 
-         <button onClick={()=>setShowAddEmploye(true)} 
-          className='flex items-center p-search-box bg-dashbord rounded-xl text-white '>Add Payment</button>
+          <button 
+
+            className='flex items-center p-search-box bg-dashbord rounded-xl text-white' onClick={navigateToClient}>Add Payment
+          </button>
 
         </div>
 
@@ -135,21 +145,20 @@ function Payments() {
 
                 <tbody>
                 
-                    { employes !== null ?employes.map((employe,index)=>{ 
+                    { payments !== null ?payments.map((payment,index)=>{ 
 
                         return(
                             <tr key={index}>
                             
-                            <td className='p-4 text-left'key={index}>{employe.createdAt.split("T", 1)}</td>
-
-                            <td className='p-4 text-left'>{employe.kg_rate}</td>
-                            {/* <td className='p-4 text-left'>{employe.lastName}</td> */}
-                            <td className='p-4 text-left'>{employe.dollar_rate}</td>
-                            <td className='p-4 text-left'>{employe.reciept_number}</td>
-                            <td className='p-4 text-left'>{employe.amount_dollars}</td>
-                            <td className='p-4 text-left'>{employe.total_amount}</td>
-                            <td className='p-4 text-left'>{employe.balance}</td>
-                            <td className='p-4 text-left'>{employe.total_amount}</td>
+                            <td className='p-4 text-left'>{payment.createdAt.split("T", 1)}</td>
+                            <td className='p-4 text-left'>{payment.client.name}</td>
+                            <td className='p-4 text-left'>{payment.kg_rate}</td>
+                            <td className='p-4 text-left'>{payment.dollar_rate}</td>
+                            <td className='p-4 text-left'>{payment.reciept_number}</td>
+                            <td className='p-4 text-left'>{payment.amount_dollars}</td>
+                            <td className='p-4 text-left'>{payment.total_amount}</td>
+                            <td className='p-4 text-left'>{payment.balance}</td>
+                            <td className='p-4 text-left'>{payment.total_amount}</td>
 
                             <td className='text-green flex gap-4 items-center p-4'>
                                 <span className='p-2 cursor-pointer '>Edit</span>
