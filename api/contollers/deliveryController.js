@@ -29,8 +29,7 @@ export const createDelivery = asyncHandler(async(req,res,next)=>{
     // console.log(req.body.pecies_delivered)
 
     if(available_weight < req.body.weight_delivered) return next(errorHandler(400,`weight to be delivered cannot execeed ${available_weight}`))
-    if(available_number_pieces < req.body.pecies_delivered) return
-    next(errorHandler(400,`number of pieces to be delivered cannot execeed ${available_number_pieces}`))
+    if(available_number_pieces < req.body.pecies_delivered) return next(errorHandler(400,`number of pieces to be delivered cannot execeed ${available_number_pieces}`))
     
 
     const remaining_weight = (clientExists.weight - (totalWeightDelivered + Number(req.body.weight_delivered))).toFixed(2)
@@ -39,7 +38,7 @@ export const createDelivery = asyncHandler(async(req,res,next)=>{
     const weight_delivered = req.body.weight_delivered
     const delivered_by = req.body.delivered_by
 
-    if(remaining_pieces === 0 && remaining_weight > 0) return next(errorHandler(400,'weight cannot exisist with zero number of pieces'))
+    if(remaining_pieces == 0 && remaining_weight > 0) return next(errorHandler(400,'weight cannot exisist with zero number of pieces'))
     
     const delivery = await Delivery.create({remaining_weight,remaining_pieces,pieces_delivered,weight_delivered,delivered_by,
     client:{_id:clientExists._id,name:clientExists.name},})
@@ -54,7 +53,6 @@ export const createDelivery = asyncHandler(async(req,res,next)=>{
     res.status(200).send(delivery)
    
 })
-
 
 export const getDeliveries = async(req,res,next)=>{
 

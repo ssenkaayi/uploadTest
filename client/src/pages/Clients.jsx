@@ -86,7 +86,7 @@ function Clients() {
     
   }
 
-  console.log(client_id)
+  // console.log(client_id)
 
   const handleEditClient = (_id)=>{
 
@@ -132,7 +132,7 @@ function Clients() {
       // console.log(data)
   
       if(data.success===false){
-        console.log(data.message)
+        // console.log(data.message)
         setError(data.message)
         setLoading(false)
       }
@@ -140,7 +140,8 @@ function Clients() {
       setFilteredClients((prev)=>prev.filter((client)=>client._id!==button_id))
   
     }catch(error){
-      console.log(error)
+      // console.log(error)
+      setError(error.message)
     }
   }
 

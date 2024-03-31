@@ -42,7 +42,7 @@ function AddClient({visible , onClose , supplier_id }) {
         );
         //getting response from the server
         const data =  await res.json();
-        // console.log(data)
+        console.log(data)
   
         //if response is false, show the error message to the client
         if(data.success===false){
@@ -55,6 +55,7 @@ function AddClient({visible , onClose , supplier_id }) {
         setLoading(false);
         setError(null)
         // navigate('/')
+
         navigate(`/view_supplier/${supplier_id}`)
         handleOnClose()
   

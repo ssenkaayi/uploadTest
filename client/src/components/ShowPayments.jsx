@@ -1,7 +1,7 @@
 import React from 'react'
 import AddEmploye from '../Model/AddEmploye'
 import { useState } from 'react'
-import { employeTable, paymentTable } from '../components/TableHeading'
+import { clientPaymentTable} from '../components/TableHeading'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import AddPayment from '../Model/AddPayment'
@@ -100,7 +100,7 @@ export default function ShowPayments() {
 
                     <tr>
 
-                    {paymentTable.map((item,index)=>{
+                    {clientPaymentTable.map((item,index)=>{
 
                         return(
 

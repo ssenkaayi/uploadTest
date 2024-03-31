@@ -30,7 +30,7 @@ export default function Delivery() {
         currentPage.current = (e.selected+1)
         fetchDeliveries()
     
-      }
+    }
 
     const fetchDeliveries = async()=>{
     
@@ -56,7 +56,7 @@ export default function Delivery() {
           setLoading(false)
           setPageCount(data.pageCount)
           setDeliveries(data.result)
-          // setEmployes((prev)=>prev.filter((data)))
+        //   setDeliveries((prev)=>prev.filter((deliveries))) 
       
         }
     
@@ -72,7 +72,6 @@ export default function Delivery() {
         navigate('/')
 
     }
-
 
   return (
         
@@ -119,6 +118,7 @@ export default function Delivery() {
                     { deliveries !== null ? deliveries.map((delivery,index)=>{ 
 
                         return(
+
                             <tr key={index}>
                             
                             <td className='p-4 text-left'key={index}>{delivery.createdAt.split("T", 1)}</td>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 function AddTrip({visible , onClose}) {
@@ -15,7 +15,7 @@ function AddTrip({visible , onClose}) {
   const [error,setError] = useState(null);
   const {currentEmploye} = useSelector((state)=>state.employe)
   
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleChange = (e)=>{
     setFormData({
@@ -40,7 +40,7 @@ function AddTrip({visible , onClose}) {
       );
       //getting response from the server
       const data =  await res.json();
-      // console.log(data)
+      console.log(data)
 
       //if response is false, show the error message to the client
       if(data.success===false){
@@ -52,7 +52,7 @@ function AddTrip({visible , onClose}) {
       //if response is True, register and navigate to the sign in page
       setLoading(false);
       setError(null)
-      // navigate('/dashbord/employes')
+      navigate('/trips')
       handleOnClose()
 
     }catch(error){

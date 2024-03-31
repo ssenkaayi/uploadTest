@@ -1,7 +1,7 @@
 import React from 'react'
 import AddEmploye from '../Model/AddEmploye'
 import { useState } from 'react'
-import {  deliveryTable } from '../components/TableHeading'
+import {  clientDeliveryTable } from '../components/TableHeading'
 import { useEffect } from 'react'
 import AddPayment from '../Model/AddPayment'
 import { useParams } from 'react-router-dom'
@@ -100,7 +100,7 @@ export default function ShowDeliveries() {
 
                     <tr>
 
-                    {deliveryTable.map((item,index)=>{
+                    {clientDeliveryTable.map((item,index)=>{
 
                         return(
 

@@ -13,6 +13,10 @@ export const paymentTable = ['Date','name','Kg Rate','Dollar Rate','Ugx','Dollar
 
 export const deliveryTable = ['Date','name','Weight Delivered','Pieces Delivered','Remaining Weight','Remaining Pieces','Delivered By']
 
+export const clientPaymentTable = ['Date','Kg Rate','Dollar Rate','Ugx','Dollar','Total paid','Balance','Issued by']
+
+export const clientDeliveryTable = ['Date','Weight Delivered','Pieces Delivered','Remaining Weight','Remaining Pieces','Delivered By']
+
 export const viewTripDetailsTable = ['Supplier ID','Supplier name','Weight']
 
 export const viewSupplierDetailsTable = ['Client ID','Client name','Weight']

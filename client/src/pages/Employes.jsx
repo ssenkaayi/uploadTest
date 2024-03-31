@@ -13,7 +13,7 @@ function Records() {
     const [employes , setEmployes] = useState([])
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
-    const currentPage = useRef()
+    // const currentPage = useRef()
 
 
     const handleOnClose = ()=>{

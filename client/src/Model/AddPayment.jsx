@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function AddPayment({visible , onClose, client_id}) {
 
@@ -12,6 +13,8 @@ function AddPayment({visible , onClose, client_id}) {
   const[formData,setFormData]=useState({});
   const[loading,setLoading]=useState(false);
   const[error,setError]= useState(null);
+  const{currentEmploye} = useSelector((state)=>state.employe)
+
 
   const navigate = useNavigate();
 

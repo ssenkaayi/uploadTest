@@ -6,17 +6,17 @@ const deliverySchema = mongoose.Schema(
      weight_delivered:{
 
         type:Number,
-        // required:true
+        required:true
     },
     remaining_weight:{
 
         type:Number,
-        // required:true
+        required:true
     },
     delivered_by:{
 
         type:String,
-        // required:true
+        required:true
     },
     client:{
 
@@ -30,7 +30,7 @@ const deliverySchema = mongoose.Schema(
     remaining_pieces:{
 
         type:Number,
-        // required:true,
+        required:true,
     },
 
 } , {timestamps:true}
