@@ -38,7 +38,7 @@ export const createDelivery = asyncHandler(async(req,res,next)=>{
     const weight_delivered = req.body.weight_delivered
     const delivered_by = req.body.delivered_by
 
-    if(remaining_pieces == 0 && remaining_weight > 0) return next(errorHandler(400,'weight cannot exisist with zero number of pieces'))
+    if(remaining_pieces == 0 && remaining_weight > 0) return next(errorHandler(400,`weight of ${remaining_weight}kg cannot exisist with zero number of pieces`))
     
     const delivery = await Delivery.create({remaining_weight,remaining_pieces,pieces_delivered,weight_delivered,delivered_by,
     client:{_id:clientExists._id,name:clientExists.name},})
