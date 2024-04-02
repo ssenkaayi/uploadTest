@@ -39,6 +39,7 @@ export const createDelivery = asyncHandler(async(req,res,next)=>{
     const delivered_by = req.body.delivered_by
 
     if(remaining_pieces == 0 && remaining_weight > 0) return next(errorHandler(400,`weight of ${remaining_weight}kg cannot exisist with zero number of pieces`))
+    if(remaining_weight == 0 && remaining_pieces > 0) return next(errorHandler(400,`number of amount ${remaining_pieces} cannot exisist with zero weight`))
     
     const delivery = await Delivery.create({remaining_weight,remaining_pieces,pieces_delivered,weight_delivered,delivered_by,
     client:{_id:clientExists._id,name:clientExists.name},})
@@ -47,8 +48,6 @@ export const createDelivery = asyncHandler(async(req,res,next)=>{
 
     const addDelivery = await Client.findByIdAndUpdate({_id:req.params.id},{$push:{deliveries:{date,remaining_weight,remaining_pieces,pieces_delivered,
     weight_delivered,delivered_by}}},{new:true})
-
-    // console.log(addDelivery)
 
     res.status(200).send(delivery)
    
