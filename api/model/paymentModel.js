@@ -39,7 +39,7 @@ const paymentSchema = mongoose.Schema(
 
         type:{}
     },
-    issuedName:{
+    issued_by:{
 
         type:String,
         required:true
