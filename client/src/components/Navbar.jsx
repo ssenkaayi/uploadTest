@@ -2,10 +2,12 @@
 import React from 'react'
 import { useState } from 'react';
 import logo from '../assets/images/marislogo.jpeg'
+import { useSelector } from 'react-redux';
 
 function Navbar({searchBox}) {
 
   const [searchItem, setSearchItem] = useState('')
+  const{currentEmploye} = useSelector((state)=>state.employe)
 
 
 
@@ -16,6 +18,8 @@ function Navbar({searchBox}) {
 
 
   }
+
+  // console.log(currentEmploye)
 
    searchBox = searchItem
 
@@ -31,8 +35,14 @@ function Navbar({searchBox}) {
 
         <div className='flex flex-col  text-dashbord '>
         
-          <span className='test-xs'>Admin</span>
-          <span className='text-2xl' >Dashbord</span>
+          <span className='test-xs'>{currentEmploye.role}</span>
+          <span className='text-2xl' >{currentEmploye.firstName}</span>
+
+        </div>
+
+        <div  className='flex flex-col  text-dashbord '>
+
+        <span className='text-2xl' >MARIS CARGO LIMITED</span>
 
         </div>
 
