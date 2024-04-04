@@ -225,9 +225,9 @@ function Clients() {
                 <td className=''>{client.name}</td>
                 <td className=''>{client.weight}</td>
                 <td className=''>{client.number_pieces}</td>
-                <td className=''>{client.total_payments}</td>
+                <td className=''>{client.balance}</td>
                 <td className=''>{client.description}</td>
-                <td className=''>{client.store_status}</td>
+                <td className=''>{client.remaining_weight}</td>
                 <td className=''>{client.issued_by}</td>
 
                 <td className='text-green flex gap-4 items-center p-4'>

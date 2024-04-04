@@ -3,17 +3,15 @@ export const employeTable = ['Date','Fisrt name','Last name','Email','Phone','Ad
 
 export const supplierTable = ['Date','Trip name','Supplier','Weight','NO Clients','Issued by']
 
-export const clientTable = ['Date','Supplier ','Client','Weight','Num Pieces','payment status','Description','Store status','Issued by']
-
-// export const paymentTable = ['Date','Weight','Receipt NO','Client','Amount','Total','Status','Issued by']
+export const clientTable = ['Date','Supplier ','Client','Weight','Num Pieces','Balance In Dollars','Description','Remaining Weight','Issued by']
 
 export const tripTable =    ['Date','Trip Name','Weight','NO suppliers','Transport','Tax','Trip payment','Market fees','Issued by']
 
-export const paymentTable = ['Date','name','Kg Rate','Dollar Rate','Ugx','Dollar','Total paid','Balance','Issued by']
+export const paymentTable = ['Date','Reciept no','name','Kg Rate','Dollar Rate','Ugx','Dollar','Total Dollar paid','Balance','Issued by']
 
 export const deliveryTable = ['Date','name','Weight Delivered','Pieces Delivered','Remaining Weight','Remaining Pieces','Delivered By']
 
-export const clientPaymentTable = ['Date','Kg Rate','Dollar Rate','Ugx','Dollar','Total paid','Balance','Issued by']
+export const clientPaymentTable = ['Date','Reciept no','Kg Rate','Dollar Rate','Ugx','Dollar','Total paid','Balance','Issued by']
 
 export const clientDeliveryTable = ['Date','Weight Delivered','Pieces Delivered','Remaining Weight','Remaining Pieces','Delivered By']
 

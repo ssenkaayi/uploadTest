@@ -32,8 +32,8 @@ export const createDelivery = asyncHandler(async(req,res,next)=>{
     if(available_number_pieces < req.body.pecies_delivered) return next(errorHandler(400,`number of pieces to be delivered cannot execeed ${available_number_pieces}`))
     
 
-    const remaining_weight = (clientExists.weight - (totalWeightDelivered + Number(req.body.weight_delivered))).toFixed(2)
-    const remaining_pieces = (clientExists.number_pieces - (totalPiecesDelivered + Number(req.body.pecies_delivered))).toFixed(2)
+    const remaining_weight = Number(clientExists.weight - (totalWeightDelivered + Number(req.body.weight_delivered))).toFixed(2)
+    const remaining_pieces = Number(clientExists.number_pieces - (totalPiecesDelivered + Number(req.body.pecies_delivered))).toFixed(2)
     const pieces_delivered = req.body.pecies_delivered
     const weight_delivered = req.body.weight_delivered
     const delivered_by = req.body.delivered_by
@@ -48,6 +48,8 @@ export const createDelivery = asyncHandler(async(req,res,next)=>{
 
     const addDelivery = await Client.findByIdAndUpdate({_id:req.params.id},{$push:{deliveries:{date,remaining_weight,remaining_pieces,pieces_delivered,
     weight_delivered,delivered_by}}},{new:true})
+
+    // const updateClintRemaaingweight = await Client.findByIdAndUpdate({_id:req.params.id},{$set:remaining_weight},{new:true})
 
     res.status(200).send(delivery)
    

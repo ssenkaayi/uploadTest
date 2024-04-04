@@ -26,7 +26,7 @@ export const createPayment = asyncHandler(async(req,res,next)=>{
     const available_total_payment = (total_payment - (totalAmountPaid)).toFixed(2)
     const kg_rate = Number (req.body.kg_rate)
 
-    const balance = (total_payment-total_amount ).toFixed(2)
+    const balance = Number(total_payment-total_amount ).toFixed(2)
     const amount_ugx = Number(req.body.dollar_rate) * Number(req.body.amount).toFixed(2)
     const reciept_number = req.body.reciept_no
     const dollar_rate = Number(req.body.dollar_rate)
@@ -43,15 +43,17 @@ export const createPayment = asyncHandler(async(req,res,next)=>{
 
     const date = payment.createdAt
 
-    const addDelivery = await Client.findByIdAndUpdate({_id:req.params.id},{$push:{payments:{date,total_amount,balance,amount_dollars,amount_ugx,
+    const addPayment = await Client.findByIdAndUpdate({_id:req.params.id},{$push:{payments:{date,total_amount,balance,amount_dollars,amount_ugx,
     kg_rate,reciept_number,dollar_rate}}},{new:true})
 
-    
-    console.log(clientExists.weight)
-    console.log(kg_rate)
-    console.log(total_payment)
+    // await Client.findByIdAndUpdate({_id:req.params.id},{$set:{balance}},{new:true})
 
-    res.status(200).send(addDelivery)
+    
+    // console.log(clientExists.weight)
+    // console.log(kg_rate)
+    // console.log(total_payment)
+
+    res.status(200).send(addPayment)
    
 })
 

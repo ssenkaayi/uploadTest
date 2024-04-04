@@ -165,6 +165,7 @@ function Payments() {
                             <tr key={index}>
                             
                             <td className='p-4 text-left'>{payment.createdAt.split("T", 1)}</td>
+                            <td className='p-4 text-left'>{payment.reciept_number}</td>
                             <td className='p-4 text-left'>{payment.client.name}</td>
                             <td className='p-4 text-left'>{payment.kg_rate}</td>
                             <td className='p-4 text-left'>{payment.dollar_rate}</td>
@@ -172,7 +173,7 @@ function Payments() {
                             <td className='p-4 text-left'>{payment.amount_dollars}</td>
                             <td className='p-4 text-left'>{payment.total_amount}</td>
                             <td className='p-4 text-left'>{payment.balance}</td>
-                            <td className='p-4 text-left'>{payment.total_amount}</td>
+                            <td className='p-4 text-left'>{payment.issued_by}</td>
 
                             <td className='text-green flex gap-4 items-center p-4'>
                                 <span className='p-2 cursor-pointer '>Edit</span>

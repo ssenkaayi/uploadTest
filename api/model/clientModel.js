@@ -47,13 +47,13 @@ const clientSchema = mongoose.Schema(
     },
 
 
-    total_payments:{
+    balance:{
 
         type:Number,
         default:0
     },
 
-    store_status:{
+    remaining_weight:{
 
         type:Number,
         default:0

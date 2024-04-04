@@ -77,7 +77,7 @@ export default function InvoiceHeader({client_id}) {
   
       const data = await res.json();
   
-      // console.log(data)
+      console.log(data)
   
       if(data.success===false){
         console.log(data.message)
@@ -145,6 +145,7 @@ export default function InvoiceHeader({client_id}) {
            <div>
             <p>{clientsDetails._id}</p>
             <p>{clientsDetails.createdAt.split("T", 1)}</p>
+            <p>{clientsDetails.payments.reciept_number}</p>
             <p>{clientsDetails.trip.name}</p>
             <p>{clientsDetails.name}</p>
             <p>{clientsDetails.weight}Kg</p>
