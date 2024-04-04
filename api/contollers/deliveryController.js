@@ -9,6 +9,8 @@ import errorHandler from '../errorHandler.js';
 
 export const createDelivery = asyncHandler(async(req,res,next)=>{
 
+    console.log(req.body)
+
     const clientExists = await Client.findById(req.params.id)
     if(!clientExists) return next(errorHandler(400,'client doesnt exist'))
 
@@ -37,11 +39,12 @@ export const createDelivery = asyncHandler(async(req,res,next)=>{
     const pieces_delivered = req.body.pecies_delivered
     const weight_delivered = req.body.weight_delivered
     const delivered_by = req.body.delivered_by
+    const issued_by = req.body.issued_by
 
     if(remaining_pieces == 0 && remaining_weight > 0) return next(errorHandler(400,`weight of ${remaining_weight}kg cannot exisist with zero number of pieces`))
     if(remaining_weight == 0 && remaining_pieces > 0) return next(errorHandler(400,`number of amount ${remaining_pieces} cannot exisist with zero weight`))
     
-    const delivery = await Delivery.create({remaining_weight,remaining_pieces,pieces_delivered,weight_delivered,delivered_by,
+    const delivery = await Delivery.create({remaining_weight,remaining_pieces,pieces_delivered,weight_delivered,delivered_by, issued_by,
     client:{_id:clientExists._id,name:clientExists.name},})
 
     const date = delivery.createdAt

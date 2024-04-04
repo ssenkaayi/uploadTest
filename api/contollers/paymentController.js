@@ -30,13 +30,14 @@ export const createPayment = asyncHandler(async(req,res,next)=>{
     const amount_ugx = Number(req.body.dollar_rate) * Number(req.body.amount).toFixed(2)
     const reciept_number = req.body.reciept_no
     const dollar_rate = Number(req.body.dollar_rate)
+    const issued_by = req.body.issued_by
 
 
     if(available_total_payment < req.body.amount) return next(errorHandler(400,`amount to be paid cannot execeed ${available_total_payment}`))
     console.log(available_total_payment)
     console.log(total_amount)
     
-    const payment = await Payment.create({total_amount,balance,amount_dollars,amount_ugx,kg_rate,reciept_number,
+    const payment = await Payment.create({total_amount,balance,amount_dollars,amount_ugx,kg_rate,reciept_number, issued_by,
     client:{_id:clientExists._id,name:clientExists.name},dollar_rate})
 
     console.log(payment)

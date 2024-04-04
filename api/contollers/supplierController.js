@@ -3,25 +3,24 @@ import asyncHandler from 'express-async-handler'
 import Trip from '../model/tripModel.js';
 import errorHandler from '../errorHandler.js';
 import Supplier from '../model/supplierModel.js';
+import { supplierValidation } from '../validation.js';
 
 
 export const createSupplier = asyncHandler(async(req,res,next)=>{
 
-    // const {error} = luggageValidation(req.body)
+    const {error} = supplierValidation(req.body)
   
-    // if(error) return next(errorHandler(400,error.details[0].message))
+    if(error) return next(errorHandler(400,error.details[0].message))
 
     const trip = await Trip.findById(req.params.id)
     if(!trip) return next(errorHandler(400,'Trip with provided id doesnt exist'))
     // console.log(trip.name,trip._id)
    
-    
     const create_suplier = await Supplier.create({...req.body,trip:{name:trip.name,_id:trip._id}})
     console.log(create_suplier)
 
     // // const new_trip_weight = trip.weight + create_suplier.weight
     
-
     const updatedTripPush = await Trip.findByIdAndUpdate({_id:req.params.id},{$push:{suppliers:{name:create_suplier.name,
     _id:create_suplier._id,weight:create_suplier.weight}}},{new:true})
     // console.log(updatedTripPush)
@@ -112,24 +111,6 @@ export const getSupplier = asyncHandler(async(req,res)=>{
   
     res.status(200).send(isSupplier)
    
-})
-
-
-export const createNewSupplier = asyncHandler(async(req,res,next)=>{
-
-    const create_supplier = await Trip.findOneAndUpdate({_id:req.params.id},{$push:{suppliers:req.body}},{new:true})
-    if(!create_supplier) return next(errorHandler(400,'error creating supplier, trip with id is not found'))
-
-    const number_suppliers = create_supplier.suppliers.length
-
-    const update_supplier = await Trip.findOneAndUpdate({_id:req.params.id},{$set:{number_suppliers}},{new:true})
-    if(!update_supplier) return next(errorHandler(400,'error updating number of suppliers, trip with id is not found'))
-
-
-    console.log(number_suppliers)
-
-    res.status(200).send(create_supplier)
-
 })
 
 

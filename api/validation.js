@@ -1,4 +1,6 @@
-import Joi from "joi";
+
+import Joi from '@hapi/joi'
+// import { number } from 'joi'
 
 
 export const registerValidation = (data)=>{
@@ -42,16 +44,26 @@ export const tripValidation = (data)=>{
     return schema.validate(data)
 }
 
-export const luggageValidation = (data)=>{
+export const supplierValidation = (data)=>{
 
     const schema = Joi.object({
 
-        trip_id:Joi.string().min(4).required(),
-        weight:Joi.number().min(1).required(),
-        numberLuggages:Joi.number().min(1).required(),
-        supplierName:Joi.string().min(3).required(),
-        clientName:Joi.string().min(3).required(),
-        issuedBy:Joi.string().min(3).required()
+        name:Joi.string().min(3).required(),
+        issued_by:Joi.string().min(3).required()
+    })
+
+    return schema.validate(data)
+}
+
+export const clientValidation = (data)=>{
+
+    const schema = Joi.object({
+
+        name:Joi.string().min(3).required(),
+        weight:Joi.number().required(),
+        number_pieces:number().required(),
+        issued_by:Joi.string().min(3).required(),
+        decription:Joi.string(3).required(),
     })
 
     return schema.validate(data)

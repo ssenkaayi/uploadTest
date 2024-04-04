@@ -32,6 +32,11 @@ const deliverySchema = mongoose.Schema(
         type:Number,
         required:true,
     },
+    issued_by:{
+
+        type:String,
+        required:true
+    },
 
 } , {timestamps:true}
 

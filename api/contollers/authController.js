@@ -1,4 +1,4 @@
-import { loginValidation,registerValidation  } from '../validation.js'
+import {registerValidation} from '../validation.js'
 import Employe from '../model/employeModel.js';
 import bcrypt from "bcryptjs"
 import Jwt  from "jsonwebtoken";
@@ -6,11 +6,13 @@ import asyncHandler from 'express-async-handler'
 import errorHandler from '../errorHandler.js';
 
 
-export const registerEmploye = asyncHandler(async(req,res)=>{
 
-    // const {error} = registerValidation(req.body)
+export const registerEmploye = asyncHandler(async(req,res,next)=>{
+
+    const {error} = registerValidation(req.body)
   
-    // if(error) return res.status(400).send(error.details[0].message)
+    if(error) return next(errorHandler(400,error.details[0].message))
+    // res.status(400).send(error.details[0].message)
 
     const {firstName, lastName,email,phone, role, password,address} = req.body
 
@@ -46,7 +48,7 @@ const generateToken = (id)=>{
     return Jwt.sign({_id:id},process.env.JWT_SECRET,{
         // expiresIn: "6h" // it will be expired after 10 hours
         //expiresIn: "20d" // it will be expired after 20 days
-        expiresIn: 5 // it will be expired after 120ms
+        expiresIn: "6h" // it will be expired after 120ms
         // expiresIn: "120s" // it will be expired after 120s
  })
 }
