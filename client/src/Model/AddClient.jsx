@@ -97,7 +97,7 @@ function AddClient({visible , onClose , supplier_id }) {
                     />
 
                     <label className='text-1xl font-semibold'> number_pieces</label>
-                    <input type="text" placeholder="number_pieces" id='number_pieces' 
+                    <input type="number" placeholder="number_pieces" id='number_pieces' 
                     className='border p-3 rounded-lg' required onChange={handleChange}
                     />
 

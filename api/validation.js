@@ -61,10 +61,10 @@ export const clientValidation = (data)=>{
     const schema = Joi.object({
 
         name:Joi.string().min(3).required(),
-        weight:Joi.number().required(),
-        number_pieces:number().required(),
+        weight:Joi.number().required().min(3),
+        number_pieces:Joi.number().required().min(3),
         issued_by:Joi.string().min(3).required(),
-        decription:Joi.string(3).required(),
+        description:Joi.string().required(),
     })
 
     return schema.validate(data)
