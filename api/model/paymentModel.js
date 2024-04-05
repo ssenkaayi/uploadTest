@@ -15,6 +15,11 @@ const paymentSchema = mongoose.Schema(
         type:Number,
         required:true
     },
+    amount_ugx:{
+
+        type:Number,
+        required:true
+    },
     kg_rate:{
 
         type:Number,

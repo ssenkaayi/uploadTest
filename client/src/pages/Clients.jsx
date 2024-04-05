@@ -169,13 +169,7 @@ function Clients() {
         <h3 className=' text-2xl p-2'> Manange Clients </h3>
 
         <div className='flex items-center gap-4'>
-{/* 
-          <div className='flex items-center p-search-box bg-search-bar rounded-2xl text-dashbord'>
-
-            < input className='bg-transparent p-2 outline-none' type='text' placeholder='search' value={searchItem} onChange={handleInputChange} />
-            <CiSearch className='w-6 h-6 cursor-pointer text-sm hover:trb'/>
-
-          </div> */}
+          
           <CiSearch onClick={handleSearch} className='w-6 h-6 cursor-pointer text-sm hover:trb'/>
           <button 
             className='flex items-center p-2 bg-dashbord rounded-xl text-white' onClick={navigateToSupplier}>Add Client

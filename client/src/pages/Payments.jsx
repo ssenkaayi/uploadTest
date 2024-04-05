@@ -169,7 +169,7 @@ function Payments() {
                             <td className='p-4 text-left'>{payment.client.name}</td>
                             <td className='p-4 text-left'>{payment.kg_rate}</td>
                             <td className='p-4 text-left'>{payment.dollar_rate}</td>
-                            <td className='p-4 text-left'>{payment.reciept_number}</td>
+                            <td className='p-4 text-left'>{payment.amount_ugx}</td>
                             <td className='p-4 text-left'>{payment.amount_dollars}</td>
                             <td className='p-4 text-left'>{payment.total_amount}</td>
                             <td className='p-4 text-left'>{payment.balance}</td>
