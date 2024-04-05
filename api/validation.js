@@ -35,10 +35,10 @@ export const tripValidation = (data)=>{
     const schema = Joi.object({
 
         name:Joi.string().min(4).required(),
-        transport:Joi.number().required(),
-        tax:Joi.number().required(),
-        trip_payment:Joi.number().required(),
-        issued_by:Joi.string(4).required()
+        transport:Joi.number().required().min(4),
+        tax:Joi.number().required().min(4),
+        trip_payment:Joi.number().required().min(4),
+        issued_by:Joi.string().required().min(4)
     })
 
     return schema.validate(data)
