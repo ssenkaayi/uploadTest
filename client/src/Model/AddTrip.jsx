@@ -81,23 +81,23 @@ function AddTrip({visible , onClose}) {
                   />
 
                   <label className='text-1xl font-semibold'> transport</label>
-                  <input type="text" placeholder="transport" id='transport' 
+                  <input type="Number" placeholder="transport" id='transport' 
                   className='border p-3 rounded-lg' required onChange={handleChange}
                   />
 
                   <label className='text-1xl font-semibold'> tax</label>
-                  <input type="text" placeholder="tax" id='tax' 
+                  <input type="Number" placeholder="tax" id='tax' 
                   className='border p-3 rounded-lg' required onChange={handleChange}
 
                   />
 
                   <label className='text-1xl font-semibold'>Trip payment</label>
-                    <input type="text" placeholder="sky team name" id='trip_payment' className='border p-3 rounded-lg'
+                    <input type="Number" placeholder="sky team name" id='trip_payment' className='border p-3 rounded-lg'
                     required onChange={handleChange}
                   />
 
                   <label className='text-1xl font-semibold'>Market fees</label>
-                    <input type="text" placeholder="sky team name" id='market_fees' className='border p-3 rounded-lg'
+                    <input type="Number" placeholder="sky team name" id='market_fees' className='border p-3 rounded-lg'
                     required onChange={handleChange}
                   />
 

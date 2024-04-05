@@ -4,14 +4,15 @@ import Trip from '../model/tripModel.js';
 import errorHandler from '../errorHandler.js';
 import Supplier from '../model/supplierModel.js';
 import Client from '../model/clientModel.js';
+import { clientValidation } from '../validation.js';
 
 
 
 export const createClient = asyncHandler(async(req,res,next)=>{
 
-    // const {error} = luggageValidation(req.body)
+    const {error} = clientValidation(req.body)
   
-    // if(error) return next(errorHandler(400,error.details[0].message))
+    if(error) return next(errorHandler(400,error.details[0].message))
 
 
     //checking if the supplier exists with the supplier_id in the client table

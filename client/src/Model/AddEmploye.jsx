@@ -65,15 +65,17 @@ function AddEmploye({visible , onClose}) {
     <div className='fixed inset-0 bg-black bg-opacity-30
     backdrop-blur-sm flex justify-center items-center'>
         
-        <div className=' bg-white flex flex-col font-primay p-20  max-w-lg mx-auto  bg-whit gap-4 rounded'>  
+        <div className=' bg-white flex flex-col font-primay p-20  mx-auto  bg-whit gap-4 rounded'>  
 
             <h3>Create Employe</h3>
 
-            <form className='flex flex-col w-80' onSubmit={handleSubmit}>
+            <form className='flex gap-8 flex-col' onSubmit={handleSubmit}>
 
-                <div className='flex flex-col gap-4'>
+              <div className='flex gap-8'> 
 
-                    <label className='text-1xl font-semibold'>firstname</label>
+                <div className='flex flex-col gap-4 w-80'>
+
+                  <label className='text-1xl font-semibold'>firstname</label>
                     <input type="text" placeholder="Enter email" id='firstName' className='border p-3 rounded-lg'
                     required onChange={handleChange}
                     />
@@ -85,12 +87,15 @@ function AddEmploye({visible , onClose}) {
 
 
                     <label className='text-1xl font-semibold'>email</label>
-                    <input type="text" placeholder="Enter Password" id='email' 
+                    <input type="email" placeholder="Enter Password" id='email' 
                     className='border p-3 rounded-lg' required onChange={handleChange}
                     />
 
+                </div>
 
-                    <label className='text-1xl font-semibold'> address </label>
+                <div className='flex flex-col gap-4 w-80'>
+
+                  <label className='text-1xl font-semibold'> address </label>
                     <input type="text" placeholder="Enter Password" id='address' 
                     className='border p-3 rounded-lg' required onChange={handleChange}
                     />
@@ -113,20 +118,19 @@ function AddEmploye({visible , onClose}) {
                     className='border p-3 rounded-lg' required onChange={handleChange}
                     />
 
-                    <div className='flex justify-between items-center'>
-                        
-                        <button onClick={handleOnClose} className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
-                        type="button"> cancel
-                        </button>
+                </div>
 
-                        <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
-                        > {loading? 'submiting...':'Submit'}
-                        </button>
+              </div>
 
+                <div className='flex justify-between items-center'>
+                      
+                  <button onClick={handleOnClose} className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
+                  type="button"> cancel
+                  </button>
 
-
-
-                    </div>
+                  <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
+                  > {loading? 'submiting...':'Submit'}
+                  </button>
 
                 </div>
 

@@ -8,9 +8,9 @@ import { supplierValidation } from '../validation.js';
 
 export const createSupplier = asyncHandler(async(req,res,next)=>{
 
-    const {error} = supplierValidation(req.body)
+    // const {error} = supplierValidation(req.body)
   
-    if(error) return next(errorHandler(400,error.details[0].message))
+    // if(error) return next(errorHandler(400,error.details[0].message))
 
     const trip = await Trip.findById(req.params.id)
     if(!trip) return next(errorHandler(400,'Trip with provided id doesnt exist'))

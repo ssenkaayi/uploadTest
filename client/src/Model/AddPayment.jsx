@@ -78,8 +78,6 @@ function AddPayment({visible , onClose, client_id}) {
 
               <div className='flex gap-8' >
 
-           
-
                 <div className='flex flex-col gap-4 w-80'>
 
                   <label className='text-1xl font-semibold'>Reciept No</label>
@@ -88,7 +86,7 @@ function AddPayment({visible , onClose, client_id}) {
                   />
 
                   <label className='text-1xl font-semibold'>Kg Rate</label>
-                  <input type="text" placeholder="kg rate" id='kg_rate' className='border p-3 rounded-lg'
+                  <input type="Number" placeholder="kg rate" id='kg_rate' className='border p-3 rounded-lg'
                   required onChange={handleChange}
                   />
 
@@ -97,12 +95,12 @@ function AddPayment({visible , onClose, client_id}) {
                 <div className='flex flex-col gap-4 w-80'>
 
                   <label className='text-1xl font-semibold'>Dollar Rate</label>
-                  <input type="text" placeholder="dollar rate" id='dollar_rate' className='border p-3 rounded-lg'
+                  <input type="Number" placeholder="dollar rate" id='dollar_rate' className='border p-3 rounded-lg'
                   required onChange={handleChange}
                   />
 
                   <label className='text-1xl font-semibold'>Amount In Dollars</label>
-                  <input type="text" placeholder="amount in dollars" id='amount' 
+                  <input type="Number" placeholder="amount in dollars" id='amount' 
                   className='border p-3 rounded-lg' required onChange={handleChange}
                   />
 

@@ -2,9 +2,13 @@
 import Employe from '../model/employeModel.js';
 import asyncHandler from 'express-async-handler';
 import errorHandler from '../errorHandler.js';
+import { registerValidation } from '../validation.js';
 
 export const getEmploye = asyncHandler(async(req,res)=>{
 
+    const {error} = registerValidation(req.body)
+  
+    if(error) return next(errorHandler(400,error.details[0].message))
 
     const isEmploye = await Employe.findById(req.params.id)
     if(!isEmploye) return res.status(400).send('you are not authorise to view employe data')
