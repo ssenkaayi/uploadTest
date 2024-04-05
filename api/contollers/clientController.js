@@ -9,13 +9,13 @@ import { clientValidation } from '../validation.js';
 
 
 export const createClient = asyncHandler(async(req,res,next)=>{
-    console.log(req.body)
+    // console.log(req.body)
 
     const {error} = clientValidation(req.body)
   
     if(error) return next(errorHandler(400,error.details[0].message))
 
-    console.log(req.body)
+    // console.log(req.body)
 
 
     //checking if the supplier exists with the supplier_id in the client table
