@@ -5,7 +5,7 @@ import errorHandler from '../errorHandler.js';
 
 
 
-export const createTrip = asyncHandler(async(req,res)=>{
+export const createTrip = asyncHandler(async(req,res,next)=>{
 
     const {error} = tripValidation(req.body)
     if(error) return next(errorHandler(400,error.details[0].message))

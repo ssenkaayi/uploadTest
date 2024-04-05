@@ -38,6 +38,7 @@ export const tripValidation = (data)=>{
         transport:Joi.number().required().min(4),
         tax:Joi.number().required().min(4),
         trip_payment:Joi.number().required().min(4),
+        market_fees:Joi.number().required().min(4),
         issued_by:Joi.string().required().min(4)
     })
 
