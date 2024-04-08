@@ -305,17 +305,11 @@ export const aggregatedClients = async(req,res,next)=>{
 
         // we use options:'i' method to remove search sensitivity
 
-        const aggregated_clients = await Client.find(
-            {
-                "$or" : [
-                    {
-                      
-                        createdAt: {$gt: req.params.key}
-                
-                    },
+        const aggregated_clients = await Client.aggregate(
+            [
+                {$match :{year:{gt:2024}}}
 
-                ]
-            }
+            ]
         ) 
         // .sort({createdAt:-1})
 
