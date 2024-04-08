@@ -9,7 +9,7 @@ import errorHandler from '../errorHandler.js';
 
 export const createDelivery = asyncHandler(async(req,res,next)=>{
 
-    console.log(req.body)
+    // console.log(req.body)
 
     const clientExists = await Client.findById(req.params.id)
     if(!clientExists) return next(errorHandler(400,'client doesnt exist'))
@@ -50,7 +50,7 @@ export const createDelivery = asyncHandler(async(req,res,next)=>{
     const date = delivery.createdAt
 
     const addDelivery = await Client.findByIdAndUpdate({_id:req.params.id},{$push:{deliveries:{date,remaining_weight,remaining_pieces,pieces_delivered,
-    weight_delivered,delivered_by}}},{new:true})
+    weight_delivered,delivered_by,_id:delivery._id}}},{new:true})
 
     // const updateClintRemaaingweight = await Client.findByIdAndUpdate({_id:req.params.id},{$set:remaining_weight},{new:true})
 

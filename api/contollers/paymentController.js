@@ -34,18 +34,18 @@ export const createPayment = asyncHandler(async(req,res,next)=>{
 
 
     if(available_total_payment < req.body.amount) return next(errorHandler(400,`amount to be paid cannot execeed ${available_total_payment}`))
-    console.log(available_total_payment)
-    console.log(total_amount)
+    // console.log(available_total_payment)
+    // console.log(total_amount)
     
     const payment = await Payment.create({total_amount,balance,amount_dollars,amount_ugx,kg_rate,reciept_number, issued_by,
     client:{_id:clientExists._id,name:clientExists.name},dollar_rate})
 
-    console.log(payment)
+    // console.log(payment)
 
     const date = payment.createdAt
 
     const addPayment = await Client.findByIdAndUpdate({_id:req.params.id},{$push:{payments:{date,total_amount,balance,amount_dollars,amount_ugx,
-    kg_rate,reciept_number,dollar_rate}}},{new:true})
+    kg_rate,reciept_number,dollar_rate,_id:payment._id}}},{new:true})
 
     // await Client.findByIdAndUpdate({_id:req.params.id},{$set:{balance}},{new:true})
 
