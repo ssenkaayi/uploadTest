@@ -100,7 +100,7 @@ function AddPayment({visible , onClose, client_id}) {
                   />
 
                   <label className='text-1xl font-semibold'>Amount In Dollars</label>
-                  <input type="Number" placeholder="amount in dollars" id='amount' 
+                  <input type="text" placeholder="amount in dollars" id='amount' 
                   className='border p-3 rounded-lg' required onChange={handleChange}
                   />
 
