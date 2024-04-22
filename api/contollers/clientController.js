@@ -201,13 +201,6 @@ export const searchClient = async(req,res,next)=>{
             {
                 "$or" : [
                     {
-                        // name:{$regex:req.params.key , $options:'i'},
-                        createdAt: {$gt: req.params.key},
-                        // supplier:{$regex:req.params.key , $options:'i'}
-                        // createdAt:{$regex:req.params.key}
-        
-                    },
-                    {
                         name:{$regex:req.params.key , $options:'i'},
                         // createdAt: {$gt: req.params.key},
                         // supplier:{$regex:req.params.key , $options:'i'}
