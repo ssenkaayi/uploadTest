@@ -154,27 +154,6 @@ function EditClient({visible , onClose, client_id}) {
 
                 </div>
 
-                {/* <div className='flex flex-col gap-4 w-80'>
-
-                  <label className='text-1xl font-semibold'>date</label>
-                  <input type="text" placeholder="Enter Password" id='phone' 
-                  className='border p-3 rounded-lg' required onChange={handleChange}
-                  />
-
-
-                  <label className='text-1xl font-semibold'>role</label>
-                  <input type="text" placeholder="Enter Password" id='role' 
-                  className='border p-3 rounded-lg' required onChange={handleChange}
-                  />
-
-
-                  <label className='text-1xl font-semibold'>password</label>
-                  <input type="password" placeholder="Enter Password" id='password' 
-                  className='border p-3 rounded-lg' required onChange={handleChange}
-                  />
-
-                </div> */}
-
               </div>
 
               <div className='flex justify-between items-center'>

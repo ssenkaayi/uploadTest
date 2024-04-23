@@ -96,6 +96,27 @@ export const getTrip = asyncHandler(async(req,res)=>{
    
 })
 
+export const updateTrip = async(req,res,next)=>{
+
+    // console.log(req.body)
+
+    try{
+
+        // sending response to the client
+
+        const updateTrip = await Trip.findOneAndUpdate({_id:req.body._id},{$set:{name:req.body.name,transport:req.body.transport,
+        tax:req.body.tax,trip_payment:req.body.trip_payment,market_fees:req.body.market_fees}},{new:true})
+        if(!updateTrip) next(errorHandler(402,"updating client failed"))
+        res.status(200).json(updateTrip)
+
+    }catch(error){
+
+        next(error)
+    }
+
+
+}
+
 
 
 

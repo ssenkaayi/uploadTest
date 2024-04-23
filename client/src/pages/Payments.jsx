@@ -15,7 +15,7 @@ function Payments() {
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
     const navigate = useNavigate()
-    const [limit,setLimit] = useState(9)
+    const [limit,setLimit] = useState(8)
     const [pageCount,setPageCount] = useState(1)
     const currentPage = useRef()
 

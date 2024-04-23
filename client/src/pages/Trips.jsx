@@ -7,6 +7,7 @@ import AddSupplier from '../Model/AddSUpplier'
 import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react'
 import ReactPaginate from 'react-paginate';
+import EditTrip from '../Model/EditTrip'
 
 
 
@@ -16,6 +17,7 @@ function Trips() {
     const [trips , setTrips] = useState([])
     const [trip_id , setTrip_id] = useState(null)
     const [showAddSupplier,setShowAddSupplier] = useState(false)
+    const [showEditTrip,setShowEditTrip] = useState(false)
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
     const [limit,setLimit] = useState(8)
@@ -27,7 +29,8 @@ function Trips() {
 
       setShowAddTrip(false)
       setShowAddSupplier(false)
-
+      setShowEditTrip(false)
+      
     }
 
     useEffect(()=>{
@@ -92,6 +95,15 @@ function Trips() {
       navigate(`/view_trip/${id}`)
 
       // setShowAddSupplier(true)
+      
+
+    }
+
+    const handleEditTrip = (id)=>{
+
+      const btn_id = id
+      setTrip_id(btn_id)
+      setShowEditTrip(true)
 
     }
 
@@ -125,7 +137,7 @@ function Trips() {
     <div className='bg-white mt-card p-record mt-record rounded-2xl'>
 
         <AddTrip onClose={handleOnClose} visible={showAddTrip}/>   
-
+        <EditTrip onClose={handleOnClose} visible={showEditTrip} trip_id={trip_id}/>
         <AddSupplier  onClose={handleOnClose}  visible={showAddSupplier} trip_id={trip_id} />   
 
         <div className='flex justify-between'>
@@ -180,7 +192,7 @@ function Trips() {
 
                             <td className='flex gap-4 items-center p-4'>
 
-                              {/* <button className='p-2 cursor-pointer 'id="add" onClick={()=>handleSkyTeamName(trip._id)}>Add</button> */}
+                              <button className='p-2 cursor-pointer 'id="add" onClick={()=>handleEditTrip(trip._id)}>Edit</button>
                               <button className='p-2 cursor-pointer ' id='view' onClick={()=>handleSkyTeamName(trip._id)}>View</button>
                               {/* <button className='p-2 cursor-pointer 'id="delete" onClick={()=>handleDeteleTrip(trip._id)}>Delete</button> */}
 
