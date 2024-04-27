@@ -11,6 +11,7 @@ import { useRef } from 'react'
 function Payments() {
 
     const [showAddEmploye,setShowAddEmploye] = useState(false)
+    // const [client_id,setClient_id] = useState([])
     const [payments , setPayments] = useState([])
     const [loading , setLoading] = useState(false)
     const [error , setError] = useState(false)
@@ -37,7 +38,7 @@ function Payments() {
     },[])
 
     const handlePageClick = (e)=>{
-      // console.log(e)
+
       currentPage.current = (e.selected+1)
       fetchEmployes()
   
@@ -55,7 +56,7 @@ function Payments() {
         })
 
         const data = await res.json();
-        // console.log(data)
+     
       
         if(data.succuss===false){
           setError(true)
@@ -67,7 +68,7 @@ function Payments() {
         setLoading(false)
         setPageCount(data.pageCount)
         setPayments(data.result)
-        // setEmployes((prev)=>prev.filter((data)))
+
     
       }
   
@@ -78,38 +79,44 @@ function Payments() {
     }
   }
 
-    const handleDeteleEmploye = async(id)=>{
+    // const handleDeteleEmploye = async(id)=>{
 
-      const button_id = id
-      // console.log(button_id)
+    //   const button_id = id
+    //   // console.log(button_id)
     
-      try{
+    //   try{
     
-        const res = await fetch(`/api/employe/deleteEmploye/${button_id}`,{
-          method:"DELETE",
-        })
+    //     const res = await fetch(`/api/employe/deleteEmploye/${button_id}`,{
+    //       method:"DELETE",
+    //     })
     
-        const data = await res.json();
+    //     const data = await res.json();
     
-        console.log(data)
+    //     console.log(data)
     
-        if(data.success===false){
-          console.log(data.message)
-        }
+    //     if(data.success===false){
+    //       console.log(data.message)
+    //     }
     
-        setEmployes((prev)=>prev.filter((employes)=>employes._id!==button_id))
+    //     setEmployes((prev)=>prev.filter((employes)=>employes._id!==button_id))
     
-      }catch(error){
-        console.log(error)
-      }
+    //   }catch(error){
+    //     console.log(error)
+    //   }
 
 
-    }
+    // }
 
     const navigateToClient =()=>{
 
       navigate('/')
 
+    }
+
+    const handleViewClient = (id)=>{
+
+      navigate(`/view_client/${id}`)
+      
     }
 
     //bg-white mt-card p-record mt-record rounded-2xl
@@ -176,9 +183,10 @@ function Payments() {
                             <td className='p-4 text-left'>{payment.issued_by}</td>
 
                             <td className='text-green flex gap-4 items-center p-4'>
-                                <span className='p-2 cursor-pointer '>Edit</span>
-                                <span className='p-2 cursor-pointer '>View</span>
-                                <button className='p-2 cursor-pointer 'id='delete' onClick={()=>handleDeteleEmploye(employe._id)}>Delete</button>
+                                {/* <span className='p-2 cursor-pointer '>Edit</span> */}
+                                {/* <span className='p-2 cursor-pointer '>View</span> */}
+                                <button className='p-2 cursor-pointer 'id='view' onClick={()=>handleViewClient(payment.client._id)}>View</button>
+                                {/* <button className='p-2 cursor-pointer 'id='delete' onClick={()=>handleDeteleEmploye(employe._id)}>Delete</button> */}
                             </td>
 
                             </tr>

@@ -26,7 +26,7 @@ export default function Delivery() {
     },[])
 
     const handlePageClick = (e)=>{
-        // console.log(e)
+
         currentPage.current = (e.selected+1)
         fetchDeliveries()
     
@@ -44,7 +44,7 @@ export default function Delivery() {
           })
 
           const data = await res.json();
-          console.log(data)
+        //   console.log(data)
         
           if(data.succuss===false){
             setError(true)
@@ -72,6 +72,12 @@ export default function Delivery() {
         navigate('/')
 
     }
+
+    const handleViewClient = (id)=>{
+
+        navigate(`/view_client/${id}`)
+        
+      }
 
   return (
         
@@ -131,9 +137,10 @@ export default function Delivery() {
                             {/* <td className='p-4 text-left'>{employe.role}</td> */}
 
                             <td className='text-green flex gap-4 items-center p-4'>
-                                <span className='p-2 cursor-pointer '>Edit</span>
-                                <span className='p-2 cursor-pointer '>View</span>
-                                <button className='p-2 cursor-pointer 'id='delete'>Delete</button>
+                                {/* <span className='p-2 cursor-pointer '>Edit</span> */}
+                                {/* <span className='p-2 cursor-pointer '>View</span> */}
+                                <button className='p-2 cursor-pointer 'id='view' onClick={()=>handleViewClient(delivery.client._id)}>View</button>
+                                {/* <button className='p-2 cursor-pointer 'id='delete'>Delete</button> */}
                             </td>
 
                             </tr>

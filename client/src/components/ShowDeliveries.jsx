@@ -31,7 +31,7 @@ export default function ShowDeliveries() {
             })
 
             const data = await res.json();
-            console.log(data)
+            // console.log(data)
           
             if(data.succuss===false){
               setError(true)
